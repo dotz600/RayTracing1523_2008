@@ -1,8 +1,16 @@
 package geometries;
 
-import primitives.Vector;
 
+
+/**
+ * this interface will serve all the geometries
+ */
 public interface Geometry {
-    public primitives.Vector getNormal(primitives.Point p);
+    /**
+     * return the normal of the geometry
+     * @param p point
+     * @return normal vector
+     */
+    primitives.Vector getNormal(primitives.Point p);
 
 }
