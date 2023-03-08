@@ -1,7 +1,7 @@
 package geometries;
 
 import primitives.Point;
-import primitives.Vector;
+
 
 /**
  * this class represent sphere
@@ -14,8 +14,8 @@ public class Sphere extends RadialGeometry {
 
     /**
      * constructor with parameters
-     * @param p
-     * @param r
+     * @param p center point
+     * @param r radius
      */
     public Sphere(Point p, double r) {
         super(r);

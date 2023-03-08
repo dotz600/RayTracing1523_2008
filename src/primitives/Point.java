@@ -1,7 +1,7 @@
 package primitives;
 
 import java.util.Objects;
-import java.util.Vector;
+
 
 /**
  * this class represent point
@@ -24,7 +24,7 @@ public class Point {
 
     /**
      * constructor to initialize xyz with Double3 Type
-     * @param xyz
+     * @param xyz Double3
      */
     Point(Double3 xyz) {
 
@@ -44,7 +44,7 @@ public class Point {
 
     /**
      * add vector to point using Double3 add
-     * @param v
+     * @param v vector to add
      * @return new Point
      */
     public Point add(primitives.Vector v) {
@@ -64,7 +64,7 @@ public class Point {
 
     /**
      * same as distanceSquared only with sqrt
-     * @param p
+     * @param p point to check the distance from this to her
      * @return distance
      */
     public double distance(Point p) {

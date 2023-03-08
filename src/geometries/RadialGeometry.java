@@ -1,7 +1,6 @@
 package geometries;
 
 import primitives.Point;
-import primitives.Ray;
 import primitives.Vector;
 
 /**
@@ -15,17 +14,17 @@ abstract class RadialGeometry implements Geometry {
 
     /**
      * basic constructor with radius
-     * @param d
+     * @param r radius
      */
-    public RadialGeometry(double d)
+    public RadialGeometry(double r)
     {
-        radius = d;
+        radius = r;
     }
 
     /**
      * implement get normal from father, for now return null
-     * @param p
-     * @return
+     * @param p point
+     * @return normal vector
      */
     @Override
     public Vector getNormal(Point p) {

@@ -14,8 +14,8 @@ public class Ray {
 
     /**
      * constructor with  point  & vector
-     * @param @p
-     * @param @v
+     * @param p point
+     * @param v vector
      */
     public Ray(primitives.Point p, primitives.Vector v) {
 

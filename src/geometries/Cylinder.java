@@ -9,14 +9,14 @@ import primitives.Ray;
 public class Cylinder extends Tube{
 
     /** height of the Cylinder */
-    private double height;
+    private final double height;
 
     /**
      * constructor with parameters
      * using super constructor
-     * @param @ray
-     * @param @rad
-     * @param @h
+     * @param ray of the cylinder
+     * @param rad radius
+     * @param h height
      */
     public Cylinder(Ray ray, double rad, double h){
         super(ray, rad);

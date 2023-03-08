@@ -13,7 +13,7 @@ public class Tube extends RadialGeometry {
 
     /**
      * constructor with parameters
-     * @param ray
+     * @param ray ray of the tube
      * @param rad radius
      */
     public Tube(Ray ray, double rad) {

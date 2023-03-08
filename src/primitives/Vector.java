@@ -11,9 +11,9 @@ public class Vector extends Point {
     /**
      * constructor 3 with parameters using super constructor with 3 parameters
      * throw IllegalArgumentException if vector is Zero vector
-     * @param  x
-     * @param  y
-     * @param  z
+     * @param  x coordinate
+     * @param  y coordinate
+     * @param  z coordinate
      */
     public Vector(double x, double y, double z) {
 
@@ -26,7 +26,7 @@ public class Vector extends Point {
     /**
      * constructor with Double3 parameters using Point constructor
      * throw IllegalArgumentException if vector is Zero vector
-     * @param xyz
+     * @param xyz double3 coordinate
      */
     Vector(Double3 xyz) {
 
@@ -36,7 +36,7 @@ public class Vector extends Point {
     }
     /**
      * add vector with vector using Double3 add
-     * @param v
+     * @param v vector to add
      * @return new Vector
      */
     public primitives.Vector add(primitives.Vector v) {
@@ -46,7 +46,7 @@ public class Vector extends Point {
 
     /**
      * multiply each coordinate of the vector with number using Double3 scale
-     * @param num
+     * @param num number to multiply the vector
      * @return new vector
      */
     public primitives.Vector scale(double num) {
@@ -56,7 +56,7 @@ public class Vector extends Point {
 
     /**
      * multiply two vector, each coordinate multiply with its twin
-     * @param v
+     * @param v vector to multiply
      * @return number
      */
     public double dotProduct(primitives.Vector v) {
@@ -66,7 +66,7 @@ public class Vector extends Point {
 
     /**
      * cross multiply the coordinate by X
-     * @param v
+     * @param v vector to make crossProduct with it
      * @return new vector that vertical to the two vectors
      */
     public primitives.Vector crossProduct(primitives.Vector v) {
