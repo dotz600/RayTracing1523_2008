@@ -4,7 +4,7 @@ import java.util.Objects;
 
 
 /**
- * this class represent point
+ * This class represent point
  * using Double3 class
  */
 public class Point {
@@ -12,10 +12,10 @@ public class Point {
 
 
     /**
-     * constructor to initialize xyz with 3 double numbers
-     * @param x first number value
-     * @param y second number value
-     * @param z third number value
+     * Constructor to initialize xyz with 3 double numbers
+     * @param x First number value
+     * @param y Second number value
+     * @param z Third number value
      */
     public Point(double x, double y, double z) {
 
@@ -23,7 +23,7 @@ public class Point {
     }
 
     /**
-     * constructor to initialize xyz with Double3 Type
+     * Constructor to initialize xyz with Double3 type
      * @param xyz Double3
      */
     Point(Double3 xyz) {
@@ -32,9 +32,9 @@ public class Point {
     }
 
     /**
-     * subtract p from this point and return new vector
+     * Subtract p from this point and return new vector
      * @param p Point
-     * @return new vector
+     * @return new Vector
      */
     public primitives.Vector subtract(Point p) {
 
@@ -43,7 +43,7 @@ public class Point {
 
 
     /**
-     * add vector to point using Double3 add
+     * Add Vector to Point using Double3.add
      * @param v vector to add
      * @return new Point
      */
@@ -53,9 +53,9 @@ public class Point {
     }
 
     /**
-     * subtract point coordinate from each coordinate and double it with itself
+     * d(P1,P2) = (x2-x1)^2 + (y2-y1)^2 + (z2-z1)^2
      * @param p Point
-     * @return distance double num
+     * @return double -- distance squared
      */
     public double distanceSquared(Point p) {
 
@@ -63,9 +63,9 @@ public class Point {
     }
 
     /**
-     * same as distanceSquared only with sqrt
-     * @param p point to check the distance from this to her
-     * @return distance
+     * Calculates the square root of the distance
+     * @param p A point to calculate the distance from the current point
+     * @return double -- distance
      */
     public double distance(Point p) {
 

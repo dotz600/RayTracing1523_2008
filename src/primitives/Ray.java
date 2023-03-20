@@ -3,19 +3,19 @@ package primitives;
 import java.util.Objects;
 
 /**
- * this class represent ray in space
- * have a starting point & vector that represent the direction of the ray
+ * This class represent ray in space
+ * Contains a starting Point & Vector that represent the direction of the ray
  */
 public class Ray {
-    /** starting point */
+    /** Starting point */
     final primitives.Point p0;
-    /** direction */
+    /** Direction */
     final primitives.Vector dir;
 
     /**
-     * constructor with  point  & vector
-     * @param p point
-     * @param v vector
+     * Constructor with  Point  & Vector
+     * @param p Point
+     * @param v Vector
      */
     public Ray(primitives.Point p, primitives.Vector v) {
 

@@ -2,31 +2,31 @@ package primitives;
 
 
 /**
- * this class represent vector in space
- * extend point and extend the action on point
- * vector is kind of point
+ * This class represent Vector in space
+ * Extends Point and extends the actions of Point
+ * Vector is kind of Point
  */
 public class Vector extends Point {
 
     /**
-     * constructor 3 with parameters using super constructor with 3 parameters
-     * throw IllegalArgumentException if vector is Zero vector
-     * @param  x coordinate
-     * @param  y coordinate
-     * @param  z coordinate
+     * Constructor 3 with parameters using super constructor with 3 parameters
+     * throw IllegalArgumentException if Vector is Zero Vector
+     * @param  x Coordinate
+     * @param  y Coordinate
+     * @param  z Coordinate
      */
     public Vector(double x, double y, double z) {
 
         super(x,y,z);
         if (Double3.ZERO.equals(super.xyz))
-            throw new IllegalArgumentException("Zero vector exception");
+            throw new IllegalArgumentException("Zero Vector exception");
 
     }
 
     /**
-     * constructor with Double3 parameters using Point constructor
-     * throw IllegalArgumentException if vector is Zero vector
-     * @param xyz double3 coordinate
+     * Constructor with Double3 parameters using Point constructor
+     * throw IllegalArgumentException if Vector is Zero Vector
+     * @param xyz Double3 Coordinate
      */
     Vector(Double3 xyz) {
 
@@ -35,8 +35,8 @@ public class Vector extends Point {
             throw new IllegalArgumentException("Zero vector exception");
     }
     /**
-     * add vector with vector using Double3 add
-     * @param v vector to add
+     * Addition between two vectors using Double3.add
+     * @param v Vector to add
      * @return new Vector
      */
     public primitives.Vector add(primitives.Vector v) {
@@ -45,9 +45,9 @@ public class Vector extends Point {
     }
 
     /**
-     * multiply each coordinate of the vector with number using Double3 scale
-     * @param num number to multiply the vector
-     * @return new vector
+     * Multiply each coordinate of the vector by a number using Double3.scale
+     * @param num Number to multiply the Vector
+     * @return new Vector
      */
     public primitives.Vector scale(double num) {
 
@@ -55,9 +55,10 @@ public class Vector extends Point {
     }
 
     /**
-     * multiply two vector, each coordinate multiply with its twin
-     * @param v vector to multiply
-     * @return number
+     * X1*X2 + Y1*Y2 + Z1*Z2 --
+     * Multiplying each coordinate by the corresponding coordinate
+     * @param v Vector to multiply
+     * @return double
      */
     public double dotProduct(primitives.Vector v) {
 
@@ -65,9 +66,9 @@ public class Vector extends Point {
     }
 
     /**
-     * cross multiply the coordinate by X
-     * @param v vector to make crossProduct with it
-     * @return new vector that vertical to the two vectors
+     * Cross product -- [ (a2b3 - a3b2) , (a3b1 - a1b3) , (a1b2 - a2b1) ]
+     * @param v Vector to make crossProduct with it
+     * @return new Vector that vertical to the two vectors
      */
     public primitives.Vector crossProduct(primitives.Vector v) {
 
@@ -79,8 +80,8 @@ public class Vector extends Point {
     }
 
     /**
-     * the length od the vector by square
-     * @return number
+     * The length of the Vector by square
+     * @return double
      */
     public double lengthSquared() {
 
@@ -88,8 +89,8 @@ public class Vector extends Point {
     }
 
     /**
-     * the length of vector
-     * @return number
+     * The length of the Vector
+     * @return double
      */
     public double length() {
 
@@ -97,8 +98,8 @@ public class Vector extends Point {
     }
 
     /**
-     * normalize the vector, each coordinate divide by the length of the vector
-     * @return new normalize vector
+     * Normalize the Vector, each coordinate divide by the length of the Vector
+     * @return new normalize Vector
      */
     public primitives.Vector normalize() {
 
