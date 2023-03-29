@@ -28,13 +28,13 @@ class VectorTest {
         // Simple test
         assertEquals(new Vector(1, 1, 1),
                 new Vector(2, 3, 4).subtract(new Vector(1, 2, 3)),
-                "ERROR: Point - Point does not work correctly");
+                "ERROR: Vector - Vector does not work correctly");
 
         // =============== Boundary Values Tests ==================
         // subtracting same vector
         assertThrows(IllegalArgumentException.class,
                 () -> new Vector(1, 2, 3).subtract(new Vector(1, 2, 3)),
-                "ERROR: Point - Point does not throw an exception");
+                "ERROR: Vector - Vector does not throw an exception");
     }
 
     @Test
