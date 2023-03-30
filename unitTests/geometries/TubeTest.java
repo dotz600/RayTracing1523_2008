@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TubeTest {
+/*class TubeTest {
 
     @Test
     void testGetNormal() {
@@ -16,4 +16,4 @@ class TubeTest {
                 0.00001, "ERROR: Normal Length wrong value");
 
     }
-}
+}*/

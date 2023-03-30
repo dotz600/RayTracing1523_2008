@@ -1,6 +1,8 @@
 package geometries;
 
+import primitives.Point;
 import primitives.Ray;
+import primitives.Vector;
 
 /**
  * represent tube in space
@@ -21,7 +23,18 @@ public class Tube extends RadialGeometry {
         axisRay = ray;
     }
 
+    @Override
+    public Vector getNormal(Point p) {
+
+        Point O = this.axisRay.getP0()
+                .add((this.axisRay.getDir())
+                        .scale(p.subtract(this.axisRay.getP0())
+                                .dotProduct(this.axisRay.getDir())));
+        return p.subtract(O).normalize();
+    }
+
     public Ray getAxisRay() {
+
         return axisRay;
     }
 }

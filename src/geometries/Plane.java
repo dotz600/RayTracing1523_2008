@@ -1,6 +1,7 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Vector;
 
 
 /**
@@ -16,15 +17,17 @@ public class Plane implements Geometry {
     private final primitives.Vector normal;
 
     /**
-     * constructor with 3 point, in the future crate normal with  the points,
-     * q0 can be any point from the three
+     * <li>constructor with 3 point</li>
+     * <li>q0 can be any point from the three</li>
+     * <li>creates a normal vector by the formula: </li>
+     * <li>n = (p1 - p2 X p1 - p3).normalize()</li>
      * @param p1 point
      * @param p2 point
      * @param p3 point
      */
     public Plane(primitives.Point p1,primitives.Point p2,primitives.Point p3) {
 
-        normal = null;
+        normal = (p1.subtract(p2)).crossProduct(p1.subtract(p3)).normalize();
         q0 = p1;
     }
 
