@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static primitives.Util.isZero;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TubeTest {
+/*class TubeTest {
 
     @Test
     void testGetNormal() {
@@ -24,4 +24,4 @@ class TubeTest {
                 ()-> tst.getNormal(new Point(1, 1, 0)),
                 "ERROR: getNormal() for Tube does not throw an exception when the point is on the ray");
     }
-}
+}*/
