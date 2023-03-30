@@ -27,7 +27,7 @@ public class Plane implements Geometry {
      */
     public Plane(primitives.Point p1,primitives.Point p2,primitives.Point p3) {
 
-        normal = (p1.subtract(p2)).crossProduct(p1.subtract(p3)).normalize();
+        normal = ((p1.subtract(p2)).crossProduct(p1.subtract(p3))).normalize();
         q0 = p1;
     }
 
@@ -50,7 +50,7 @@ public class Plane implements Geometry {
     @Override
     public primitives.Vector getNormal(primitives.Point p) {
 
-        return normal.add((primitives.Vector)p);
+        return p.subtract(normal.scale(-1));
     }
 
     public Point getQ0() {
