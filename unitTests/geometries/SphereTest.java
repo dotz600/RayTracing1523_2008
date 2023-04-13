@@ -6,7 +6,9 @@ import primitives.Vector;
 import static org.junit.jupiter.api.Assertions.*;
 import static primitives.Util.isZero;
 
-/** Testing Sphere*/
+/*
+ * Unit tests for Sphere class
+ */
 
 class SphereTest {
 
@@ -18,13 +20,13 @@ class SphereTest {
         Point argumentGetNormal = new Point(0, 0, 0);
         Vector testNormalVector = tst.getNormal(argumentGetNormal);
         Vector orthogonalVector = new Vector(1,0,0);
-        // ensure |result| = 1
+        //TC01: ensure |result| = 1
         assertEquals(1 , testNormalVector.length(), 0.00001,
                 "ERROR: Normal Length wrong value");
-        // ensure the result is orthogonal to the point
+        //TC02: ensure the result is orthogonal to the point
         assertTrue(isZero(testNormalVector.dotProduct(orthogonalVector)),
                 "Sphere's normal is not orthogonal to the point");
-
+        //TODO - TC03: all the point are the same
 
     }
 }

@@ -11,7 +11,7 @@ import primitives.Vector;
 public class Sphere extends RadialGeometry {
 
     /** middle point inside sphere */
-    private Point Center;
+    private Point center;
 
     /**
      * constructor with parameters
@@ -21,12 +21,12 @@ public class Sphere extends RadialGeometry {
     public Sphere(Point p, double r) {
 
         super(r);
-        Center = p;
+        center = p;
     }
 
     public Point getCenter() {
 
-        return Center;
+        return center;
     }
 
     /** <li>For now assume that
@@ -37,6 +37,6 @@ public class Sphere extends RadialGeometry {
     @Override
     public Vector getNormal(Point p) {
 
-        return p.subtract(Center).normalize();
+        return p.subtract(center).normalize();
     }
 }
