@@ -30,7 +30,7 @@ public class Cylinder extends Tube{
     }
 
     /**
-     * get normal of the cylinder.
+     * assume that the point p is on the origin
      * if the point is on base ((p - p0).length <= radius) return the direction * -1.
      * if the point is on the top ((p - topCenterPoint).length <= radius) return the direction.
      * else its on the round surface, normal = p0 + dir * (p - p0) * dir.

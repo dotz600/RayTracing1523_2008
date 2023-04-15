@@ -44,5 +44,25 @@ class PlaneTest {
         tst = new Plane(new Point(0, 0, 0), new Point(1, 0, 0), new Point(0, 1, 0));
         assertTrue(isZero(tst.getNormal(new Point(0.5, 0.5, 0)).dotProduct(new Vector(-1, 1, 0))),
                 "ERROR: Normal is not orthogonal to the plane");
+
+        //TC04: all points are the same
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(0, 0, 0), new Point(0, 0, 0), new Point(0, 0, 0)),
+                "ERROR: all points are the same");
+
+        //TC05: get normal for the same point should return the same vector
+        assertEquals(tst.getNormal(new Point(0.5, 0.5, 0)), tst.getNormal(new Point(0.5, 0.5, 0)),
+                "ERROR: get normal for the same point should return the same vector");
+
+        //============Boundary Values Tests=============
+        //TC06: two point are almost the same should throw exception
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(0, 0, 0), new Point(0.00000001,0, 0), new Point(0, 1, 0)),
+                        "ERROR: to point are the almost the same should throw exception");
+
+        //TC07: the points are on the same line should throw exception
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)),
+                        "ERROR: the points are on the same line should throw exception");
     }
 }

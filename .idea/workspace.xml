@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="merge commit">
-      <change afterPath="$PROJECT_DIR$/unitTests/geometries/CylinderTest.java" afterDir="false" />
+    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="cylinder get normal pass test, adding documentation to vector + point">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Cylinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Cylinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/PlaneTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/geometries/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/TriangleTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/TubeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/primitives/PointTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/primitives/PointTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/primitives/VectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/primitives/VectorTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +97,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TubeTest.testGetNormal">
+  <component name="RunManager" selected="JUnit.PlaneTest.testTestGetNormal">
     <configuration name="Vector" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="test.Main" />
       <module name="RayTracing1523_2008" />
@@ -110,6 +107,14 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in RayTracing1523_2008" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RayTracing1523_2008" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -129,38 +134,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CylinderTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RayTracing1523_2008" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.CylinderTest" />
-      <option name="METHOD_NAME" value="testGetNormal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PlaneTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RayTracing1523_2008" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="geometries.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
-      <option name="METHOD_NAME" value="testGetNormal" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PlaneTest.testTestGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RayTracing1523_2008" />
       <extension name="coverage">
@@ -172,6 +145,22 @@
       <option name="PACKAGE_NAME" value="geometries" />
       <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
       <option name="METHOD_NAME" value="testTestGetNormal" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SphereTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RayTracing1523_2008" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="geometries.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="geometries" />
+      <option name="MAIN_CLASS_NAME" value="geometries.SphereTest" />
+      <option name="METHOD_NAME" value="testGetNormal" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -195,11 +184,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.PlaneTest.testTestGetNormal" />
+        <item itemvalue="JUnit.All in RayTracing1523_2008" />
+        <item itemvalue="JUnit.SphereTest.testGetNormal" />
         <item itemvalue="JUnit.TubeTest.testGetNormal" />
         <item itemvalue="JUnit.CylinderTest" />
-        <item itemvalue="JUnit.CylinderTest.testGetNormal" />
-        <item itemvalue="JUnit.PlaneTest.testGetNormal" />
-        <item itemvalue="JUnit.PlaneTest.testTestGetNormal" />
       </list>
     </recent_temporary>
   </component>
@@ -233,7 +222,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1680159373423</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL‎-00004" summary="cylinder get normal pass test, adding documentation to vector + point">
+      <created>1681399098939</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1681399098939</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,7 +248,8 @@
     <MESSAGE value="Added: Geometry, Plane, RadialGeometry, Ray, Triangle&#10;All tests succeeded" />
     <MESSAGE value="Tests: sphere" />
     <MESSAGE value="Implementations of getNormal() in:&#10;sphere&#10;tube&#10;plane" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implementations of getNormal() in:&#10;sphere&#10;tube&#10;plane" />
+    <MESSAGE value="cylinder get normal pass test, adding documentation to vector + point" />
+    <option name="LAST_COMMIT_MESSAGE" value="cylinder get normal pass test, adding documentation to vector + point" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

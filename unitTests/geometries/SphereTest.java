@@ -23,10 +23,15 @@ class SphereTest {
         //TC01: ensure |result| = 1
         assertEquals(1 , testNormalVector.length(), 0.00001,
                 "ERROR: Normal Length wrong value");
+
         //TC02: ensure the result is orthogonal to the point
         assertTrue(isZero(testNormalVector.dotProduct(orthogonalVector)),
                 "Sphere's normal is not orthogonal to the point");
-        //TODO - TC03: all the point are the same
+
+        //TC03: all the point are the same - check if the result is the same
+        assertEquals(tst.getNormal(argumentGetNormal), tst.getNormal(argumentGetNormal),
+                "ERROR: Normal is not the same");
+
 
     }
 }
