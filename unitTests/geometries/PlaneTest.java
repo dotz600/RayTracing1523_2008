@@ -12,6 +12,21 @@ import static primitives.Util.isZero;
 class PlaneTest {
 
     @Test
+    void testConstractor() {
+        //============Boundary Values Tests=============
+        //TC01: two point are the same - should throw exception
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(0, 0, 0), new Point(0,0, 0), new Point(0, 1, 0)),
+                "ERROR: to point are the almost the same should throw exception");
+
+        //TC02: the points are on the same line should throw exception
+        assertThrows(IllegalArgumentException.class,
+                () -> new Plane(new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)),
+                "ERROR: the points are on the same line should throw exception");
+
+
+    }
+    @Test
     void testGetNormal() {
 
         //============ Equivalence Partitions Tests ==============
@@ -54,15 +69,6 @@ class PlaneTest {
         assertEquals(tst.getNormal(new Point(0.5, 0.5, 0)), tst.getNormal(new Point(0.5, 0.5, 0)),
                 "ERROR: get normal for the same point should return the same vector");
 
-        //============Boundary Values Tests=============
-        //TC06: two point are almost the same should throw exception
-        assertThrows(IllegalArgumentException.class,
-                () -> new Plane(new Point(0, 0, 0), new Point(0.00000001,0, 0), new Point(0, 1, 0)),
-                        "ERROR: to point are the almost the same should throw exception");
 
-        //TC07: the points are on the same line should throw exception
-        assertThrows(IllegalArgumentException.class,
-                () -> new Plane(new Point(0, 0, 0), new Point(1, 0, 0), new Point(2, 0, 0)),
-                        "ERROR: the points are on the same line should throw exception");
     }
 }

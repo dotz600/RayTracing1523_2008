@@ -27,6 +27,9 @@ public class Plane implements Geometry {
      */
     public Plane(primitives.Point p1,primitives.Point p2,primitives.Point p3) {
 
+        // Subtracting any subsequent points will throw an IllegalArgumentException
+        // because of Zero Vector if they are in the same point
+        p2.subtract(p3);
         normal = ((p1.subtract(p2)).crossProduct(p1.subtract(p3))).normalize();
         q0 = p1;
     }
