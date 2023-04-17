@@ -31,7 +31,5 @@ class SphereTest {
         //TC03: all the point are the same - check if the result is the same
         assertEquals(tst.getNormal(argumentGetNormal), tst.getNormal(argumentGetNormal),
                 "ERROR: Normal is not the same");
-
-
     }
 }

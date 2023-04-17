@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="adding plane test">
+    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="end stage 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Polygon.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Polygon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/PlaneTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Sphere.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Sphere.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Tube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Tube.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/geometries/PolygonTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/PolygonTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +85,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "fileTemplates"
   }
 }]]></component>
@@ -95,7 +101,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlaneTest.testConstractor">
+  <component name="RunManager" selected="JUnit.TubeTest">
     <configuration name="Vector" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="test.Main" />
       <module name="RayTracing1523_2008" />
@@ -165,7 +171,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TubeTest.testGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TubeTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RayTracing1523_2008" />
       <extension name="coverage">
         <pattern>
@@ -175,19 +181,18 @@
       </extension>
       <option name="PACKAGE_NAME" value="geometries" />
       <option name="MAIN_CLASS_NAME" value="geometries.TubeTest" />
-      <option name="METHOD_NAME" value="testGetNormal" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PlaneTest.testConstractor" />
+        <item itemvalue="JUnit.TubeTest" />
         <item itemvalue="JUnit.All in RayTracing1523_2008" />
+        <item itemvalue="JUnit.PlaneTest.testConstractor" />
         <item itemvalue="JUnit.PlaneTest.testTestGetNormal" />
         <item itemvalue="JUnit.SphereTest.testGetNormal" />
-        <item itemvalue="JUnit.TubeTest.testGetNormal" />
       </list>
     </recent_temporary>
   </component>
@@ -235,7 +240,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1681586025430</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL‎-00006" summary="end stage 2">
+      <created>1681588405797</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL‎-00006" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1681588405797</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -256,7 +268,8 @@
     <MESSAGE value="Implementations of getNormal() in:&#10;sphere&#10;tube&#10;plane" />
     <MESSAGE value="cylinder get normal pass test, adding documentation to vector + point" />
     <MESSAGE value="adding plane test" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding plane test" />
+    <MESSAGE value="end stage 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="end stage 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
