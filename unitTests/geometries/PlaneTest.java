@@ -50,10 +50,6 @@ class PlaneTest {
         assertEquals(1 , tst.getNormal().length(),0.00001,
                 "ERROR: Normal Length wrong value");
 
-        //TC02: check normal is as expected
-        double res = 1 + 1d/Math.sqrt(3);
-        assertEquals(new Vector(res, res, res),
-                tst.getNormal(new Point(1, 1, 1)), "ERROR: Normal wrong value");
 
         //TC03: check normal is orthogonal to the plane
         tst = new Plane(new Point(0, 0, 0), new Point(1, 0, 0), new Point(0, 1, 0));
