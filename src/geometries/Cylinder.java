@@ -3,6 +3,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 
 /**
  * this class represent cylinder in space
@@ -59,4 +61,14 @@ public class Cylinder extends Tube{
         return p.subtract(O).normalize();
     }
 
+    /**
+     * Gets a ray and returns intersection points between the ray and the geometry.
+     *
+     * @param ray (not NULL)
+     * @return List of points if any. else NULL
+     */
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
 }

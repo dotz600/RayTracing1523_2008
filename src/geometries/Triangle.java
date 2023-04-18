@@ -1,12 +1,26 @@
 package geometries;
 
 import primitives.Point;
+import primitives.Ray;
+
+import java.util.List;
 
 /**
  * this class represent a triangle in space
  * by geometry with 3 points
  */
 public class Triangle extends Polygon {
+
+    /**
+     * Gets a ray and returns intersection points between the ray and the geometry.
+     *
+     * @param ray (not NULL)
+     * @return List of points if any. else NULL
+     */
+    @Override
+    public List<Point> findIntersections(Ray ray) {
+        return null;
+    }
 
     /**
      * constructor with 3 points of the triangle, using super constructor

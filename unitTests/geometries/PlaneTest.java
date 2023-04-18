@@ -12,7 +12,7 @@ import static primitives.Util.isZero;
 class PlaneTest {
 
     @Test
-    void testConstractor() {
+    void testConstructor() {
         //============Boundary Values Tests=============
         //TC01: two point are the same - should throw exception
         assertThrows(IllegalArgumentException.class,
@@ -42,12 +42,12 @@ class PlaneTest {
     }
 
     @Test
-    void testTestGetNormal() {
+    void testGetNormal_Point() {
 
         //============ Equivalence Partitions Tests ==============
         Plane tst = new Plane(new Point(0, 0, 1), new Point(1, 0, 0), new Point(0, 1, 0));
         //TC01: simple test-check normal is a unit vector
-        assertEquals(1 , tst.getNormal().length(),0.00001,
+        assertEquals(1 , tst.getNormal(new Point(0, 0, 1)).length(),0.00001,
                 "ERROR: Normal Length wrong value");
 
 
@@ -65,6 +65,15 @@ class PlaneTest {
         assertEquals(tst.getNormal(new Point(0.5, 0.5, 0)), tst.getNormal(new Point(0.5, 0.5, 0)),
                 "ERROR: get normal for the same point should return the same vector");
 
+
+    }
+    /**
+     * Test method for {@link geometries.Plane#findIntersections(primitives.Ray)}.
+     */
+    @Test
+    void testFindIntersections() {
+
+        Plane plane = new Plane(new Point(1,0,0), new Point(0,1,0), new Point(0,0,1));
 
     }
 }

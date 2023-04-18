@@ -5,7 +5,7 @@ package geometries;
 /**
  * this interface will serve all the geometries
  */
-public interface Geometry {
+public interface Geometry extends Intersectable{
     /**
      * return the normal of the geometry
      * @param p point

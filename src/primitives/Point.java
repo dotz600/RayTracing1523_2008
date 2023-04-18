@@ -84,9 +84,15 @@ public class Point {
         return Objects.equals(xyz, point.xyz);
     }
 
+
     @Override
     public String toString() {
 
         return "xyz=" + xyz.toString();
     }
+
+    public double getX() {
+        return xyz.d1;
+    }
+
 }
