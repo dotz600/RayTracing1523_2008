@@ -4,6 +4,9 @@ import primitives.*;
 
 import java.util.List;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 
 /**
  * this class represent plane in space,
@@ -77,6 +80,25 @@ public class Plane implements Geometry {
      */
     @Override
     public List<Point> findIntersections(Ray ray) {
-        return null;
+
+        if(q0.equals(ray.getP0()))
+            return null;
+        Vector q0_p = q0.subtract(ray.getP0());
+        double n_q0p = normal.dotProduct(q0_p);
+        double n_dir =  normal.dotProduct(ray.getDir());
+
+        // If the dot product is zero, the ray is parallel to the plane
+        if (isZero(n_dir))
+            return null;
+
+        double t = alignZero(n_q0p / n_dir);
+        // If t is negative, the intersection point is behind the ray origin
+        if (t <= 0)
+            return null;
+
+        // compute the intersection point and add it to the list of intersections
+        Vector dist = ray.getDir().scale(t);
+        Point p = ray.getP0().add(dist);
+        return List.of(p);
     }
 }

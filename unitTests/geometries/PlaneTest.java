@@ -1,10 +1,12 @@
 package geometries;
-import primitives.Point;
-import primitives.Vector;
+import primitives.*;
+
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
-import static primitives.Util.isZero;
+import static primitives.Util.*;
 
 /*
  * Unit tests for Plane class
@@ -73,7 +75,52 @@ class PlaneTest {
     @Test
     void testFindIntersections() {
 
+        // ============ Equivalence Partitions Tests ==============
+        //TC01: Ray start before the plane, not parallel to plane, intersect the plane one time
         Plane plane = new Plane(new Point(1,0,0), new Point(0,1,0), new Point(0,0,1));
+        assertEquals(List.of(new Point(0.46,0.22,0.32)), plane.findIntersections(
+                new Ray(new Point(0,1.5,0), new Vector(0.46,-1.28,0.32))),
+                "ERROR: Ray start before the plane, not parallel to plane, intersect the plane one time, not the expected point");
 
+        //TC02: Ray start before the plane, not parallel to plane,do not intersect the plane
+        Plane planeSurface = new Plane(new Point(1,0,1), new Point(0,1,1), new Point(0,0,1));
+        assertNull(planeSurface.findIntersections(
+                new Ray(new Point(0,0,2), new Vector(-1,2,1.5))),
+                "ERROR: Ray start before the plane, not parallel to plane,should not intersect the plane");
+        //=============Boundary Values Tests=================
+        //TC03: ray inside the plane, parallel to plane
+        assertNull(planeSurface.findIntersections(
+                new Ray(new Point(1,1,1), new Vector(1,1,0))),
+                "ERROR: ray inside the plane, parallel to plane, intersect the plane infinite times, should return null");
+
+        //TC04: ray outside the plane parallel to plane - zero intersections point
+        assertNull(planeSurface.findIntersections(
+                new Ray(new Point(2,2,2), new Vector(1,1,0))),
+                "ERROR: ray outside the plane parallel to plane, should return null");
+
+        //TC06: ray start before the plane, vertical to plane
+        assertEquals(List.of(new Point(1,1,1)), planeSurface.findIntersections(
+                new Ray(new Point(1,1,0), new Vector(0,0,1))),
+                "ERROR: ray start before the plane, vertical to plane, should return the point");
+
+        //TC07: ray start inside the plane, vertical to plane
+        assertNull(planeSurface.findIntersections(
+                new Ray(new Point(1,1,1), new Vector(0,0,1))),
+                "ERROR: ray start inside the plane, vertical to plane, should return null");
+
+        //TC08: ray start after the plane, vertical to plane
+        assertNull(planeSurface.findIntersections(
+                new Ray(new Point(1,1,2), new Vector(0,0,1))),
+                "ERROR: ray start after the plane, vertical to plane, should return null");
+
+        //TC09:ray start inside the plane - not vertical and not parallel to plane
+        assertNull(planeSurface.findIntersections(
+                new Ray(new Point(1,1,1), new Vector(1,1,1))),
+                "ERROR: ray start inside the plane - not vertical and not parallel to plane, should return null");
+
+        //TC10: the ray start inside the plane in plane q0 point - not vertical and not parallel to plane
+        assertNull(planeSurface.findIntersections(
+                new Ray(new Point(1,0,1), new Vector(1,1,1))),
+                "ERROR: the ray start inside the plane in plane q0 point, should return null");
     }
 }
