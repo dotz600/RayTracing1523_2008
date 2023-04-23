@@ -83,9 +83,10 @@ public class Plane implements Geometry {
 
         if(q0.equals(ray.getP0()))
             return null;
+
         Vector q0_p = q0.subtract(ray.getP0());
-        double n_q0p = normal.dotProduct(q0_p);
-        double n_dir =  normal.dotProduct(ray.getDir());
+        double n_q0p = alignZero(normal.dotProduct(q0_p));
+        double n_dir =  alignZero(normal.dotProduct(ray.getDir()));
 
         // If the dot product is zero, the ray is parallel to the plane
         if (isZero(n_dir))
@@ -99,6 +100,7 @@ public class Plane implements Geometry {
         // compute the intersection point and add it to the list of intersections
         Vector dist = ray.getDir().scale(t);
         Point p = ray.getP0().add(dist);
+
         return List.of(p);
     }
 }
