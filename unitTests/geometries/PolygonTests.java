@@ -17,7 +17,7 @@ import primitives.Vector;
  * @author Dan */
 public class PolygonTests {
 
-   /** Test method for {@link geometries.Polygon#Polygon(primitives.Point...)}. */
+   /** Test method for {@link geometries.Polygon#Polygon(Point...)}. */
    @Test
    public void testConstructor() {
       // ============ Equivalence Partitions Tests ==============
@@ -65,7 +65,7 @@ public class PolygonTests {
 
    }
 
-   /** Test method for {@link geometries.Polygon#getNormal(primitives.Point)}. */
+   /** Test method for {@link geometries.Polygon#getNormal(Point)}. */
    @Test
    public void testGetNormal() {
       // ============ Equivalence Partitions Tests ==============
@@ -83,5 +83,6 @@ public class PolygonTests {
       for (int i = 0; i < 3; ++i)
          assertTrue(isZero(result.dotProduct(pts[i].subtract(pts[i == 0 ? 3 : i - 1]))),
                     "Polygon's normal is not orthogonal to one of the edges");
+
    }
 }

@@ -39,7 +39,7 @@ class TriangleTest {
     }
 
     /**
-     * Test method for {@link geometries.Sphere#findIntersections(primitives.Ray)}.
+     * Test method for {@link geometries.Triangle#findIntersections(Ray)}.
      */
     @Test
     public void testFindIntersections() {
@@ -57,6 +57,9 @@ class TriangleTest {
                 triangle.findIntersections(new Ray(new Point(0, 1.5, -1), new Vector(0, 0, 1))),
                 "Ray's line out of triangle");
 
+        assertEquals(List.of(new Point(0, 1.5, 0)),
+                triangle.findIntersections(new Ray(new Point(0, 1.5, 1), new Vector(0, 0, -1))),
+                "Ray's line out of triangle");
 
         //TC02: Ray's line is outside against the edge (0 points)
         assertNull(triangle.findIntersections(new Ray(new Point(0, 0.5, 1), new Vector(0, -1, -1))),

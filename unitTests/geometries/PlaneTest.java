@@ -13,6 +13,9 @@ import static primitives.Util.*;
  */
 class PlaneTest {
 
+    /**
+     * Test method for {@link geometries.Plane#Plane(Point, Vector)}  Plane}.
+     */
     @Test
     void testConstructor() {
         //============Boundary Values Tests=============
@@ -28,6 +31,9 @@ class PlaneTest {
 
 
     }
+    /**
+     * Test method for {@link Plane#getNormal()}.
+     */
     @Test
     void testGetNormal() {
 
@@ -43,6 +49,9 @@ class PlaneTest {
                 "ERROR: Normal from getNormal() without point is not orthogonal to the plane");
     }
 
+    /**
+     * Test method for {@link geometries.Plane#getNormal(Point)}.
+     */
     @Test
     void testGetNormal_Point() {
 
@@ -87,6 +96,7 @@ class PlaneTest {
         assertNull(planeSurface.findIntersections(
                 new Ray(new Point(0,0,2), new Vector(-1,2,1.5))),
                 "ERROR: Ray start before the plane, not parallel to plane,should not intersect the plane");
+
         //=============Boundary Values Tests=================
         //TC03: ray inside the plane, parallel to plane
         assertNull(planeSurface.findIntersections(

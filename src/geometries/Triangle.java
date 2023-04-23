@@ -44,20 +44,28 @@ public class Triangle extends Polygon {
         for (int i = 0; i < vertices.size(); i++) {
             try {
                 Vector v = vertices.get((i + 1) % vertices.size()).subtract(vertices.get(i));
-                Vector u = ray.getP0().subtract(vertices.get(i));
+                Vector u = vertices.get(i).subtract(points.get(0));
                 vectors.add(v.crossProduct(u));
-            } catch (IllegalArgumentException e) {
+            }
+            catch (IllegalArgumentException e) {
                 return null;
             }
         }
 
         //check all the vector are in the same direction
         //if not - the point is outside the triangle - return null
-        //TODO - make normal on time and dont trust getNormal() because the direction is important
-        for (int i = 0; i < vectors.size()-1;  i++)
-            if (vectors.get(i).dotProduct(this.plane.getNormal()) <= 0)
-                return null;
+        Vector triangleNormal = this.plane.getNormal();
 
-        return points;
+        int countNegOrPos = 0;
+        for (int i = 0; i < vertices.size(); i++) {
+            if (triangleNormal.dotProduct(vectors.get(i)) > 0)
+                countNegOrPos++;
+        }
+
+        if (countNegOrPos == vertices.size() || countNegOrPos == 0)
+            return points;
+
+        return null;
+
     }
 }
