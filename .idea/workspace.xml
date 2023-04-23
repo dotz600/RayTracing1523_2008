@@ -7,10 +7,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="fix another bugs stage 2">
+    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="Triangle findIntersections test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/geometries/Plane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Plane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/geometries/PlaneTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/PlaneTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Triangle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PlaneTest.testFindIntersections">
+  <component name="RunManager" selected="JUnit.TriangleTest.testFindIntersections">
     <configuration name="Vector" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="test.Main" />
       <module name="RayTracing1523_2008" />
@@ -151,7 +150,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlaneTest.testTestGetNormal" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TriangleTest.testFindIntersections" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RayTracing1523_2008" />
       <extension name="coverage">
         <pattern>
@@ -160,8 +159,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="geometries" />
-      <option name="MAIN_CLASS_NAME" value="geometries.PlaneTest" />
-      <option name="METHOD_NAME" value="testTestGetNormal" />
+      <option name="MAIN_CLASS_NAME" value="geometries.TriangleTest" />
+      <option name="METHOD_NAME" value="testFindIntersections" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -184,11 +183,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TriangleTest.testFindIntersections" />
         <item itemvalue="JUnit.PlaneTest.testFindIntersections" />
         <item itemvalue="JUnit.All in RayTracing1523_2008" />
         <item itemvalue="JUnit.TubeTest" />
         <item itemvalue="JUnit.PlaneTest.testConstractor" />
-        <item itemvalue="JUnit.PlaneTest.testTestGetNormal" />
       </list>
     </recent_temporary>
   </component>
@@ -257,7 +256,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1681764854904</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL‎-00009" summary="plane findIntersections test">
+      <created>1681979153715</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL‎-00009" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1681979153715</updated>
+    </task>
+    <task id="LOCAL‎-00010" summary="Triangle findIntersections test">
+      <created>1682030934672</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL‎-00010" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682030934672</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -281,18 +294,9 @@
     <MESSAGE value="end stage 2" />
     <MESSAGE value="fix bugs stage 2" />
     <MESSAGE value="fix another bugs stage 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix another bugs stage 2" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/primitives/Vector.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="plane findIntersections test" />
+    <MESSAGE value="Triangle findIntersections test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Triangle findIntersections test" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
