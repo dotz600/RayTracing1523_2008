@@ -1,24 +1,14 @@
 package geometries;
-
 import org.junit.jupiter.api.Test;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
-
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
 /** Testing Polygons
 */
 class GeometriesTest {
-
-    /** Test method for {@link geometries.Geometries#add(Intersectable...)}. */
-    @Test
-    void add() {
-
-    }
 
     /** Test method for {@link geometries.Geometries#findIntersections(Ray)}. */
     @Test

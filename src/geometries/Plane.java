@@ -88,16 +88,14 @@ public class Plane implements Geometry {
         double n_q0p = alignZero(normal.dotProduct(q0_p));
         double n_dir =  alignZero(normal.dotProduct(ray.getDir()));
 
-        // If the dot product is zero, the ray is parallel to the plane
-        if (isZero(n_dir))
-        {
-            //check if the ray is inside the plane - if so throw exception
-            if(n_q0p == 0)
-                throw new IllegalArgumentException("The ray is parallel to the plane - infinite intersections");
-            else
-                //the ray parallel to plane but not in the plane - 0 intersections
-                return null;
-        }
+        // direction and (q0 - p0) is orthogonal to the normal -
+        // the ray is parallel to the plane and inside it.
+        if (isZero(n_dir) && n_q0p == 0)
+            throw new IllegalArgumentException("The ray is parallel to the plane - infinite intersections");
+
+        // normal * direction = 0 - the ray is parallel to the plane but not in the plane
+        if(isZero(n_dir))
+            return null;
 
         double t = alignZero(n_q0p / n_dir);
         // If t is negative, the intersection point is behind the ray origin

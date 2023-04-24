@@ -14,7 +14,7 @@ import static primitives.Util.*;
 class PlaneTest {
 
     /**
-     * Test method for {@link geometries.Plane#Plane(Point, Vector)}  Plane}.
+     * Test method for {@link geometries.Plane#Plane(Point, Vector)}  Plane.
      */
     @Test
     void testConstructor() {

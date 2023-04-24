@@ -22,7 +22,7 @@ public class Geometries{
     /**
      * constructor with parameters, creates a new list of geometries
      *
-     * @param geometries
+     * @param geometries array of geometries
      */
     public Geometries(Intersectable... geometries) {
 
@@ -33,7 +33,7 @@ public class Geometries{
     /**
      * This method adds the geometries array to the list
      *
-     * @param geometries
+     * @param geometries array of geometries
      */
     public void add(Intersectable... geometries) {
 
@@ -43,7 +43,7 @@ public class Geometries{
     /**
      * This method finds all the intersections of the ray with the geometries in the list
      *
-     * @param ray
+     * @param ray to check if intersect with the geometries and where
      * @return List<Point> - list of all the intersections points
      */
     public List<Point> findIntersections(Ray ray) {

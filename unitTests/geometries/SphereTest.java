@@ -78,7 +78,7 @@ class SphereTest {
         // =============== Boundary Values Tests ==================
 
         // **** Group: Ray's line crosses the sphere (but not the center)
-        //The two tests checks cricle = y^2 + (x-1)^2 = 1, and the intersections with y = 0.5, that are (2+- sqrt(3))/2
+        //The two tests checks circle = y^2 + (x-1)^2 = 1, and the intersections with y = 0.5, that are (2+- sqrt(3))/2
 
         // TC05: Ray starts at sphere and goes inside (1 point)
 
