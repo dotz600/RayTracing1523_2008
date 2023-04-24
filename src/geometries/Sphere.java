@@ -59,22 +59,18 @@ public class Sphere extends RadialGeometry {
     double t_1 = alignZero(t_m + t_h);
     double t_2 = alignZero(t_m - t_h);
 
-    if (t_1 <= 0 && t_2 <= 0){
+    if (t_1 <= 0 && t_2 <= 0)
         return null;
-    }
-    if (t_1 > 0 && t_2 <= 0) {
-        Point point1 = point.add(dir_vector.scale(t_1));
-        return List.of(point1);
-    }
-    if (t_1 <= 0 && t_2 > 0) {
-        Point point2 = point.add(dir_vector.scale(t_2));
-        return List.of(point2);
-    }
-    if (t_1 > 0 && t_2 > 0) {
-        Point point1 = point.add(dir_vector.scale(t_1));
-        Point point2 = point.add(dir_vector.scale(t_2));
-        return List.of(point1,point2);
-    }
+
+    if (t_1 > 0 && t_2 <= 0)
+        return List.of(ray.getPoint(t_1));
+
+    if (t_1 <= 0 && t_2 > 0)
+        return List.of(ray.getPoint(t_2));
+
+    if (t_1 > 0 && t_2 > 0)
+        return List.of(ray.getPoint(t_1), ray.getPoint(t_2));
+
     return null;
 
 }

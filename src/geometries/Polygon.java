@@ -114,11 +114,11 @@ public class Polygon implements Geometry {
 
       //check all the vector are in the same direction
       //if not - the point is outside the polygon - return null
-      Vector triangleNormal = this.plane.getNormal();
+      Vector polygonNormal = this.plane.getNormal();
 
       int countNegOrPos = 0;
       for (int i = 0; i < vertices.size(); i++) {
-         if (triangleNormal.dotProduct(vectors.get(i)) > 0)
+         if (polygonNormal.dotProduct(vectors.get(i)) > 0)
             countNegOrPos++;
       }
 

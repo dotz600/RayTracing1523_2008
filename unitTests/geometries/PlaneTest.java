@@ -99,9 +99,10 @@ class PlaneTest {
 
         //=============Boundary Values Tests=================
         //TC03: ray inside the plane, parallel to plane
-        assertNull(planeSurface.findIntersections(
-                new Ray(new Point(1,1,1), new Vector(1,1,0))),
-                "ERROR: ray inside the plane, parallel to plane, intersect the plane infinite times, should return null");
+        assertThrows(IllegalArgumentException.class,
+                () -> planeSurface.findIntersections(
+                        new Ray(new Point(1,1,1), new Vector(0,0,0))),
+                "ERROR: ray inside the plane, parallel to plane, intersect the plane infinite times, should throw exception");
 
         //TC04: ray outside the plane parallel to plane - zero intersections point
         assertNull(planeSurface.findIntersections(

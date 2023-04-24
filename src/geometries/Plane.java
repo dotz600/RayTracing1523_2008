@@ -90,7 +90,14 @@ public class Plane implements Geometry {
 
         // If the dot product is zero, the ray is parallel to the plane
         if (isZero(n_dir))
-            return null;
+        {
+            //check if the ray is inside the plane - if so throw exception
+            if(n_q0p == 0)
+                throw new IllegalArgumentException("The ray is parallel to the plane - infinite intersections");
+            else
+                //the ray parallel to plane but not in the plane - 0 intersections
+                return null;
+        }
 
         double t = alignZero(n_q0p / n_dir);
         // If t is negative, the intersection point is behind the ray origin
@@ -98,9 +105,6 @@ public class Plane implements Geometry {
             return null;
 
         // compute the intersection point and add it to the list of intersections
-        Vector dist = ray.getDir().scale(t);
-        Point p = ray.getP0().add(dist);
-
-        return List.of(p);
+        return List.of(ray.getPoint(t));
     }
 }

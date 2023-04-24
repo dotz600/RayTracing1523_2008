@@ -52,7 +52,7 @@ public class Tube extends RadialGeometry {
             // p is in-front of p0
             return p.subtract(p0).normalize();
 
-        Point o = p0.add(v.scale(t));
+        Point o = axisRay.getPoint(t);
 
         return p.subtract(o).normalize();
     }

@@ -33,10 +33,13 @@ public class Ray {
 
     /**
      * This method return a point on the ray 𝑷 = 𝑷𝟎 + 𝒕∙𝒗
+     * this point intersect with geometry
+     *
      * @param t the distance from the starting point
      * @return Point
      */
-    public Point getPoint(double t) {//TODO -- refactor -- use this method while calculating intersections
+    public Point getPoint(double t) {
+
         return p0.add(dir.scale(t));
     }
 
