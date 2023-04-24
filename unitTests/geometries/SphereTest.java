@@ -57,7 +57,7 @@ class SphereTest {
                                                                 new Vector(3, 1, 0)));
         assertEquals(2, result.size(), "Wrong number of points");
 
-        if (result.get(0).getX() > result.get(1).getX())//TODO -- הופך את הנקודות למקרה ששכחנו להפוך אותן כשהחזרנו רשימה, לא ברור למה
+        if (result.get(0).getX() > result.get(1).getX())
             result = List.of(result.get(1), result.get(0));
 
         assertEquals(List.of(p1, p2), result, "Ray crosses sphere");
@@ -103,7 +103,7 @@ class SphereTest {
                 new Vector(1, 0, 0)));
         assertEquals(2, result.size(), "Wrong number of points");
 
-        if (result.get(0).getX() > result.get(1).getX())//TODO -- הופך את הנקודות למקרה ששכחנו להפוך אותן כשהחזרנו רשימה, לא ברור למה
+        if (result.get(0).getX() > result.get(1).getX())
             result = List.of(result.get(1), result.get(0));
 
         assertEquals(List.of(p1, p2), result, "Ray crosses sphere");

@@ -43,7 +43,6 @@ class TriangleTest {
      */
     @Test
     public void testFindIntersections() {
-
         Triangle triangle = new Triangle(new Point(1, 1, 0),
                 new Point(-1, 1, 0), new Point(0, 3, 0));
 

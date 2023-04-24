@@ -36,9 +36,9 @@ public class Point {
      * @param p Point
      * @return new Vector
      */
-    public primitives.Vector subtract(Point p) {
+    public Vector subtract(Point p) {
 
-        return new primitives.Vector(this.xyz.subtract(p.xyz));
+        return new Vector(this.xyz.subtract(p.xyz));
     }
 
 
@@ -47,7 +47,7 @@ public class Point {
      * @param v vector to add
      * @return new Point
      */
-    public Point add(primitives.Vector v) {
+    public Point add(Vector v) {
 
         return new Point(xyz.add(v.xyz));
     }

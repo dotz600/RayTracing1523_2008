@@ -31,6 +31,14 @@ public class Ray {
         return dir;
     }
 
+    /**
+     * This method return a point on the ray 𝑷 = 𝑷𝟎 + 𝒕∙𝒗
+     * @param t the distance from the starting point
+     * @return Point
+     */
+    public Point getPoint(double t) {//TODO -- refactor -- use this method while calculating intersections
+        return p0.add(dir.scale(t));
+    }
 
     @Override
     public boolean equals(Object o) {

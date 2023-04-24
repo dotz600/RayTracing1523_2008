@@ -2,6 +2,7 @@ package geometries;
 
 import static primitives.Util.isZero;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import primitives.Point;
@@ -90,6 +91,41 @@ public class Polygon implements Geometry {
     */
    @Override
    public List<Point> findIntersections(Ray ray) {
+
+      // check if the ray intersect the plane of the polygon
+      List<Point> points = plane.findIntersections(ray);
+      if (points == null)
+         return null;
+
+      // check if the intersection point is inside the polygon
+      //create vectors from the intersection point to the vertices
+      //(pi - p(i+1) % vertices.size()) X (pi - p0)
+      ArrayList<Vector> vectors = new ArrayList<>();
+      for (int i = 0; i < vertices.size(); i++) {
+         try {
+            Vector v = vertices.get((i + 1) % vertices.size()).subtract(vertices.get(i));
+            Vector u = vertices.get(i).subtract(points.get(0));
+            vectors.add(v.crossProduct(u));
+         }
+         catch (IllegalArgumentException e) {
+            return null;
+         }
+      }
+
+      //check all the vector are in the same direction
+      //if not - the point is outside the polygon - return null
+      Vector triangleNormal = this.plane.getNormal();
+
+      int countNegOrPos = 0;
+      for (int i = 0; i < vertices.size(); i++) {
+         if (triangleNormal.dotProduct(vectors.get(i)) > 0)
+            countNegOrPos++;
+      }
+
+      if (countNegOrPos == vertices.size() || countNegOrPos == 0)
+         return points;
+
       return null;
+
    }
 }
