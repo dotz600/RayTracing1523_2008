@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * This class represents a list of geometries
+ */
 public class Geometries{
 
     private final List<Intersectable> geometries;

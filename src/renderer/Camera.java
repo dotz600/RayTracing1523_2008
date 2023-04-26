@@ -5,8 +5,7 @@ import primitives.Ray;
 import primitives.Vector;
 
 /**
- *  this class represent camera in space
- */
+ *  this class represent camera in space */
 public class Camera {
 
     // ***************** Fields of Camera class ********************** //
@@ -55,11 +54,10 @@ public class Camera {
     }
 
     // The function returns the camera itself because we want to use it in builder pattern
-    //** set view plane size based on width and height
-    // @param width (double)
-    // @param height (double)
-    // @return this (camera)
-    // */
+    /** set view plane size based on width and height
+    * @param width (double)
+    * @param height (double)
+    * @return this (camera)*/
     public Camera setVPSize(double width, double height) {
         this.width = width;
         this.height = height;
@@ -67,21 +65,20 @@ public class Camera {
     }
 
     // The function returns the camera itself because we want to use it in builder pattern
-    //** set distance between camera and view plane
-    // @param distance (double)
-    // @return this (camera)
-    // */
+    /** set distance between camera and view plane
+    * @param distance (double)
+    * @return this (camera) */
     public Camera setVPDistance(double distance) {
         this.distance = distance;
         return this;
     }
 
-    //** construct ray through pixel
-    // @param nX -- rows width
-    // @param nY -- columns height
-    // @param j -- pixel column
-    // @param i -- pixel row
-    // @return ray
+    /** construct ray through pixel
+    * @param nX -- rows width
+    * @param nY -- columns height
+    * @param j -- pixel column
+    * @param i -- pixel row
+    *@return ray */
     public Ray constructRay(int nX, int nY, int j, int i) {
 
         return null;

@@ -7,11 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="refactor getPoint in ray class,&#10;adding Geometries.findIntersections">
-      <change afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unitTests/integrationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unitTests/renderer/CameraTest.java" afterDir="false" />
+    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment=" Camera class and CameraTest was added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/geometries/Geometries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/geometries/Geometries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/integrationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/integrationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -286,7 +286,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682341252421</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL‎-00013" summary=" Camera class and CameraTest was added">
+      <created>1682421512027</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL‎-00013" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1682421512027</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -313,7 +320,8 @@
     <MESSAGE value="plane findIntersections test" />
     <MESSAGE value="Triangle findIntersections test" />
     <MESSAGE value="refactor getPoint in ray class,&#10;adding Geometries.findIntersections" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor getPoint in ray class,&#10;adding Geometries.findIntersections" />
+    <MESSAGE value=" Camera class and CameraTest was added" />
+    <option name="LAST_COMMIT_MESSAGE" value=" Camera class and CameraTest was added" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
