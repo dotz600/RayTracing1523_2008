@@ -30,11 +30,11 @@ public class Camera {
      * @param vUp vector
      * @param vTo vector
      */
-    public Camera(Point p0, Vector vUp, Vector vTo) {
+    public Camera(Point p0, Vector vTo, Vector vUp) {
         this.p0 = p0;
         this.vUp = vUp.normalize();
         this.vTo = vTo.normalize();
-        if (vUp.dotProduct(vTo) != 0)
+        if (vTo.dotProduct(vUp) != 0)
             throw new IllegalArgumentException("vUp and vTo must be vertical");
         this.vRight = vTo.crossProduct(vUp).normalize();
         //this.width = 0.0;
