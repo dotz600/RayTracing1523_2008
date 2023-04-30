@@ -4,6 +4,8 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import static primitives.Util.isZero;
+
 /**
  *  this class represent camera in space
  */
@@ -84,8 +86,37 @@ public class Camera {
     * @return ray
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
+        //calculate the center of the view plane
+        Vector v_distance = vTo.scale(distance);
+        Point pCenter = p0.add(v_distance);
 
-        return null;
+        //set the ratio of the view plane
+        if(nX == 0 || nY == 0)
+            throw new IllegalArgumentException("resolution cannot be 0");
+
+        double rX = width / nX;
+        double rY = height / nY;
+
+        //calculate the step-up/down
+        double yi = -(i - (nY - 1) / 2.0) * rY;
+        //calculate the step-right/left
+        double xj = (j - (nX - 1) / 2.0) * rX;
+
+        //calculate the point on the view plane
+        Point p_IJ = pCenter;
+        if (!isZero(xj))
+        {
+            var step  = vRight.scale(xj);
+            p_IJ = p_IJ.add(step);
+        }
+        if (!isZero(yi))
+        {
+            var step = vUp.scale(yi);
+            p_IJ = p_IJ.add(step);
+        }
+        //calculate the vector from the camera to the point on the view plane
+        Vector direction = p_IJ.subtract(p0);
+        return new Ray(p0, direction);
     }
 
 
