@@ -45,6 +45,8 @@ public class integrationTests {
         // TC01: 2 intersection points, r = 1 , only 1 point in the view plane intersect with the sphere
         Sphere sphere =  new Sphere(new Point(0, 0, -3) , 1);
         Camera cam = new Camera(ZERO_POINT, new Vector(0, 1, 0), new Vector(0, 0, -1));
+        cam.setVPDistance(1);
+        cam.setVPSize(3, 3);
         checkIntegration(cam, sphere, 2);
 
         // TC02: 18 intersection points, r = 2.5 , 9 points in the view plane intersect with the sphere 2 times
@@ -76,6 +78,8 @@ public class integrationTests {
         // TC01: 9 intersection points, plane is parallel to the view plane
         Plane plane = new Plane(new Point(0, 0, -3), new Vector(0, 0, -1));
         Camera cam = new Camera(ZERO_POINT, new Vector(0, 1, 0), new Vector(0, 0, -1));
+        cam.setVPDistance(1);
+        cam.setVPSize(3, 3);
         checkIntegration(cam, plane, 9);
 
         // TC02: 9 intersection points, plane is not parallel to the view plane
@@ -100,6 +104,8 @@ public class integrationTests {
         // TC01: 1 intersection points, triangle is parallel to the view plane
         Triangle triangle = new Triangle(new Point(0, 1, -2), new Point(1, -1, -2), new Point(-1, -1, -2));
         Camera cam = new Camera(ZERO_POINT, new Vector(0, 1, 0), new Vector(0, 0, -1));
+        cam.setVPDistance(1);
+        cam.setVPSize(3, 3);
         checkIntegration(cam, triangle, 1);
 
         // TC02: 2 intersection points, triangle is not parallel to the view plane
