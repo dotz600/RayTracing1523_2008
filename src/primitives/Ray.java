@@ -45,11 +45,9 @@ public class Ray {
 
     @Override
     public boolean equals(Object o) {
-
         if (this == o) return true;
-        if (!(o instanceof Ray ray))
-            return false;
-        return this.dir.equals(((Ray) o).dir) && this.p0.equals(((Ray) o).p0);
+        if (!(o instanceof Ray ray)) return false;
+        return Objects.equals(p0, ray.p0) && Objects.equals(dir, ray.dir);
     }
 
     @Override
