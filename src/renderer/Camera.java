@@ -87,8 +87,7 @@ public class Camera {
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
         //calculate the center of the view plane
-        Vector v_distance = vTo.scale(distance);
-        Point pCenter = p0.add(v_distance);
+        Point pCenter = p0.add(vTo.scale(distance));
 
         //set the ratio of the view plane
         if(nX == 0 || nY == 0)
