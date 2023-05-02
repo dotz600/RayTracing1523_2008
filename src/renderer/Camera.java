@@ -147,15 +147,14 @@ public class Camera {
 
         checkAllFields();
 
-        final int columns = image.getNx();
-        final int rows = image.getNy();
+        final int rows = image.getNx();
+        final int columns = image.getNy();
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++){
                 castRay(rows,columns,i,j);
             }
         }
-        image.writeToImage();
     }
 
     /**
@@ -163,7 +162,7 @@ public class Camera {
      */
     private void castRay(int nX, int nY, int i, int j) {
 
-        rayTracer.traceRay(constructRay(nX,nY,i,j));
+        image.writePixel(i,j,rayTracer.traceRay(constructRay(nX,nY,i,j)));
     }
 
     /**
@@ -177,9 +176,9 @@ public class Camera {
             for (int j = 0; j < image.getNy(); j++) {
                 if(i % interval == 0|| j % interval == 0)//if its grid pixel color red
                     image.writePixel(i,j, color);
+
             }
         }
-        image.writeToImage();
     }
 
     /**

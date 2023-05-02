@@ -17,6 +17,7 @@ public class AmbientLight {
      */
     public AmbientLight(Color color_Ia, Double3 color_Ka) {
 
+            intensity = color_Ia.scale(color_Ka);
     }
 
     /**
@@ -24,6 +25,7 @@ public class AmbientLight {
      */
     public AmbientLight(Double color_Ka) {
 
+        intensity = intensity.scale(color_Ka);
     }
 
     public Color getIntensity() {
