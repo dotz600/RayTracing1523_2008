@@ -8,6 +8,7 @@ import java.util.Objects;
  * using Double3 class
  */
 public class Point {
+    public static final Point ZERO = new Point(0,0,0);
     final Double3 xyz;
 
 

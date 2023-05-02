@@ -1,8 +1,11 @@
 package renderer;
 
+import primitives.Color;
 import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
+
+import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
 
@@ -12,16 +15,20 @@ import static primitives.Util.isZero;
 public class Camera {
 
     // ***************** Fields of Camera class ********************** //
-    Point p0;//camera location
+    private Point p0;//camera location
 
     // 3 vectors that represent the camera orientation
-    Vector vUp;
-    Vector vTo;
-    Vector vRight;
+    private Vector vUp;
+    private Vector vTo;
+    private Vector vRight;
 
-    Double width;//view plane width
-    Double height;//view plane height
-    Double distance;//distance between camera and view plane
+    private Double width;//view plane width
+    private Double height;//view plane height
+    private Double distance;//distance between camera and view plane
+
+
+    private ImageWriter image;
+    private RayTracerBase rayTracer;
 
     // ***************** Constructors ********************** //
     /**
@@ -56,7 +63,9 @@ public class Camera {
         return distance;
     }
 
-    /** The function returns the camera itself because we want to use it in builder pattern
+
+    /**
+    * Builder --
     * set view plane size based on width and height
     * @param width (double)
     * @param height (double)
@@ -68,7 +77,9 @@ public class Camera {
         return this;
     }
 
-    /** The function returns the camera itself because we want to use it in builder pattern
+
+    /**
+    * Builder --
     * set distance between camera and view plane
     * @param distance (double)
     * @return this (camera)
@@ -78,6 +89,17 @@ public class Camera {
         return this;
     }
 
+    public Camera setImageWriter(ImageWriter image) {
+        this.image = image;
+        return this;
+    }
+
+    public Camera setRayTracer(RayTracerBase rayTracer) {
+        this.rayTracer = rayTracer;
+        return this;
+    }
+
+    // ***************** Operations/Methods ********************** //
     /** construct ray through pixel
     * @param nX -- rows width
     * @param nY -- columns height
@@ -118,5 +140,89 @@ public class Camera {
         return new Ray(p0, direction);
     }
 
+    /**
+     * TODO -- Documentation here
+     */
+    public void renderImage() {
+
+        checkAllFields();
+
+        final int columns = image.getNx();
+        final int rows = image.getNy();
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++){
+                castRay(rows,columns,i,j);
+            }
+        }
+        image.writeToImage();
+    }
+
+    /**
+     * TODO -- Documentation here
+     */
+    private void castRay(int nX, int nY, int i, int j) {
+
+        rayTracer.traceRay(constructRay(nX,nY,i,j));
+    }
+
+    /**
+     * TODO -- Documentation here
+     */
+    public void printGrid(int interval, Color color){
+
+        imageIsNotNull();
+
+        for (int i = 0; i < image.getNx(); i++) {
+            for (int j = 0; j < image.getNy(); j++) {
+                if(i % interval == 0|| j % interval == 0)//if its grid pixel color red
+                    image.writePixel(i,j, color);
+            }
+        }
+        image.writeToImage();
+    }
+
+    /**
+     * TODO -- Documentation here
+     */
+    private void imageIsNotNull() {
+        if (image == null)
+            throw new MissingResourceException("rayTracer not initialized", RayTracerBase.class.getName(), "");
+    }
+
+
+    /**
+     * TODO -- Documentation here
+     */
+    public void writeToImage() {
+
+        imageIsNotNull();
+        image.writeToImage();
+    }
+
+    /**
+     * TODO -- Documentation here
+     */
+    private void checkAllFields() {
+
+        if (rayTracer == null) {
+            throw new MissingResourceException("rayTracer not initialized", RayTracerBase.class.getName(), "");
+        }
+        if (image == null) {
+            throw new MissingResourceException("imageWriter not initialized", ImageWriter.class.getName(), "");
+        }
+        if (p0 == null) {
+            throw new MissingResourceException("p0 not initialized", Point.class.getName(), "");
+        }
+        if (isZero(height)) {
+            throw new MissingResourceException("height not initialized", double.class.getName(), "");
+        }
+        if (isZero(width)) {
+            throw new MissingResourceException("width not initialized", double.class.getName(), "");
+        }
+        if (isZero(distance)) {
+            throw new MissingResourceException("distance not initialized", int.class.getName(), "");
+        }
+    }
 
 }

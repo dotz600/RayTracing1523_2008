@@ -54,7 +54,7 @@ public class Color {
         int ib = (int) rgb.d3;
         return new java.awt.Color(ir > 255 ? 255 : ir, ig > 255 ? 255 : ig, ib > 255 ? 255 : ib);
     }
-
+    //TODO -- Ask David what this method do
     /** Operation of adding this and one or more other colors (by component)
      * @param  colors one or more other colors to add
      * @return        new Color object which is a result of the operation */
