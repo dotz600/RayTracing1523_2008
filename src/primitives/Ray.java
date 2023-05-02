@@ -1,5 +1,7 @@
 package primitives;
 
+
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -41,6 +43,32 @@ public class Ray {
     public Point getPoint(double t) {
 
         return p0.add(dir.scale(t));
+    }
+
+    /**
+     * find and return the closet point to head of the ray
+     *
+     * @param lst list of point
+     * @return the closet point to the head of the ray
+     */
+    public Point findClosestPoint(List<Point> lst)
+    {
+        if(lst == null || lst.size() == 0)
+            return null;
+        //assume the first point is the closet
+        int resultIndex = 0;
+        double min = p0.distanceSquared(lst.get(resultIndex));//no need to calculate sqrt
+
+        for(int i = 1; i < lst.size(); i++)
+        {
+            double tmp = p0.distanceSquared(lst.get(i));
+            if(tmp < min)
+            {
+                min = tmp;
+                resultIndex = i;
+            }
+        }
+        return lst.get(resultIndex);
     }
 
     @Override
