@@ -7,23 +7,24 @@ import scene.Scene;
 
 import java.util.List;
 
+
 public class RayTracerBasic extends RayTracerBase {
 
 
     /**
-     * TODO -- Documentation here
-     *
-     * @param scene
+     * constructor with scene parameter
+     * @param scene the scene to render
      */
     public RayTracerBasic(Scene scene) {
         super(scene);
     }
 
     /**
-     * TODO -- Documentation here
+     * get the color of the pixel where the ray intersect with the scene
+     * if there is no intersection return the background color
      *
-     * @param ray
-     * @return color
+     * @param ray  the ray that intersect with the scene
+     * @return Color of the pixel
      */
     @Override
     public Color traceRay(Ray ray) {

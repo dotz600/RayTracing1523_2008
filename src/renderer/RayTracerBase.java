@@ -6,14 +6,15 @@ import primitives.Ray;
 import scene.Scene;
 
 /**
- * TODO -- Documentation here
+ * abstract class for ray tracing
  */
 public abstract class RayTracerBase {
 
     protected Scene scene;
 
     /**
-     * TODO -- Documentation here
+     * constructor with scene parameter
+     * @param scene the scene of the ray tracer
      */
     public RayTracerBase(Scene scene) {
 
@@ -21,7 +22,10 @@ public abstract class RayTracerBase {
     }
 
     /**
-     * TODO -- Documentation here
+     * abstract method for ray tracing
+     * return the color of the pixel where the ray intersect with the scene
+     * @param ray  the ray that intersect with the scene
+     * @return Color of the pixel
      */
     public abstract Color traceRay(Ray ray);
 

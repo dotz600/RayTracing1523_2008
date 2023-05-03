@@ -105,9 +105,10 @@ public class Camera {
     * @param nY -- columns height
     * @param j -- pixel column
     * @param i -- pixel row
-    * @return ray
+    * @return ray through the wanted pixel
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
+
         //calculate the center of the view plane
         Point pCenter = p0.add(vTo.scale(distance));
 
@@ -125,23 +126,25 @@ public class Camera {
 
         //calculate the point on the view plane
         Point p_IJ = pCenter;
-        if (!isZero(xj))
-        {
+        if (!isZero(xj)) {
             var step  = vRight.scale(xj);
             p_IJ = p_IJ.add(step);
         }
-        if (!isZero(yi))
-        {
+        if (!isZero(yi)) {
             var step = vUp.scale(yi);
             p_IJ = p_IJ.add(step);
         }
+
         //calculate the vector from the camera to the point on the view plane
         Vector direction = p_IJ.subtract(p0);
         return new Ray(p0, direction);
     }
 
     /**
-     * TODO -- Documentation here
+     * check if all the fields are initialized
+     * for each pixel in the view plane,
+     * construct ray and write the color of the pixel to the image
+     * @throws MissingResourceException if one of the fields is null
      */
     public void renderImage() {
 
@@ -158,15 +161,22 @@ public class Camera {
     }
 
     /**
-     * TODO -- Documentation here
+     * private method that write the color of the pixel to the image
+     * @param nX -- rows width
+     * @param nY -- columns height
+     * @param j -- pixel column
+     * @param i -- pixel row
      */
     private void castRay(int nX, int nY, int i, int j) {
 
         image.writePixel(i,j,rayTracer.traceRay(constructRay(nX,nY,i,j)));
     }
 
+
     /**
-     * TODO -- Documentation here
+     * print grid on the image
+     * @param interval the interval between the lines
+     * @throws MissingResourceException if the image is null
      */
     public void printGrid(int interval, Color color){
 
@@ -182,7 +192,8 @@ public class Camera {
     }
 
     /**
-     * TODO -- Documentation here
+     * check if the image is initialized
+     * @throws MissingResourceException if the image is null
      */
     private void imageIsNotNull() {
         if (image == null)
@@ -191,7 +202,8 @@ public class Camera {
 
 
     /**
-     * TODO -- Documentation here
+     * write the image to the file
+     * @throws MissingResourceException if the image is null
      */
     public void writeToImage() {
 
@@ -200,7 +212,8 @@ public class Camera {
     }
 
     /**
-     * TODO -- Documentation here
+     * check if all the fields are initialized
+     * @throws MissingResourceException if one of the fields is null
      */
     private void checkAllFields() {
 
