@@ -1,66 +1,117 @@
 package scene;
-
-
-
 import geometries.Geometries;
 import lighting.AmbientLight;
 import primitives.Color;
 
 /**
- * TODO -- Documentation here
+ * this class represent the scene
+ * contain colors and all the objects in the scene
+ * implement builder design pattern with SceneBuilder static inner class
  */
 public class Scene {
 
-    public String name;
+    private final String name;
 
-    public Color background = Color.BLACK;
+    private final Color background;
 
-    public AmbientLight ambientLight = AmbientLight.NONE;
-
-    public Geometries geometries;
-
-    /**
-     * TODO -- Documentation here
-     */
-    public Scene(String name) {
-
-        this.name = name;
-        background = Color.BLACK;
-        ambientLight = AmbientLight.NONE;
-        geometries = new Geometries();
-    }
-
+    private final Geometries geometries;
+    private final AmbientLight ambientLight;
 
     /**
-     * Builder --
-     * set background color
-     * @param background (Color)
-     * @return this (Scene)
+     * private constructor with SceneBuilder - build as SceneBuilder
+     * only throw SceneBuilder class can be activated
+     *
+     * @param builder SceneBuilder to build according to it
      */
-    public Scene setBackground(Color background) {
-        this.background = background;
-        return this;
+    private Scene(SceneBuilder builder) {
+
+        this.name = builder.name;
+        this.geometries = builder.geometries;
+        this.ambientLight = builder.ambientLight;
+        this.background = builder.background;
     }
 
     /**
-     * Builder --
-     * set ambientLight color
-     * @param ambientLight (AmbientLight)
-     * @return this (Scene)
+     * inner static class - builder design pattern
+     * build scene with sceneBuilder and then return built scene
      */
-    public Scene setAmbientLight(AmbientLight ambientLight) {
-        this.ambientLight = ambientLight;
-        return this;
+    public static class SceneBuilder{
+
+        private final String name;
+
+        private Color background = Color.BLACK;
+
+        private AmbientLight ambientLight = AmbientLight.NONE;
+
+        private Geometries geometries = new Geometries();
+
+        /**
+         * constructor with name,
+         * all other parameters get there default value or by setters
+         * @param name of the scene
+         */
+        public SceneBuilder(String name) {
+            this.name = name;
+        }
+
+        /**
+         * chaining method
+         * set background color
+         * @param background (Color)
+         * @return this (Scene)
+         */
+        public SceneBuilder setBackground(Color background) {
+            this.background = background;
+            return this;
+        }
+
+        /**
+         * chaining method
+         * set ambientLight color
+         * @param ambientLight (AmbientLight)
+         * @return this (Scene)
+         */
+        public SceneBuilder setAmbientLight(AmbientLight ambientLight) {
+            this.ambientLight = ambientLight;
+            return this;
+        }
+
+        /**
+         * chaining method
+         * set geometries in scene
+         * @param geometries (Geometries)
+         * @return this (Scene)
+         */
+        public SceneBuilder setGeometries(Geometries geometries) {
+            this.geometries = geometries;
+            return this;
+        }
+
+        /**
+         * validate all sceneBuilder parameter and return new proper scene
+         * @return new Scene
+         */
+        public Scene build() {
+            //Validate Object - nothing to check
+            return new Scene(this);
+        }
+
     }
 
-    /**
-     * Builder --
-     * set geometries in scene
-     * @param geometries (Geometries)
-     * @return this (Scene)
-     */
-    public Scene setGeometries(Geometries geometries) {
-        this.geometries = geometries;
-        return  this;
+    //------------Getters ---- Scene Class -------
+    public String getName() {
+        return name;
+    }
+
+    public Color getBackground() {
+        return background;
+    }
+
+    public Geometries getGeometries() {
+        return geometries;
+    }
+
+    public AmbientLight getAmbientLight() {
+        return ambientLight;
     }
 }
