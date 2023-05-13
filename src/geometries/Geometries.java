@@ -2,6 +2,7 @@ package geometries;
 
 import primitives.Point;
 import primitives.Ray;
+import geometries.Intersectable.GeoPoint;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -61,6 +62,29 @@ public class Geometries{
                     intersections = new LinkedList<>();
 
                 intersections.addAll(geometryIntersections);
+            }
+        }
+        return intersections;
+    }
+
+    /**
+     * This method finds all the intersections of the ray with the geometries in the list
+     *
+     * @param ray to check if intersect with the geometries and where
+     * @return List<GeoPoint> - list of all the intersections points
+     */
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        List<GeoPoint> intersections = null;
+
+        for (Intersectable geometry : geometries) {
+
+            List<GeoPoint> geoIntersections = geometry.findGeoIntersections(ray);
+            if (geoIntersections != null) {
+
+                if (intersections == null)
+                    intersections = new LinkedList<>();
+
+                intersections.addAll(geoIntersections);
             }
         }
         return intersections;

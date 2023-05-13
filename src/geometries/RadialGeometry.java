@@ -7,7 +7,7 @@ import primitives.Vector;
  * abstract class that represent Radial Geometry
  * sphere, tube & cylinder successor from it
  */
-abstract class RadialGeometry implements Geometry {
+abstract class RadialGeometry extends Geometry {
 
     /** radius of the geometry */
     protected double radius;

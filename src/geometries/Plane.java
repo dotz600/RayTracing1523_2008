@@ -12,7 +12,7 @@ import static primitives.Util.isZero;
  * this class represent plane in space,
  * implements Geometry interface
  */
-public class Plane implements Geometry {
+public class Plane extends Geometry {
 
     /**
      * point in plane
@@ -105,4 +105,38 @@ public class Plane implements Geometry {
         // compute the intersection point and add it to the list of intersections
         return List.of(ray.getPoint(t));
     }
+    /**
+     * Gets a ray and returns intersection points between the ray and the geometry.
+     *
+     * @param ray (not NULL)
+     * @return List of points if any. else NULL
+     */
+    @Override
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+
+        if(q0.equals(ray.getP0()))
+            return null;
+
+        Vector q0_p = q0.subtract(ray.getP0());
+        double n_q0p = alignZero(normal.dotProduct(q0_p));
+        double n_dir =  alignZero(normal.dotProduct(ray.getDir()));
+
+        // direction and (q0 - p0) is orthogonal to the normal -
+        // the ray is parallel to the plane and inside it.
+        if (isZero(n_dir) && n_q0p == 0)
+            throw new IllegalArgumentException("The ray is parallel to the plane - infinite intersections");
+
+        // normal * direction = 0 - the ray is parallel to the plane but not in the plane
+        if(isZero(n_dir))
+            return null;
+
+        double t = alignZero(n_q0p / n_dir);
+        // If t is negative, the intersection point is behind the ray origin
+        if (t <= 0)
+            return null;
+
+        // compute the intersection point and add it to the list of intersections
+        return List.of(new GeoPoint(this,ray.getPoint(t)));
+    }
+
 }

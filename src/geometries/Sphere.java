@@ -74,6 +74,39 @@ public class Sphere extends RadialGeometry {
 
 }
 
+    @Override
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        if (ray.getP0().equals(center)) {
+            return List.of(new GeoPoint(this,center.add(ray.getDir().scale(radius))));
+        }
+        Point point = ray.getP0();
+        Vector dir_vector = ray.getDir();
+        Vector p0_o = center.subtract(point);
+        double t_m = alignZero(dir_vector.dotProduct(p0_o));
+        double d = alignZero(Math.sqrt(p0_o.dotProduct(p0_o) - t_m*t_m));
+
+        if (d >= radius)//there are no intersections
+            return null;
+
+        double t_h = alignZero(Math.sqrt(radius*radius - d*d));
+        double t_1 = alignZero(t_m + t_h);
+        double t_2 = alignZero(t_m - t_h);
+
+        if (t_1 <= 0 && t_2 <= 0)
+            return null;
+
+        if (t_1 > 0 && t_2 <= 0)
+            return List.of(new GeoPoint(this,ray.getPoint(t_1)));
+
+        if (t_1 <= 0 && t_2 > 0)
+            return List.of(new GeoPoint(this,ray.getPoint(t_2)));
+
+        if (t_1 > 0 && t_2 > 0)
+            return List.of(new GeoPoint(this,ray.getPoint(t_1)), new GeoPoint(this, ray.getPoint(t_2)));
+
+        return null;
+    }
+
     /** <li>For now assume that
      *  the point is on sphere,
      *  without making sure<li/>

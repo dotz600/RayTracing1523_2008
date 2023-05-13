@@ -3,6 +3,7 @@ package primitives;
 
 import java.util.List;
 import java.util.Objects;
+import geometries.Intersectable.GeoPoint;
 
 /**
  * This class represent ray in space
@@ -10,16 +11,16 @@ import java.util.Objects;
  */
 public class Ray {
     /** Starting point */
-    final primitives.Point p0;
+    final Point p0;
     /** Direction */
-    final primitives.Vector dir;
+    final Vector dir;
 
     /**
      * Constructor with  Point  & Vector
      * @param p Point
      * @param v Vector
      */
-    public Ray(primitives.Point p, primitives.Vector v) {
+    public Ray(Point p, Vector v) {
 
         p0 = p;
         dir = v.normalize();
@@ -69,6 +70,11 @@ public class Ray {
             }
         }
         return lst.get(resultIndex);
+    }
+
+    //TODO -- implement this method -- stage 6.4
+    public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
+       return null;
     }
 
     @Override

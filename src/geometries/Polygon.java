@@ -12,7 +12,7 @@ import primitives.Vector;
 /** Polygon class represents two-dimensional polygon in 3D Cartesian coordinate
  * system
  * @author Dan */
-public class Polygon implements Geometry {
+public class Polygon extends Geometry {
    /** List of polygon's vertices */
    protected final List<Point> vertices;
    /** Associated plane in which the polygon lays */
@@ -125,6 +125,44 @@ public class Polygon implements Geometry {
 
       if (countNegOrPos == vertices.size() || countNegOrPos == 0)
          return points;
+
+      return null;
+
+   }
+   @Override
+   public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+      // check if the ray intersect the plane of the polygon
+      List<GeoPoint> GeoPoints = plane.findGeoIntersectionsHelper(ray);
+      if (GeoPoints == null)
+         return null;
+
+      // check if the intersection point is inside the polygon
+      //create vectors from the intersection point to the vertices
+      //(pi - p(i+1) % vertices.size()) X (pi - p0)
+      ArrayList<Vector> vectors = new ArrayList<>();
+      for (int i = 0; i < vertices.size(); i++) {
+         try {
+            Vector v = vertices.get((i + 1) % vertices.size()).subtract(vertices.get(i));
+            Vector u = vertices.get(i).subtract(GeoPoints.get(0).point);
+            vectors.add(v.crossProduct(u));
+         }
+         catch (IllegalArgumentException e) {
+            return null;
+         }
+      }
+
+      //check all the vector are in the same direction
+      //if not - the point is outside the polygon - return null
+      Vector polygonNormal = this.plane.getNormal();
+
+      int countNegOrPos = 0;
+      for (int i = 0; i < vertices.size(); i++) {
+         if (polygonNormal.dotProduct(vectors.get(i)) > 0)
+            countNegOrPos++;
+      }
+
+      if (countNegOrPos == vertices.size() || countNegOrPos == 0)
+         return List.of(new GeoPoint(this,GeoPoints.get(0).point));
 
       return null;
 

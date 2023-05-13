@@ -68,6 +68,10 @@ public class Tube extends RadialGeometry {
     public List<Point> findIntersections(Ray ray) {
         return null;
     }
+    @Override
+    public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
+        return null;
+    }
 
     public Ray getAxisRay() {
 
