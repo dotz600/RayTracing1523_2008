@@ -1,8 +1,11 @@
 package primitives;
 
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
+
 import geometries.Intersectable.GeoPoint;
 
 /**
@@ -49,32 +52,28 @@ public class Ray {
     /**
      * find and return the closet point to head of the ray
      *
-     * @param lst list of point
+     * @param intersections list of point
      * @return the closet point to the head of the ray
      */
-    public Point findClosestPoint(List<Point> lst)
+    public Point findClosestPoint(List<Point> intersections)
     {
-        if(lst == null || lst.size() == 0)
-            return null;
-        //assume the first point is the closet
-        int resultIndex = 0;
-        double min = p0.distanceSquared(lst.get(resultIndex));//no need to calculate sqrt
-
-        for(int i = 1; i < lst.size(); i++)
-        {
-            double tmp = p0.distanceSquared(lst.get(i));
-            if(tmp < min)
-            {
-                min = tmp;
-                resultIndex = i;
-            }
-        }
-        return lst.get(resultIndex);
+        return intersections == null || intersections.isEmpty() ? null :
+                findClosestGeoPoint(
+                                    intersections
+                                            .stream()
+                                            .map(p -> new GeoPoint(null,p))
+                                            .toList()
+                                    ).point;
     }
 
     //TODO -- implement this method -- stage 6.4
     public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
-       return null;
+
+        //The function RayTracerBasic#traceRay check if intersections is null
+        return intersections
+                .stream()
+                .min(Comparator.comparing(p -> p0.distanceSquared(p.point)))
+                .get();
     }
 
     @Override

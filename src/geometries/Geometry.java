@@ -14,9 +14,9 @@ public abstract class Geometry extends Intersectable{
 
 
     //TODO -- Documentation here
-    public Color setEmission(Color emission) {
+    public Geometry setEmission(Color emission) {
         this.emission = emission;
-        return this.emission;
+        return this;
     }
     //TODO -- Documentation here
     public Color getEmission() {
