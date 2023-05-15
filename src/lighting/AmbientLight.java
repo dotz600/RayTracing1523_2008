@@ -6,13 +6,10 @@ import primitives.Double3;
 /**
  * The AmbientLight class represents ambient light in a scene.
  * Ambient light is a uniform level of illumination that affects all objects equally.
+ * extend abstract class Light - get from it Color intensity
  */
-public class AmbientLight {
+public class AmbientLight extends Light {
 
-    /**
-     * The intensity of the ambient light.
-     */
-    Color intensity;
 
     /**
      * A constant representing no ambient light (black color and zero intensity).
@@ -26,20 +23,16 @@ public class AmbientLight {
      * @param color_Ka The intensity of the ambient light.
      */
     public AmbientLight(Color color_Ia, Double3 color_Ka) {
-        intensity = color_Ia.scale(color_Ka);
+        super(color_Ia.scale(color_Ka));
     }
 
     /**
-     * Constructs an AmbientLight object with a single intensity value, assuming a grayscale color.
+     * Constructs an AmbientLight object with a single intensity value, assuming a black scale color.
      *
      * @param color_Ka The intensity of the ambient light.
      */
     public AmbientLight(Double color_Ka) {
-        intensity = intensity.scale(color_Ka);
+        super(Color.BLACK.scale(color_Ka));
     }
 
-
-    public Color getIntensity() {
-        return intensity;
-    }
 }

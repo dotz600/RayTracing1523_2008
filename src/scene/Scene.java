@@ -1,7 +1,11 @@
 package scene;
 import geometries.Geometries;
 import lighting.AmbientLight;
+import lighting.LightSource;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * this class represent the scene
@@ -17,6 +21,8 @@ public class Scene {
     private final Geometries geometries;
     private final AmbientLight ambientLight;
 
+    private final List<LightSource> lights;
+
     /**
      * private constructor with SceneBuilder - build as SceneBuilder
      * only throw SceneBuilder class can be activated
@@ -29,6 +35,7 @@ public class Scene {
         this.geometries = builder.geometries;
         this.ambientLight = builder.ambientLight;
         this.background = builder.background;
+        this.lights = builder.lights;
     }
 
     /**
@@ -44,6 +51,7 @@ public class Scene {
         private AmbientLight ambientLight = AmbientLight.NONE;
 
         private Geometries geometries = new Geometries();
+        private List<LightSource> lights = new LinkedList<>();
 
         /**
          * constructor with name,
@@ -88,6 +96,17 @@ public class Scene {
         }
 
         /**
+         * chaining method
+         * set light source in scene
+         * @param lights (List<LightSource>)
+         * @return this (Scene)
+         */
+        public SceneBuilder setLights(List<LightSource> lights) {
+            this.lights = lights;
+            return this;
+        }
+
+        /**
          * validate all sceneBuilder parameter and return new proper scene
          * @return new Scene
          */
@@ -114,4 +133,6 @@ public class Scene {
     public AmbientLight getAmbientLight() {
         return ambientLight;
     }
+
+    public List<LightSource> getLights() { return lights; }
 }

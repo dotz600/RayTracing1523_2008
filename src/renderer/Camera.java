@@ -146,7 +146,7 @@ public class Camera {
      * construct ray and write the color of the pixel to the image
      * @throws MissingResourceException if one of the fields is null
      */
-    public void renderImage() {
+    public Camera renderImage() {
 
         checkAllFields();
 
@@ -158,6 +158,7 @@ public class Camera {
                 castRay(rows,columns,i,j);
             }
         }
+        return this;
     }
 
     /**
