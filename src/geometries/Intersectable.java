@@ -15,12 +15,17 @@ public abstract class Intersectable {
      * @param ray (not NULL)
      * @return List of points if any. else NULL
      */
-    public abstract List<Point> findIntersections(Ray ray);
+    public List<Point> findIntersections(Ray ray) {
+        var geoList = findGeoIntersections(ray);
+        return geoList == null ? null : geoList.stream().map(x -> x.point).toList();
+    };
     public final List<GeoPoint> findGeoIntersections(Ray ray) {return findGeoIntersectionsHelper(ray);};
 
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
-    //TODO -- Documentation here
+    /**
+     * Class for intersection points between the ray and the geometry.
+     */
     public static class GeoPoint {
         public Geometry geometry;
         public Point point;

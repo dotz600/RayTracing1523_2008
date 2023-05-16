@@ -5,9 +5,12 @@ package primitives;
  */
 public class Material {
 
+    // ***************** Properties ********************** //
         public Double3 kD = Double3.ZERO; //diffuse (Phong Reflectance Model) coefficient
         public Double3 kS = Double3.ZERO; //specular (Phong Reflectance Model) coefficient
         public int nShininess = 0; //the object’s shininess (Phong Reflectance Model)
+
+    // ***************** Setters ********************** //
 
     /**
      * chaining method - set diffuse (Phong Reflectance Model) coefficient

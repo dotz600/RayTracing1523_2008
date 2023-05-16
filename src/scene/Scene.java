@@ -14,15 +14,14 @@ import java.util.List;
  */
 public class Scene {
 
+    // ***************** properties ********************** //
     private final String name;
-
     private final Color background;
-
     private final Geometries geometries;
     private final AmbientLight ambientLight;
-
     private final List<LightSource> lights;
 
+    // ***************** Constructors ********************** //
     /**
      * private constructor with SceneBuilder - build as SceneBuilder
      * only throw SceneBuilder class can be activated
@@ -52,6 +51,8 @@ public class Scene {
 
         private Geometries geometries = new Geometries();
         private List<LightSource> lights = new LinkedList<>();
+
+        // ***************** setters ********************** //
 
         /**
          * constructor with name,
@@ -91,7 +92,8 @@ public class Scene {
          * @return this (Scene)
          */
         public SceneBuilder setGeometries(Geometries geometries) {
-            this.geometries = geometries;
+            if (geometries != null)
+                this.geometries = geometries;
             return this;
         }
 
@@ -102,7 +104,8 @@ public class Scene {
          * @return this (Scene)
          */
         public SceneBuilder setLights(List<LightSource> lights) {
-            this.lights = lights;
+            if (lights != null)
+                this.lights = lights;
             return this;
         }
 
@@ -117,7 +120,7 @@ public class Scene {
 
     }
 
-    //------------Getters ---- Scene Class -------
+    // ***************** Getters ********************** //
     public String getName() {
         return name;
     }

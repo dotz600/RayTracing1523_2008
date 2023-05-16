@@ -11,12 +11,21 @@ public abstract class Geometry extends Intersectable{
 
     private Material material = new Material();
 
-    //TODO -- Documentation here
+    /**
+     * chaining method - set the emission of the geometry
+     *
+     * @param emission the emission of the geometry
+     * @return itself (Geometry)
+     */
     public Geometry setEmission(Color emission) {
         this.emission = emission;
         return this;
     }
-    //TODO -- Documentation here
+    /**
+     * chaining method - get the emission of the geometry
+     *
+     * @return itself (Geometry)
+     */
     public Color getEmission() {
         return emission;
     }

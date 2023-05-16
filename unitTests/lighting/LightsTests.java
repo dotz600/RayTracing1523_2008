@@ -91,6 +91,40 @@ public class LightsTests {
 				.renderImage() //
 				.writeToImage(); //
 	}
+	/**
+	 * Produce a picture of a sphere lighted by a spot light
+	 */
+	@Test
+	public void sphereMyTest() {
+		scene1.getGeometries().add(sphere);
+		scene1.getLights().add(new SpotLight(new Color(900,500,500), new Point(50,0,50), new Vector(-1, 0, -1)).setKl(0.001).setKq(0.0001));
+		scene1.getLights().add(new DirectionalLight(new Color(90,500,10), new Vector(1, -1, -0.2)));
+		scene1.getLights().add(new PointLight(new Color(500,200,100), spPL).setKl(0.001).setKq(0.0002));
+
+
+		ImageWriter imageWriter = new ImageWriter("lightSphereMyTest", 500, 500);
+		camera1.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene1)) //
+				.renderImage() //
+				.writeToImage(); //
+	}
+
+
+	@Test
+	public void trianglesMyTest() {
+
+		scene2.getGeometries().add(triangle1, triangle2);
+		scene2.getLights().add(new DirectionalLight(new Color(150,400,30), trDL));
+		scene2.getLights().add(new SpotLight(new Color(600,200,200), new Point(70,-90,-100), new Vector(-2,-2,-2)).setKl(0.001).setKq(0.0001));
+		scene2.getLights().add(new PointLight(new Color(300,100,100), trPL).setKl(0.001).setKq(0.0002));
+
+
+		ImageWriter imageWriter = new ImageWriter("lightTrianglesMyTest", 500, 500);
+		camera2.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene2)) //
+				.renderImage() //
+				.writeToImage(); //
+	}
 
 	/**
 	 * Produce a picture of a two triangles lighted by a directional light

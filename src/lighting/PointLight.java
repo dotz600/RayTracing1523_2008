@@ -2,8 +2,11 @@ package lighting;
 import primitives.*;
 public class PointLight extends Light implements LightSource{
 
-    Point position; //the position of the light
-    double kC = 1 , kL = 0 , kQ = 0;//attenuation coefficients, constant, linear, quadratic
+    private Point position; //the position of the light
+    private double kC = 1 , kL = 0 , kQ = 0;//attenuation coefficients, constant, linear, quadratic
+
+
+    // ***************** Constructor ********************** //
 
     /**
      * constructor - initializes the position and the light intensity
@@ -16,6 +19,7 @@ public class PointLight extends Light implements LightSource{
         this.position = position;
     }
 
+    // ***************** Getters/Setters ********************** //
     @Override
     public Color getIntensity(Point p) {
         double d = position.distance(p);
@@ -24,6 +28,7 @@ public class PointLight extends Light implements LightSource{
 
     @Override
     public Vector getL(Point p) {
+
         return p.subtract(position).normalize();
     }
 

@@ -4,7 +4,10 @@ import primitives.*;
 
 public class DirectionalLight extends Light implements LightSource {
 
-    Vector direction;
+    private Vector direction;
+
+
+    // ***************** Constructor ********************** //
 
     /**
      * constructor - initializes the direction and the light intensity
@@ -14,9 +17,11 @@ public class DirectionalLight extends Light implements LightSource {
      */
     public DirectionalLight(Color intensity, Vector direction) {
         super(intensity);
-        this.direction = direction;
+        this.direction = direction.normalize();
     }
 
+
+    // ***************** Getters/Setters ********************** //
     /**
      * get the intensity of the light source at a point
      * direction light intensity is constant
@@ -38,6 +43,6 @@ public class DirectionalLight extends Light implements LightSource {
      */
     @Override
     public Vector getL(Point p) {
-        return direction.normalize();
+        return direction;
     }
 }

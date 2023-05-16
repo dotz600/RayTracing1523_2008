@@ -7,7 +7,10 @@ import static primitives.Util.isZero;
 
 public class SpotLight extends PointLight{
 
-    Vector direction;
+    private Vector direction;
+
+
+    // ***************** Constructor ********************** //
 
     /**
      * constructor - initializes the position, the light intensity and the direction
@@ -18,8 +21,10 @@ public class SpotLight extends PointLight{
      */
     public SpotLight( Color intens, Point pos, Vector dir) {
         super(intens,pos);
-        this.direction = dir;
+        this.direction = dir.normalize();
     }
+
+    // ***************** Getters/Setters ********************** //
 
     /**
      * get the intensity of the light source at a point

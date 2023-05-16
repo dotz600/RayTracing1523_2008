@@ -66,7 +66,7 @@ public class Ray {
                                     ).point;
     }
 
-    //TODO -- implement this method -- stage 6.4
+
     public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
 
         //The function RayTracerBasic#traceRay check if intersections is null

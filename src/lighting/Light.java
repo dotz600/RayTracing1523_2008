@@ -3,7 +3,7 @@ package lighting;
 import primitives.Color;
 
 /**
- //TODO - Documentation
+    * Abstract class for all light sources
  */
 abstract class Light {
 

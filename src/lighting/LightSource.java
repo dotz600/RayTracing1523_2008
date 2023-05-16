@@ -3,7 +3,7 @@ package lighting;
 import primitives.*;
 
 /**
- //TODO - Documention
+    * Interface for all light sources
  */
 public interface LightSource {
 

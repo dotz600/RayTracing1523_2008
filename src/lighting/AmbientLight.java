@@ -23,6 +23,7 @@ public class AmbientLight extends Light {
      * @param color_Ka The intensity of the ambient light.
      */
     public AmbientLight(Color color_Ia, Double3 color_Ka) {
+
         super(color_Ia.scale(color_Ka));
     }
 
@@ -32,6 +33,7 @@ public class AmbientLight extends Light {
      * @param color_Ka The intensity of the ambient light.
      */
     public AmbientLight(Double color_Ka) {
+
         super(Color.BLACK.scale(color_Ka));
     }
 
