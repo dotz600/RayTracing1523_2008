@@ -7,10 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="end stage 4">
-      <change afterPath="$PROJECT_DIR$/images/myFirstImage.png" afterDir="false" />
+    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="stage 6 - finished. All tests passed">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/ImageWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ImageWriterTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/lighting/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/lighting/LightsTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +23,8 @@
       <list>
         <option value="Interface" />
         <option value="package-info" />
-        <option value="Class" />
         <option value="JUnit5 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -73,6 +74,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers&quot;: &quot;true&quot;,
@@ -98,7 +100,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ImageWriterTest.writeToImageTests">
+  <component name="RunManager" selected="JUnit.All in RayTracing1523_2008">
     <configuration name="Vector" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="test.Main" />
       <module name="RayTracing1523_2008" />
@@ -120,52 +122,64 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ImageWriterTest.klum" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LightsTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RayTracing1523_2008" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="renderer.*" />
+          <option name="PATTERN" value="lighting.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ImageWriterTest" />
-      <option name="METHOD_NAME" value="klum" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ImageWriterTest.writeToImageTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RayTracing1523_2008" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="renderer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="renderer" />
-      <option name="MAIN_CLASS_NAME" value="renderer.ImageWriterTest" />
-      <option name="METHOD_NAME" value="writeToImageTests" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="integrationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RayTracing1523_2008" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="integrationTests" />
+      <option name="PACKAGE_NAME" value="lighting" />
+      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="integrationTests.testPlaneAndCameraIntegration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LightsTests.polygonTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="RayTracing1523_2008" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="integrationTests" />
-      <option name="METHOD_NAME" value="testPlaneAndCameraIntegration" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lighting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lighting" />
+      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
+      <option name="METHOD_NAME" value="polygonTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LightsTests.spherePoint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RayTracing1523_2008" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lighting.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="lighting" />
+      <option name="MAIN_CLASS_NAME" value="lighting.LightsTests" />
+      <option name="METHOD_NAME" value="spherePoint" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RenderTests.basicRenderTwoColorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RayTracing1523_2008" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.RenderTests" />
+      <option name="METHOD_NAME" value="basicRenderTwoColorTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -173,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ImageWriterTest.writeToImageTests" />
         <item itemvalue="JUnit.All in RayTracing1523_2008" />
-        <item itemvalue="JUnit.ImageWriterTest.klum" />
-        <item itemvalue="JUnit.integrationTests" />
-        <item itemvalue="JUnit.integrationTests.testPlaneAndCameraIntegration" />
+        <item itemvalue="JUnit.RenderTests.basicRenderTwoColorTest" />
+        <item itemvalue="JUnit.LightsTests.polygonTest" />
+        <item itemvalue="JUnit.LightsTests" />
+        <item itemvalue="JUnit.LightsTests.spherePoint" />
       </list>
     </recent_temporary>
   </component>
@@ -302,7 +316,42 @@
       <option name="project" value="LOCAL‎" />
       <updated>1682953010855</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL‎-00017" summary="stage 5 -- started">
+      <created>1683058958090</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL‎-00017" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683058958090</updated>
+    </task>
+    <task id="LOCAL‎-00018" summary="stage 5 -- All tests passed&#10;TODO -- Documentation">
+      <created>1683062718255</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL‎-00018" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683062718255</updated>
+    </task>
+    <task id="LOCAL‎-00019" summary="stage 6 - until 1.4">
+      <created>1683999256966</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL‎-00019" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1683999256966</updated>
+    </task>
+    <task id="LOCAL‎-00020" summary="stage 6 - finished part 1">
+      <created>1684146204344</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL‎-00020" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1684146204344</updated>
+    </task>
+    <task id="LOCAL‎-00021" summary="stage 6 - finished. All tests passed">
+      <created>1684223373936</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL‎-00021" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1684223373936</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +382,12 @@
     <MESSAGE value="implement constructRay method" />
     <MESSAGE value="all the test are pass" />
     <MESSAGE value="end stage 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="end stage 4" />
+    <MESSAGE value="stage 5 -- started" />
+    <MESSAGE value="stage 5 -- All tests passed&#10;TODO -- Documentation" />
+    <MESSAGE value="stage 6 - until 1.4" />
+    <MESSAGE value="stage 6 - finished part 1" />
+    <MESSAGE value="stage 6 - finished. All tests passed" />
+    <option name="LAST_COMMIT_MESSAGE" value="stage 6 - finished. All tests passed" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

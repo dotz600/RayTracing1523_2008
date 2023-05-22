@@ -40,12 +40,45 @@ public class LightsTests {
 			.setKd(0.5)
 			.setKs(0.5)
 			.setShininess(300);
+	private Material material1 = new Material()
+			.setKd(0.2)
+			.setKs(1)
+			.setShininess(300);
 
 	private Geometry triangle1 = new Triangle(p[0], p[1], p[2]).setMaterial(material);
 	private Geometry triangle2 = new Triangle(p[0], p[1], p[3]).setMaterial(material);
 	private Geometry sphere = new Sphere(new Point(0, 0, -50), 50d) //
 			.setEmission(new Color(BLUE).reduce(2)) //
 			.setMaterial(material);
+	@Test
+	public void polygonTest() {
+
+		for (int i = 0; i < 5; ++i) {
+			for (int j = 0; j < 5; ++j) {
+				scene1.getGeometries()
+						.add(new Polygon(
+								new Point(-75 + j * 30, 75 - 30*i, 0),
+								new Point(-75 + j * 30, 45 - 30*i, 0),
+								new Point(-45 + j * 30, 45 - 30*i, 0),
+								new Point(-45 + j * 30, 75 - 30*i, 0))
+								.setMaterial(material)
+								.setEmission((i + j) % 2 == 0 ? new Color(125,61,0) : new Color(96,96,96)));
+				scene1.getGeometries()
+						.add(new Sphere(new Point(-60 + j * 30, 60 - 30*i, 10), 10d)
+								.setMaterial(material1)
+								.setEmission(new Color(32,32,32)));
+			}
+		}
+
+		scene1.getLights().add(new DirectionalLight(spCL, new Vector(20, 20, -0.5)));
+		scene1.getLights().add(new PointLight(new Color(200,50,0), new Point(80,80,30)).setKl(0.001).setKq(0.0002));
+
+		ImageWriter imageWriter = new ImageWriter("lightPolygons", 2000, 2000);
+		camera1.setImageWriter(imageWriter) //
+				.setRayTracer(new RayTracerBasic(scene1)) //
+				.renderImage() //
+				.writeToImage(); //
+	}
 
 	/**
 	 * Produce a picture of a sphere lighted by a directional light
