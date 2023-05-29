@@ -31,11 +31,12 @@ public class RayTracerBasic extends RayTracerBase {
         if (intersections == null)
             return true;
 
-        double distancePoint_lightSource = lightSource.getDistance(gp.point);//מרחק בין נקודה לבין מקור האור
+        double distancePoint_lightSource = lightSource.getDistance(gp.point);//מרחק בין ראש הקרן לבין מקור האור
 
         for (GeoPoint intersection : intersections){
 
-            if (intersection.point.distanceSquared(lightRay.getP0()) < distancePoint_lightSource)//מרחקים בין ראש הקרן לבין נקודות חיתוך
+            double dis = intersection.point.distanceSquared(gp.point);
+            if (dis < distancePoint_lightSource)//מרחקים בין ראש הקרן לבין נקודות חיתוך
                 return false;
         }
         return true;

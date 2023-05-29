@@ -67,7 +67,7 @@ public class LightsTests {
     private final Geometry       triangle2               = new Triangle(vertices[0], vertices[1], vertices[3])
             .setMaterial(material);
 
-   /* @Test
+    @Test
     public void polygonTest() {
 
         for (int i = 0; i < 5; ++i) {
@@ -97,7 +97,7 @@ public class LightsTests {
                 .writeToImage(); //
     }
 
-*/
+
 
     /**
      * Produce a picture of a sphere lighted by a spot light
