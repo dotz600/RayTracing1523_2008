@@ -33,6 +33,17 @@ public class PointLight extends Light implements LightSource{
     }
 
     /**
+     * calculate distance squared between the point and light position
+     * @param point
+     * @return Distance squared (double)
+     */
+    @Override
+    public double getDistance(Point point) {
+
+        return this.position.distance(point);
+    }
+
+    /**
      * chaining method - set constant attenuation coefficient
      * @param kC constant
      * @return itself (PointLight)
