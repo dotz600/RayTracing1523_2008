@@ -8,11 +8,16 @@ import java.util.stream.Stream;
 
 import geometries.Intersectable.GeoPoint;
 
+import static primitives.Util.alignZero;
+import static primitives.Util.isZero;
+
 /**
  * This class represent ray in space
  * Contains a starting Point & Vector that represent the direction of the ray
  */
 public class Ray {
+
+    private static final double DELTA = 0.1;
     /** Starting point */
     final Point p0;
     /** Direction */
@@ -27,6 +32,28 @@ public class Ray {
 
         p0 = p;
         dir = v.normalize();
+    }
+
+    /**
+     * constructor with 3 parameters Point, Vector and normal
+     * @param p0
+     * @param dir
+     * @param normal
+     */
+    public Ray(Point p0, Vector dir, Vector normal) {
+
+        this.dir = dir;
+       // make sure the normal and the direction are not orthogonal
+        double nv = alignZero(normal.dotProduct(dir));
+        // if not orthogonal
+        if (!isZero(nv)) {
+            Vector moveVector = normal.scale(nv > 0 ? DELTA : -DELTA);
+            // move the head of the vector in the right direction
+            this.p0 = p0.add(moveVector);
+        }
+        else {
+            this.p0 = p0;
+        }
     }
 
     public Point getP0() {
@@ -66,7 +93,11 @@ public class Ray {
                                     ).point;
     }
 
-
+    /**
+     * find and return the closet point to head of the ray
+     * @param intersections
+     * @return
+     */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
 
         //The function RayTracerBasic#traceRay check if intersections is null

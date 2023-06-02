@@ -90,7 +90,7 @@ public class LightsTests {
         scene1.getLights().add(new DirectionalLight(sphereLightColor, new Vector(20, 20, -0.5)));
         scene1.getLights().add(new PointLight(new Color(200,50,0), new Point(80,80,30)).setKl(0.001).setKq(0.0002));
 
-        ImageWriter imageWriter = new ImageWriter("lightPolygons", 2000, 2000);
+        ImageWriter imageWriter = new ImageWriter("lightPolygons", 500, 500);
         camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
                 .renderImage() //

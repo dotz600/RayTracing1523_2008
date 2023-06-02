@@ -8,9 +8,54 @@ public class Material {
     // ***************** Properties ********************** //
         public Double3 kD = Double3.ZERO; //diffuse (Phong Reflectance Model) coefficient
         public Double3 kS = Double3.ZERO; //specular (Phong Reflectance Model) coefficient
+        public Double3 kT = Double3.ZERO;//refraction coefficient
+        public Double3 kR = Double3.ZERO;//reflection coefficient
         public int nShininess = 0; //the object’s shininess (Phong Reflectance Model)
 
     // ***************** Setters ********************** //
+
+    /**
+     * set reflection coefficient
+     *
+     * @param kR
+     * @return itself (Material)
+     */
+    public Material setKR(Double3 kR) {
+        this.kR = kR;
+        return this;
+    }
+
+    /**
+     * set reflection coefficient
+     *
+     * @param kR
+     * @return itself (Material)
+     */
+    public Material setKR(double kR) {
+        this.kR = new Double3(kR);
+        return this;
+    }
+    /**
+     * set refraction coefficient
+     *
+     * @param kT
+     * @return itself (Material)
+     */
+    public Material setKT(Double3 kT) {
+        this.kT = kT;
+        return this;
+    }
+
+    /**
+     * set refraction coefficient
+     *
+     * @param kT
+     * @return itself (Material)
+     */
+    public Material setKT(double kT) {
+        this.kT = new Double3(kT);
+        return this;
+    }
 
     /**
      * chaining method - set diffuse (Phong Reflectance Model) coefficient
