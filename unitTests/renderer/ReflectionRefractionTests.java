@@ -5,6 +5,9 @@ package renderer;
 
 import static java.awt.Color.*;
 
+import geometries.Polygon;
+import lighting.DirectionalLight;
+import lighting.PointLight;
 import org.junit.jupiter.api.Test;
 
 import geometries.Sphere;
@@ -21,6 +24,54 @@ import scene.Scene;
  * @author dzilb */
 public class ReflectionRefractionTests {
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
+
+    @Test
+    public void polygonTest() {
+        Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();
+        Material       material                = new Material()
+                .setKd(new Double3(0.2, 0.6, 0.4)
+               ).setKs(new Double3(0.2, 0.4, 0.3))
+                .setShininess(301);
+        Material       material1               = new Material()
+                .setKd(0.2)
+                .setKs(1)
+                .setKR(0.4)
+                .setShininess(300);
+
+
+        for (int i = 0; i < 5; ++i) {
+            for (int j = 0; j < 5; ++j) {
+                scene1.getGeometries()
+                        .add(new Polygon(
+                                new Point(-75 + j * 30, 75 - 30*i, 0),
+                                new Point(-75 + j * 30, 45 - 30*i, 0),
+                                new Point(-45 + j * 30, 45 - 30*i, 0),
+                                new Point(-45 + j * 30, 75 - 30*i, 0))
+                                .setMaterial(material)
+                                .setEmission((i + j) % 2 == 0 ? new Color(125,61,0) : new Color(96,96,96)));
+                scene1.getGeometries()
+                        .add(new Sphere(new Point(-60 + j * 30,  (-60 + j * 30) == 30 && (60 - 30*i) == -60 ? - 1000 :60 - 30*i,10), 10d)
+                                .setMaterial(material1)
+                                .setEmission(new Color(32,32,32)));
+            }
+        }
+
+
+        scene1.getLights().add(new PointLight(new Color(800,300,0), new Point(-80,80,60)).setKl(0.001).setKq(0.0002));
+        scene1.getLights().add(new PointLight(new Color(800,300,0), new Point(80,-80,60)).setKl(0.001).setKq(0.0002));
+        scene1.getLights().add(new PointLight(new Color(500,200,0), new Point(80,-80,60)).setKl(0.001).setKq(0.0002));
+
+
+        Camera         camera1                 = new Camera(new Point(-380,-380,380),
+               new Vector(1,1,-1), new Vector(1,0,1))
+                .setVPSize(150, 150).setVPDistance(530);
+        ImageWriter imageWriter = new ImageWriter("lightPolygons", 1000, 1000);
+        camera1.setImageWriter(imageWriter) //
+                .setRayTracer(new RayTracerBasic(scene1)) //
+                .renderImage() //
+                .writeToImage(); //
+    }
+
 
     /** Produce a picture of a sphere lighted by a spot light */
     @Test
@@ -99,7 +150,7 @@ public class ReflectionRefractionTests {
                 new Sphere(new Point(60, 50, -50), 30d).setEmission(new Color(BLUE)) //
                         .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKT(0.6)));
 
-        scene.getLights().add(new SpotLight(new Color(700, 400, 400), new Point(60, 50, 0), new Vector(0, 0, -1)) //
+        scene.getLights().add(new SpotLight(new Color(700, 400, 400), new Point(50, 50, 0), new Vector(0, 0, -1)) //
                 .setKl(4E-5).setKq(2E-7));
 
         ImageWriter imageWriter = new ImageWriter("refractionShadow", 600, 600);
