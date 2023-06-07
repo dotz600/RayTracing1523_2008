@@ -5,10 +5,12 @@ import lighting.LightSource;
 import primitives.*;
 import scene.Scene;
 
+import java.util.LinkedList;
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
 
 
+import static java.lang.System.out;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
@@ -76,12 +78,25 @@ public class RayTracerBasic extends RayTracerBase {
      * @param ray  the ray that intersect with the scene
      * @return Color of the pixel
      */
-    @Override
-    public Color traceRay(Ray ray) {
+    private Color traceRay(Ray ray) {
 
         GeoPoint closestGeopoint = findClosestIntersection(ray);
         return closestGeopoint == null ? scene.getBackground()
                                        : calcColor(closestGeopoint, ray );
+    }
+
+    /**
+     * calculate the color of each ray in the list and return the average color
+     * @param rays  rays list that intersect with the scene in the same pixel
+     * @return the average color of the rays
+     */
+    @Override
+    public Color traceRays(LinkedList<Ray> rays) {
+        Color color = Color.BLACK;
+        for (Ray ray : rays)
+            color = color.add(traceRay(ray));
+
+        return color.reduce(rays.size());
     }
 
     /**

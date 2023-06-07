@@ -5,6 +5,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.LinkedList;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
@@ -29,6 +30,8 @@ public class Camera {
 
     private ImageWriter image;
     private RayTracerBase rayTracer;
+
+    private final int RAYS_PER_PIXEL = 3;
 
     // ***************** Constructors ********************** //
     /**
@@ -109,6 +112,60 @@ public class Camera {
      */
     public Ray constructRay(int nX, int nY, int j, int i) {
 
+        Point p_IJ = getPixelCenter(nX,nY,j,i);
+
+        //calculate the vector from the camera to the point on the view plane
+        Vector direction = p_IJ.subtract(p0);
+        return new Ray(p0, direction);
+    }
+
+
+    /** construct rays through pixel for super sampling
+     * @param nX -- rows width
+     * @param nY -- columns height
+     * @param j -- pixel column
+     * @param i -- pixel row
+     * @return ray through the wanted pixel
+     */
+    public LinkedList<Ray> constructRays(int nX, int nY, int j, int i) {
+
+        Point p_IJ = getPixelCenter(nX,nY,j,i);
+        Point pixelCenter = p_IJ; //save the center point
+
+        //calculate the step of the grid for each pixel
+        double xStep = (width / nX)/*rX*/ / RAYS_PER_PIXEL;
+        double yStep = (height / nY)/*rY*/ / RAYS_PER_PIXEL;
+
+        //calculate all the rays for the pixel
+        LinkedList<Ray> rays = new LinkedList<>();
+        for (int k = -RAYS_PER_PIXEL/ 2; k < RAYS_PER_PIXEL/2; k++) {//TODO cheek if its true(-x to x) - mordechi!
+            for (int l = -RAYS_PER_PIXEL/ 2; l < RAYS_PER_PIXEL/2; l++) {
+
+                p_IJ = pixelCenter;//reset canter point
+                if (!isZero(xStep) && k != 0)
+                    p_IJ = p_IJ.add(vRight.scale(xStep * k));
+
+                if (!isZero(yStep) && l != 0)
+                    p_IJ = p_IJ.add(vUp.scale(yStep * l));
+
+                //calculate the vector from the camera to the point on the view plane
+                Vector direction = p_IJ.subtract(p0);
+                rays.add(new Ray(p0, direction));
+            }
+        }
+        return rays;
+    }
+
+    /**
+     * calculate the center point of a specific pixel
+     * @param nX -- rows width
+     * @param nY -- columns height
+     * @param j -- pixel column
+     * @param i -- pixel row
+     * @return the center point of the pixel i,j
+     */
+    private Point getPixelCenter(int nX, int nY, int j, int i) {
+
         //calculate the center of the view plane
         Point pCenter = p0.add(vTo.scale(distance));
 
@@ -126,18 +183,13 @@ public class Camera {
 
         //calculate the point on the view plane
         Point p_IJ = pCenter;
-        if (!isZero(xj)) {
-            var step  = vRight.scale(xj);
-            p_IJ = p_IJ.add(step);
-        }
-        if (!isZero(yi)) {
-            var step = vUp.scale(yi);
-            p_IJ = p_IJ.add(step);
-        }
+        if (!isZero(xj))
+            p_IJ = p_IJ.add(vRight.scale(xj));
 
-        //calculate the vector from the camera to the point on the view plane
-        Vector direction = p_IJ.subtract(p0);
-        return new Ray(p0, direction);
+        if (!isZero(yi))
+            p_IJ = p_IJ.add(vUp.scale(yi));
+
+        return p_IJ;
     }
 
     /**
@@ -170,7 +222,7 @@ public class Camera {
      */
     private void castRay(int nX, int nY, int i, int j) {
 
-        image.writePixel(i,j,rayTracer.traceRay(constructRay(nX,nY,i,j)));
+        image.writePixel(i,j,rayTracer.traceRays(constructRays(nX,nY,i,j)));
     }
 
 

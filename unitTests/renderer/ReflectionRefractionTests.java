@@ -65,7 +65,7 @@ public class ReflectionRefractionTests {
         Camera         camera1                 = new Camera(new Point(-380,-380,380),
                new Vector(1,1,-1), new Vector(1,0,1))
                 .setVPSize(150, 150).setVPDistance(530);
-        ImageWriter imageWriter = new ImageWriter("lightPolygons", 1000, 1000);
+        ImageWriter imageWriter = new ImageWriter("lightPolygons1", 1000, 1000);
         camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
                 .renderImage() //
