@@ -1,6 +1,9 @@
 package primitives;
 
+import java.util.LinkedList;
 import java.util.Objects;
+
+import static primitives.Util.isZero;
 
 
 /**
@@ -30,6 +33,34 @@ public class Point {
     Point(Double3 xyz) {
 
         this.xyz = xyz;
+    }
+
+    /**
+     * take a center (pixel) point and create a greed of points around it
+     * @param RayPerPixel number of rays per pixel
+     * @param xStep x step
+     * @param yStep y step
+     * @param vRight vector right move
+     * @param vUp vector up move
+     * @return list of points around the center point
+     */
+    public LinkedList<Point> createGrid(int RayPerPixel, double xStep, double yStep, Vector vRight, Vector vUp){
+
+        LinkedList<Point> points = new LinkedList<>();
+        for (int k = -RayPerPixel/ 2; k <= RayPerPixel/2; k++) {
+            for (int l = -RayPerPixel/ 2; l <= RayPerPixel/2; l++) {
+
+                Point p_IJ = this;//reset canter point// this == centerPoint
+                if (!isZero(xStep) && k != 0)
+                    p_IJ = p_IJ.add(vRight.scale(xStep * k));
+
+                if (!isZero(yStep) && l != 0)
+                    p_IJ = p_IJ.add(vUp.scale(yStep * l));
+
+                points.add(p_IJ);
+            }
+        }
+        return points;
     }
 
     /**

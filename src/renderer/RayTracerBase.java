@@ -31,4 +31,5 @@ public abstract class RayTracerBase {
      */
     public abstract Color traceRays(LinkedList<Ray> rays);
 
+    public abstract Color traceRay(Ray ray) ;
 }

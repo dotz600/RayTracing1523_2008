@@ -5,6 +5,7 @@ package renderer;
 
 import static java.awt.Color.*;
 
+import geometries.Plane;
 import geometries.Polygon;
 import lighting.DirectionalLight;
 import lighting.PointLight;
@@ -24,6 +25,64 @@ import scene.Scene;
  * @author dzilb */
 public class ReflectionRefractionTests {
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
+
+    @Test
+    public void finalPictureTest(){
+        Scene scene1 = new Scene.SceneBuilder("Test scene2").setBackground(new Color(255, 255,255)).build();
+        Material material = new Material()
+                .setKd(new Double3(0.2, 0.6, 0.4))
+                .setKs(new Double3(0.2, 0.4, 0.3))
+                .setShininess(301);
+        Material material1 = new Material()
+                .setKd(new Double3(0, 0, 0))
+                .setKs(new Double3(1, 1, 1))
+                .setKR(new Double3(0, 0, 0))
+                .setShininess(500);
+
+        scene1.getGeometries().add( //
+                //left wall
+                new Polygon(new Point(-70, 70, 300), new Point(-70, -70, 300), new Point(-70, -70, -400), new Point(-70, 70, -400)).setEmission(new Color(255, 0, 0).reduce(2)) //
+                        .setMaterial(new Material().setKd(0.7).setKs(0.3)),
+                //ceiling
+                //new Polygon(new Point(70, 70, 300), new Point(-70, 70, 300), new Point(-70, 70, -400), new Point(70, 70, -400)).setEmission(new Color(112, 112, 112).reduce(3)) //
+                //        .setMaterial(new Material().setKd(0.7).setKs(0.3).setShininess(100)),
+                //right wall
+                //new Polygon(new Point(70, -70, 300), new Point(70, 70, 300), new Point(70, 70, -400), new Point(70, -70, -400)).setEmission(new Color(112, 112, 112).reduce(2)) //
+                //        .setMaterial(new Material().setKd(0.7).setKs(0.3).setShininess(100)),
+                // floor
+                new Polygon(new Point(-70, -70, 300), new Point(70, -70, 300), new Point(70, -70, -400), new Point(-70, -70, -400)).setEmission(new Color(112, 112, 112).reduce(3)) //
+                        .setMaterial(new Material().setKd(0.7).setKs(0.3).setShininess(100)));
+                // back wall
+                //new Polygon(new Point(70, 70, -400), new Point(-70, 70, -400), new Point(-70, -70, -400), new Point(70, -70, -400)).setEmission(new Color(112, 112, 112).reduce(2.5)) //
+                //        .setMaterial(new Material().setKs(0.3).setKR(0).setShininess(100)));
+
+
+        Point p1 = new Point(-20, 30, 60);
+        Point p2 = new Point(20, 30, 300);
+
+        //scene1.getLights().add(new SpotLight(new Color(255, 100, 100).reduce(3), p1, new Vector(0, -1, 0.25)));
+        //scene1.getLights().add(new PointLight(new Color(255, 100, 100).reduce(3), p1));
+
+        scene.getLights().add(new SpotLight(new Color(255, 100, 100).reduce(3), p2, new Vector(0, -1, -0.25)));
+        scene.getLights().add(new PointLight(new Color(255, 100, 100).reduce(3), p2));
+
+        scene.getLights().add(new DirectionalLight(new Color(255, 100, 100).reduce(2), new Vector(0, 0, -1)));
+
+        //scene1.getLights().add(new PointLight(new Color(800,300,0), new Point(40,40,-40)).setKl(0.001).setKq(0.0002));
+        //scene1.getLights().add(new DirectionalLight(new Color(800,300,0), new Vector(1, 1, 1)));
+        //scene1.getLights().add(new PointLight(new Color(800,300,0), new Point(0,0,-70)).setKl(0.001).setKq(0.0002));
+       // scene1.getLights().add(new PointLight(new Color(500,200,0), new Point(80,-80,60)).setKl(0.001).setKq(0.0002));
+
+        Camera camera1 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
+                .setVPSize(200, 200).setVPDistance(1000) //
+                .setRayTracer(new RayTracerBasic(scene));
+        ImageWriter imageWriter = new ImageWriter("finalImage", 500, 500);
+        camera1.setImageWriter(imageWriter) //
+                .setRayTracer(new RayTracerBasic(scene1)) //
+                .renderImage() //
+                .writeToImage(); //
+
+    }
 
     @Test
     public void polygonTest() {
@@ -65,9 +124,10 @@ public class ReflectionRefractionTests {
         Camera         camera1                 = new Camera(new Point(-380,-380,380),
                new Vector(1,1,-1), new Vector(1,0,1))
                 .setVPSize(150, 150).setVPDistance(530);
-        ImageWriter imageWriter = new ImageWriter("lightPolygons1", 1000, 1000);
+        ImageWriter imageWriter = new ImageWriter("lightPolygons-2", 1000, 1000);
         camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
+                .setRayPerPixel(3)
                 .renderImage() //
                 .writeToImage(); //
     }

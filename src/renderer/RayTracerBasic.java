@@ -78,7 +78,7 @@ public class RayTracerBasic extends RayTracerBase {
      * @param ray  the ray that intersect with the scene
      * @return Color of the pixel
      */
-    private Color traceRay(Ray ray) {
+    public Color traceRay(Ray ray) {
 
         GeoPoint closestGeopoint = findClosestIntersection(ray);
         return closestGeopoint == null ? scene.getBackground()
@@ -101,8 +101,8 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * find the closest intersection point to the ray head
-     * @param ray
-     * @return
+     * @param ray the ray that intersect with the scene
+     * @return the closest intersection point to the ray head
      */
     private GeoPoint findClosestIntersection(Ray ray){
 

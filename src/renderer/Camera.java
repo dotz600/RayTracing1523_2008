@@ -31,7 +31,7 @@ public class Camera {
     private ImageWriter image;
     private RayTracerBase rayTracer;
 
-    private final int RAYS_PER_PIXEL = 3;
+    private int rays_per_pixel = 1;
 
     // ***************** Constructors ********************** //
     /**
@@ -102,6 +102,11 @@ public class Camera {
         return this;
     }
 
+    public Camera setRayPerPixel(int rayPerPixel) {
+        rays_per_pixel = rayPerPixel;
+        return this;
+    }
+
     // ***************** Operations/Methods ********************** //
     /** construct ray through pixel
     * @param nX -- rows width
@@ -133,25 +138,19 @@ public class Camera {
         Point pixelCenter = p_IJ; //save the center point
 
         //calculate the step of the grid for each pixel
-        double xStep = (width / nX)/*rX*/ / RAYS_PER_PIXEL;
-        double yStep = (height / nY)/*rY*/ / RAYS_PER_PIXEL;
+        double xStep = (width / nX)/*rX*/ / rays_per_pixel;
+        double yStep = (height / nY)/*rY*/ / rays_per_pixel;
 
-        //calculate all the rays for the pixel
+        //create a grid of points for the pixel
+        LinkedList<Point> points = pixelCenter.createGrid(rays_per_pixel, xStep, yStep, vRight, vUp);
+
+        //calculate all the rays for each point on greed of the pixel
         LinkedList<Ray> rays = new LinkedList<>();
-        for (int k = -RAYS_PER_PIXEL/ 2; k < RAYS_PER_PIXEL/2; k++) {//TODO cheek if its true(-x to x) - mordechi!
-            for (int l = -RAYS_PER_PIXEL/ 2; l < RAYS_PER_PIXEL/2; l++) {
-
-                p_IJ = pixelCenter;//reset canter point
-                if (!isZero(xStep) && k != 0)
-                    p_IJ = p_IJ.add(vRight.scale(xStep * k));
-
-                if (!isZero(yStep) && l != 0)
-                    p_IJ = p_IJ.add(vUp.scale(yStep * l));
-
-                //calculate the vector from the camera to the point on the view plane
-                Vector direction = p_IJ.subtract(p0);
-                rays.add(new Ray(p0, direction));
-            }
+        for (Point p :points)
+        {
+            //calculate the vector from the camera to the point on the view plane
+            Vector direction = p.subtract(p0);
+            rays.add(new Ray(p0, direction));
         }
         return rays;
     }
@@ -195,7 +194,7 @@ public class Camera {
     /**
      * check if all the fields are initialized
      * for each pixel in the view plane,
-     * construct ray and write the color of the pixel to the image
+     * construct ray/rays and write the color of the pixel to the image
      * @throws MissingResourceException if one of the fields is null
      */
     public Camera renderImage() {
@@ -205,12 +204,53 @@ public class Camera {
         final int rows = image.getNx();
         final int columns = image.getNy();
 
+        if (rays_per_pixel ==1)
+            renderImage(rows, columns);
+        else
+            renderImageAntiAliasing(rows, columns);
+
+        return this;
+    }
+
+
+    /**
+     * construct rays according to the super sampling and write the color of the pixel to the image
+     * @param rows -- rows width
+     * @param columns -- columns height
+     */
+    private void renderImageAntiAliasing(int rows, int columns) {
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++){
-                castRay(rows,columns,i,j);
+                    castRays(rows, columns, i, j);
             }
         }
-        return this;
+    }
+
+
+    /**
+     * construct ray and write the color of the pixel to the image
+     * @param rows -- rows width
+     * @param columns -- columns height
+     */
+    private void renderImage(int rows, int columns) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++){
+                castRay(rows, columns, i, j);
+            }
+        }
+    }
+
+
+    /**
+     * private method that write the color of the pixel to the image
+     * @param nX -- rows width
+     * @param nY -- columns height
+     * @param j -- pixel column
+     * @param i -- pixel row
+     */
+    private void castRays(int nX, int nY, int i, int j) {
+
+        image.writePixel(i,j,rayTracer.traceRays(constructRays(nX,nY,i,j)));
     }
 
     /**
@@ -222,9 +262,8 @@ public class Camera {
      */
     private void castRay(int nX, int nY, int i, int j) {
 
-        image.writePixel(i,j,rayTracer.traceRays(constructRays(nX,nY,i,j)));
+        image.writePixel(i,j,rayTracer.traceRay(constructRay(nX,nY,i,j)));
     }
-
 
     /**
      * print grid on the image
@@ -287,6 +326,9 @@ public class Camera {
         }
         if (isZero(distance)) {
             throw new MissingResourceException("distance not initialized", int.class.getName(), "");
+        }
+        if(rays_per_pixel <=0) {
+            throw new MissingResourceException("RAYS_PER_PIXEL must be positive", int.class.getName(), "");
         }
     }
 
