@@ -20,7 +20,7 @@ public class Material {
      * @param kR
      * @return itself (Material)
      */
-    public Material setKR(Double3 kR) {
+    public Material setKr(Double3 kR) {
         this.kR = kR;
         return this;
     }
@@ -31,7 +31,7 @@ public class Material {
      * @param kR
      * @return itself (Material)
      */
-    public Material setKR(double kR) {
+    public Material setKr(double kR) {
         this.kR = new Double3(kR);
         return this;
     }
@@ -41,7 +41,7 @@ public class Material {
      * @param kT
      * @return itself (Material)
      */
-    public Material setKT(Double3 kT) {
+    public Material setKt(Double3 kT) {
         this.kT = kT;
         return this;
     }
@@ -52,7 +52,7 @@ public class Material {
      * @param kT
      * @return itself (Material)
      */
-    public Material setKT(double kT) {
+    public Material setKt(double kT) {
         this.kT = new Double3(kT);
         return this;
     }

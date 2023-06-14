@@ -1,8 +1,10 @@
 package geometries;
 import primitives.Point;
 import primitives.Ray;
+import primitives.Util;
 import primitives.Vector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -71,9 +73,27 @@ public class Cylinder extends Tube{
     public List<Point> findIntersections(Ray ray) {
         return null;
     }
+
+    /**
+     * Gets a ray and returns intersection GeoPoints between the ray and the geometry.
+     *
+     * @param ray (not NULL)
+     * @return List of GeoPoints if any. else NULL
+     */
     @Override
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
-        return null;
+        List<GeoPoint> res = new ArrayList<>();
+        List<GeoPoint> lst = super.findGeoIntersectionsHelper(ray);
+        if (lst != null)
+            for (GeoPoint geoPoint : lst) {
+                double distance = Util.alignZero(geoPoint.point.subtract(axisRay.getP0()).dotProduct(axisRay.getDir()));
+                if (distance > 0 && distance <= height)
+                    res.add(geoPoint);
+            }
+
+        if (res.size() == 0)
+            return null;
+        return res;
     }
 
 }
