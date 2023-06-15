@@ -33,6 +33,8 @@ public class Camera {
 
     private int rays_per_pixel = 1;
 
+    private int threads_count = 1;
+
     // ***************** Constructors ********************** //
     /**
      * constructor get one point and 2 vertical vectors
@@ -104,6 +106,11 @@ public class Camera {
 
     public Camera setRayPerPixel(int rayPerPixel) {
         rays_per_pixel = rayPerPixel;
+        return this;
+    }
+
+    public Camera setThreadsCount(int threadsCount) {
+        threads_count = threadsCount;
         return this;
     }
 
@@ -215,15 +222,21 @@ public class Camera {
 
     /**
      * construct rays according to the super sampling and write the color of the pixel to the image
+     * using multi threads programming
      * @param rows -- rows width
      * @param columns -- columns height
      */
     private void renderImageAntiAliasing(int rows, int columns) {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++){
-                    castRays(rows, columns, i, j);
-            }
+
+        Pixel.initialize(rows,columns, 1);
+        while (threads_count-- > 0) {
+            new Thread(() -> {
+                for(Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()){
+                    castRays(rows, columns, pixel.row, pixel.col);
+                }
+            }).start();
         }
+        Pixel.waitToFinish();
     }
 
 
@@ -233,11 +246,16 @@ public class Camera {
      * @param columns -- columns height
      */
     private void renderImage(int rows, int columns) {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++){
-                castRay(rows, columns, i, j);
-            }
+
+        Pixel.initialize(rows,columns, 1);
+        while (threads_count-- > 0) {
+            new Thread(() -> {
+                for(Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()){
+                    castRay(rows, columns, pixel.row, pixel.col);
+                }
+            }).start();
         }
+        Pixel.waitToFinish();
     }
 
 
