@@ -74,41 +74,39 @@ public class ReflectionRefractionTests {
                                 .setKs(1)
                                 .setKr(0.4)
                                 .setShininess(300)),
-                new Sphere(new Point(0, 70, -3000), 20).setEmission(new Color(BLUE )) // midelle
+                new Sphere(new Point(0, 70, -3000), 20).setEmission(new Color(BLUE )) // middle
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0)),
-                new Cylinder(new Ray(new Point(20, 70, -3000), new Vector(1, 0, 0.8)), 5, 50).
+                new Cylinder(new Ray(new Point(20, 70, -3000), new Vector(1, 0, 0.8)), 5, 60).
                         setEmission(new Color(RED)) //right
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
-                new Cylinder(new Ray(new Point(-20, 70, -3000), new Vector(-1, 0.45, -2)), 5, 100).
+                new Cylinder(new Ray(new Point(-20, 70, -3000), new Vector(-1, 0.45, -2)), 5, 103).
                         setEmission(new Color(RED)) //left
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
                 new Cylinder(new Ray(new Point(0, 85, -3000), new Vector(0.4, 1, -0.5)), 5, 40).
                         setEmission(new Color(RED)) //up
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
-                new Cylinder(new Ray(new Point(0, 50, -3000), new Vector(0, -1, 2)), 5, 60).
+                new Cylinder(new Ray(new Point(0, 50, -3000), new Vector(0, -1, 2)), 5, 70).
                         setEmission(new Color(RED)) //down
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
                 new Sphere(new Point(80, 70, -2900), 20).setEmission(new Color(BLUE)) // end right sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)),
                 new Sphere(new Point(-85, 100, -3100), 20).setEmission(new Color(BLUE)) // end left sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)),
-                new Sphere(new Point(20, 135, -3200), 20).setEmission(new Color(BLUE)) // end up sphere
+                new Sphere(new Point(20, 135, -3100), 20).setEmission(new Color(BLUE)) // end up sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)),
-                new Sphere(new Point(0, 0, -2500), 20).setEmission(new Color(BLUE)) // end down sphere
+                new Sphere(new Point(0, 0, -2900), 20).setEmission(new Color(BLUE)) // end down sphere
                         .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)));
 
-
-        Point p1 = new Point(-20, 30, 60);
-        Point p2 = new Point(20, 30, 300);
 
         scene1.getLights().add(new DirectionalLight(new Color(800, 500, 0), new Vector(0, 0, -1)));
        // scene1.getLights().add(new PointLight(new Color(500, 200, 0), new Point(600, -200, -1000)));
         Camera camera1 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
                 .setVPSize(200, 200).setVPDistance(1000);
-        ImageWriter imageWriter = new ImageWriter("finalImage", 300,300);
+        ImageWriter imageWriter = new ImageWriter("finalImage", 3000,3000);
         camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
-                .setRayPerPixel(9)
+                .setThreadsCount(8)
+                .setRayPerPixel(17)
                 .renderImage() //
                 .writeToImage(); //
 
