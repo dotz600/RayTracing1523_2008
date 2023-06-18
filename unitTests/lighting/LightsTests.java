@@ -13,11 +13,11 @@ import scene.Scene;
 /** Test rendering a basic image
  * @author Dan */
 public class LightsTests {
-    private Material material1 = new Material()
+    private final Material material1 = new Material()
             .setKd(0.2)
             .setKs(1)
             .setShininess(300);
-    private  Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();
+    private final Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();
     private final Scene          scene2                  = new Scene.SceneBuilder("Test scene1").
             setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15))).build();
 
@@ -100,7 +100,7 @@ public class LightsTests {
 
 
     /**
-     * Produce a picture of a sphere lighted by a spot light
+     * Produce a picture of a sphere lighted by a spotlight
      */
     @Test
     public void sphereMyTest() {

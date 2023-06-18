@@ -2,7 +2,7 @@ package lighting;
 import primitives.*;
 public class PointLight extends Light implements LightSource{
 
-    private Point position; //the position of the light
+    private final Point position; //the position of the light
     private double kC = 1 , kL = 0 , kQ = 0;//attenuation coefficients, constant, linear, quadratic
 
 
@@ -34,7 +34,7 @@ public class PointLight extends Light implements LightSource{
 
     /**
      * calculate distance squared between the point and light position
-     * @param point
+     * @param point - the point to get the distance from
      * @return Distance squared (double)
      */
     @Override

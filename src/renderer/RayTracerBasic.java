@@ -24,10 +24,10 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * calculate whether the point is shaded or not
-     * @param gp
-     * @param light
-     * @param l
-     * @param n
+     * @param gp - the point to check
+     * @param light - the light source
+     * @param l - the vector from the light source to the point
+     * @param n - the normal of the point
      * @return Double3 object that represent the transparency of the point
      */
     private Double3 transparency(GeoPoint gp, LightSource light,
@@ -114,9 +114,9 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * calculate the color of the pixel
-     * @param gp
-     * @param ray
-     * @return
+     * @param gp geoPoint of the closest intersection point to the camera
+     * @param ray the ray that intersect with the scene
+     * @return the color of the pixel
      */
     private Color calcColor(GeoPoint gp, Ray ray){
 
@@ -179,11 +179,11 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * calculate the global effects of the scene
-     * @param gp
-     * @param dir
-     * @param level
-     * @param k
-     * @return
+     * @param gp the closest intersection point to the camera
+     * @param dir the ray direction that intersect with the scene
+     * @param level the level of the recursion
+     * @param k the transparency of the point
+     * @return the color of the pixel
      */
     private Color calcGlobalEffects(GeoPoint gp, Vector dir,
                                     int level, Double3 k) {
@@ -200,9 +200,9 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * construct the reflected ray
-     * @param point
-     * @param dir
-     * @param normal
+     * @param point the closest intersection point to the camera
+     * @param dir the ray direction that intersect with the scene
+     * @param normal the normal of the geometry in the intersection point
      * @return the reflected ray
      */
     private Ray constructReflectedRay(Point point, Vector dir, Vector normal) {
@@ -214,9 +214,9 @@ public class RayTracerBasic extends RayTracerBase {
     }
     /**
      * construct the refracted ray
-     * @param point
-     * @param dir
-     * @param normal
+     * @param point the closest intersection point to the camera
+     * @param dir the ray direction that intersect with the scene
+     * @param normal the normal of the geometry in the intersection point
      * @return the refracted ray
      */
     private Ray constructRefractedRay(Point point, Vector dir, Vector normal) {
@@ -226,11 +226,11 @@ public class RayTracerBasic extends RayTracerBase {
 
     /**
      * calculate the global effects of the scene
-     * @param ray
-     * @param level
-     * @param k
-     * @param kx
-     * @return
+     * @param ray the ray that intersect with the scene
+     * @param level the level of the recursion
+     * @param k the transparency of the point
+     * @param kx the transparency of the point multiplied by the transparency of the previous points
+     * @return the color of the pixel
      */
     private Color calcColorGlobalEffect(Ray ray, int level, Double3 k, Double3 kx){
 

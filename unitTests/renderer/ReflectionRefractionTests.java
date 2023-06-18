@@ -24,94 +24,306 @@ import scene.Scene;
  * @author dzilb */
 public class ReflectionRefractionTests {
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
+    Material material =new Material().
+            setKd(0.2).
+            setKs(0.8).
+            setKr(0.2).
+            setShininess(300);
 
     @Test
     public void finalPictureTest(){
 
         Scene scene1 = new Scene.SceneBuilder("Test scene2")./*setBackground(new Color(43, 255,0)).*/build();
-        Material material = new Material()
-                .setKd(new Double3(0.2, 0.6, 0.4))
-                .setKs(new Double3(0.2, 0.4, 0.3))
-                .setShininess(301);
-        Material material1 = new Material()
-                .setKd(new Double3(0, 0, 0))
-                .setKs(new Double3(1, 1, 1))
-                .setKr(new Double3(0, 0, 0))
-                .setShininess(500);
 
-
-        scene1.getGeometries().add( //
-                // floor
-                new Triangle(
+        scene1.getGeometries().add(
+                new Triangle(// floor
                         new Point(-70, -70, 0),
                         new Point(70, -70, 0),
                         new Point(0, -70, -2000))
                         .setEmission(new Color(223, 209, 163).reduce(3)) //
-                        .setMaterial(new Material()
-                                .setKd(0.2)
-                                .setKs(1)
-                                .setKr(0.4)
-                                .setShininess(300)),
-                new Polygon(
-                        new Point(115, -70, 0),
-                        new Point(100, -70, -2000),
-                        new Point(100,1500,-2000),
-                        new Point(115,1500,0))
-                        .setEmission(new Color(223, 209, 163).reduce(3)) //
-                        .setMaterial(new Material()
-                                .setKd(0.2)
-                                .setKs(1)
-                                .setKr(0.4)
-                                .setShininess(300)),
-                new Polygon(
-                        new Point(-115, -70, 0),
-                        new Point(-100, -70, -2000),
-                        new Point(-100,1500,-2000),
-                        new Point(-115,1500,0))
-                        .setEmission(new Color(223, 209, 163).reduce(3)) //
-                        .setMaterial(new Material()
-                                .setKd(0.2)
-                                .setKs(1)
-                                .setKr(0.4)
-                                .setShininess(300)),
-                new Sphere(new Point(0, 70, -3000), 20).setEmission(new Color(BLUE )) // middle
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0)),
-                new Cylinder(new Ray(new Point(20, 70, -3000), new Vector(1, 0, 0.8)), 5, 60).
-                        setEmission(new Color(RED)) //right
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
-                new Cylinder(new Ray(new Point(-20, 70, -3000), new Vector(-1, 0.45, -2)), 5, 103).
-                        setEmission(new Color(RED)) //left
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
-                new Cylinder(new Ray(new Point(0, 85, -3000), new Vector(0.4, 1, -0.5)), 5, 40).
+                        .setMaterial(material.setKs(1)));
+
+        buildGenum(scene1, 0, 70, -3000);//middle
+        buildGenum(scene1, -250, 40, -3000);//left
+        buildGenum(scene1, 250, 100, -3000);//right
+
+
+        //connection between the genums
+        scene1.getGeometries().add(//left-mid connection
+                new Cylinder(new Ray(new Point(-93, 93, -3100), new Vector(-1, -0.75, -0.5)), 5, 95).
                         setEmission(new Color(RED)) //up
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
-                new Cylinder(new Ray(new Point(0, 50, -3000), new Vector(0, -1, 2)), 5, 70).
-                        setEmission(new Color(RED)) //down
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setKr(0.2).setShininess(300)),
-                new Sphere(new Point(80, 70, -2900), 20).setEmission(new Color(BLUE)) // end right sphere
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)),
-                new Sphere(new Point(-85, 100, -3100), 20).setEmission(new Color(BLUE)) // end left sphere
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)),
-                new Sphere(new Point(20, 135, -3100), 20).setEmission(new Color(BLUE)) // end up sphere
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)),
-                new Sphere(new Point(0, 0, -2900), 20).setEmission(new Color(BLUE)) // end down sphere
-                        .setMaterial(new Material().setKd(0.2).setKs(0.8).setShininess(300).setKr(0.4)));
+                        .setMaterial(material),
+                //right-mid connection
+                new Cylinder(new Ray(new Point(150, 125, -3075), new Vector(-1, -0.85, 0.5)), 5, 70).
+                        setEmission(new Color(RED)).
+                        setMaterial(material));
 
 
         scene1.getLights().add(new DirectionalLight(new Color(800, 500, 0), new Vector(0, 0, -1)));
-       // scene1.getLights().add(new PointLight(new Color(500, 200, 0), new Point(600, -200, -1000)));
+
         Camera camera1 = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
                 .setVPSize(200, 200).setVPDistance(1000);
+
         ImageWriter imageWriter = new ImageWriter("finalImage", 3000,3000);
         camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
                 .setThreadsCount(8)
-                .setRayPerPixel(17)
+                .setRecLevelASS(4)
+                //.setRayPerPixel(9)
                 .renderImage() //
                 .writeToImage(); //
 
     }
 
+    /**
+     * build 1 genum
+     * @param s1 scene
+     * @param x coordinate
+     * @param y coordinate
+     * @param z coordinate
+     */
+    private void buildGenum(Scene s1, double x, double y, double z){
+        Point p0 = new Point(0, 70, -3000);
+
+        s1.getGeometries().add(
+                new Sphere(new Point(x, y, z), 20)
+                        .setEmission(new Color(BLUE )) // middle
+                        .setMaterial(material),
+                new Cylinder(new Ray(new Point(x + 20, y, z), new Vector(1, 0, 0.8)), 5, 60).
+                        setEmission(new Color(RED)) //right
+                        .setMaterial(material),
+                new Cylinder(new Ray(new Point(x-20, y, z), new Vector(-1, 0.45, -2)), 5, 103).
+                        setEmission(new Color(RED)) //left
+                        .setMaterial(material),
+                new Cylinder(new Ray(new Point(x, y + 15, z), new Vector(0.4, 1, -0.5)), 5, 40).
+                        setEmission(new Color(RED)) //up
+                        .setMaterial(material),
+                new Cylinder(new Ray(new Point(x, y - 20, z), new Vector(0, -1, 2)), 5, 70).
+                        setEmission(new Color(RED)) //down
+                        .setMaterial(material),
+                new Sphere(new Point(x + 80, y, z + 100), 20).
+                        setEmission(new Color(BLUE)) // end right sphere
+                        .setMaterial(material),
+                new Sphere(new Point(x -85, y+30, z -100), 20).
+                        setEmission(new Color(BLUE)) // end left sphere
+                        .setMaterial(material),
+                new Sphere(new Point(x + 20, y + 65, z - 100), 20)
+                        .setEmission(new Color(BLUE)) // end up sphere
+                        .setMaterial(material),
+                new Sphere(new Point(x, y -70, z +100), 20)
+                        .setEmission(new Color(BLUE)) // end down sphere
+                        .setMaterial(material)
+
+        );
+
+    }
+
+
+    @Test
+    public void itur() {
+        Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();
+        Material       material                = new Material()
+                .setKd(new Double3(0.2, 0.6, 0.4)
+                ).setKs(new Double3(0.2, 0.4, 0.3))
+                .setShininess(301);
+        Material       material1               = new Material()
+                .setKd(0.2)
+                .setKs(1)
+                .setShininess(300);
+
+
+        BuildTriangles(scene1, material);
+        double startX = -85;
+        double endX = -10;
+        double startY = -100;
+        double endY = -110;
+        double startZ = 0;
+        double endZ = 10;
+        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//left down
+        addItur(scene1, material1, new Point(-32.5-17,-105,0));
+        BuildCube(scene1, BROWN, material, startX, endX, -startY, -endY, startZ, endZ);//left up
+        addItur(scene1, material1, new Point(-32.5-17,105,0));
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//right down
+        addItur(scene1, material1, new Point(17.5+17,-105,0));
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, -startY, -endY, startZ, endZ );//right up
+        addItur(scene1, material1, new Point(17.5+17,105,0));
+        startX = -85;
+        endX = -80;
+        startY = -110;
+        endY = 110;
+        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//left side
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//right side
+        startX = -13;
+        endX = -8;
+        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//middle left
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//middle right
+        startX = -11;
+        endX = -8;
+        startY = -55;
+        endY = -49;
+        startZ = 10;
+        endZ = 10.2;
+        BuildCube(scene1, GOLD, material, startX, endX, startY, endY, startZ, endZ);//middle left down closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-9,-53,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-9,-51,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+        BuildCube(scene1, GOLD, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//middle right down closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-6,-53,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-6,-51,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+        BuildCube(scene1, GOLD, material, startX, endX, startY+110, endY+110, startZ, endZ );//middle left up closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-9,57,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-9,59,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+        BuildCube(scene1, GOLD, material, -startX -15, -endX-15, startY+110, endY+110, startZ, endZ);//middle right up closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-6,57,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-6,59,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-7.5,-110,10),new Vector(0,1,0)),1,220).setMaterial(material).setEmission(new Color(228,218,199))
+        );
+        scene1.getGeometries().add(
+                new Polygon(
+                        new Point(-85,-110,0),
+                        new Point(-85,110,0),
+                        new Point(70,110,0),
+                        new Point(70,-110,0)
+                ).setMaterial(material).setEmission(new Color(102,51,0))//brown floor
+
+        );
+
+
+
+
+
+
+
+
+        scene1.getLights().add(new PointLight(new Color(WHITE), new Point(-80,80,60)).setKl(0.001).setKq(0.0002));
+        scene1.getLights().add(new PointLight(new Color(WHITE), new Point(80,-80,60)).setKl(0.001).setKq(0.0002));
+
+
+        Camera         camera1                 = new Camera(new Point(1,0,1000),
+                new Vector(0, 0, -1), new Vector(0, 1, 0))
+                .setVPSize(150, 150).setVPDistance(530);
+        ImageWriter imageWriter = new ImageWriter("itur", 3000, 3000);
+        camera1.setImageWriter(imageWriter) //
+                .setRayTracer(new RayTracerBasic(scene1)) //
+                //.setRayPerPixel(9)
+                .setThreadsCount(8)
+                .setRecLevelASS(3)
+                .renderImage() //
+                .writeToImage(); //
+    }
+
+    private static void BuildCube(Scene scene1,Color color, Material material, double startX, double endX, double startY, double endY, double startZ, double endZ) {
+        scene1.getGeometries().add(
+                new Polygon(
+                        new Point(endX, startY, endZ),
+                        new Point(endX, startY, startZ),
+                        new Point(endX, endY, startZ),
+                        new Point(endX, endY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(startX, startY, endZ),
+                        new Point(startX, startY, startZ),
+                        new Point(startX, endY, startZ),
+                        new Point(startX, endY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, startY, endZ),
+                        new Point(endX, startY, startZ),
+                        new Point(startX, startY, startZ),
+                        new Point(startX, startY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, endY, endZ),
+                        new Point(endX, endY, startZ),
+                        new Point(startX, endY, startZ),
+                        new Point(startX, endY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, startY, endZ),
+                        new Point(endX, endY, endZ),
+                        new Point(startX, endY, endZ),
+                        new Point(startX, startY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, startY, startZ),
+                        new Point(endX, endY, startZ),
+                        new Point(startX, endY, startZ),
+                        new Point(startX, startY, startZ)
+                ).setMaterial(material));
+    }
+
+    private static void BuildTriangles(Scene scene1, Material material) {
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(-75+i*10, -100, 0),
+                                    new Point(-65+i*10, -100, 0),
+                                    new Point(-70+i*10, -20, 0))
+
+                                    .setMaterial(material));
+
+        }
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(-75+i*10, 100, 0),
+                                    new Point(-65+i*10, 100, 0),
+                                    new Point(-70+i*10, 20, 0))
+
+                                    .setMaterial(material));
+
+        }
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(10+i*10, -100, 0),
+                                    new Point(20+i*10, -100, 0),
+                                    new Point(15+i*10, -20, 0))
+
+                                    .setMaterial(material));
+
+        }
+
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(10+i*10, 100, 0),
+                                    new Point(20+i*10, 100, 0),
+                                    new Point(15+i*10, 20, 0))
+
+                                    .setMaterial(material));
+
+        }
+    }
+
+    final Color BROWN = new Color(102, 51, 0);
+    static final Color GOLD = new Color(255, 215, 0);
+    /**
+     * add itur -- this method add the itur to the scene in the right place
+     * @param scene1
+     * @param material1
+     */
+    private static void addItur(Scene scene1, Material material1, Point place) {
+        for(double i = -2*Math.PI; i <=0; i+=0.05) {
+            scene1.getGeometries().add(new Cylinder(new Ray(place.add(new Vector(i-0.5,-Math.sin(i),10)) , new Vector(0,0,1)), 0.4, 2)
+                    .setEmission(new Color(GOLD.getColor()))
+                    .setMaterial(material1));
+        }
+        for(double i = 0.01; i <= 2*Math.PI; i+=0.05) {
+            scene1.getGeometries().add(new Cylinder(new Ray(place.add(new Vector(i+0.5,Math.sin(i),10)), new Vector(0,0,1)), 0.4, 2)
+                    .setEmission(new Color(GOLD.getColor()))
+                    .setMaterial(material1));
+        }
+    }
     @Test
     public void polygonTest() {
         Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();
@@ -152,16 +364,18 @@ public class ReflectionRefractionTests {
         Camera         camera1                 = new Camera(new Point(-380,-380,380),
                new Vector(1,1,-1), new Vector(1,0,1))
                 .setVPSize(150, 150).setVPDistance(530);
-        ImageWriter imageWriter = new ImageWriter("lightPolygons-2", 1000, 1000);
+        ImageWriter imageWriter = new ImageWriter("lightPolygons-with rec", 3000, 3000);
         camera1.setImageWriter(imageWriter) //
                 .setRayTracer(new RayTracerBasic(scene1)) //
-                .setRayPerPixel(3)
+                //.setRayPerPixel(3)
+                .setRecLevelASS(4)
+                .setThreadsCount(8)
                 .renderImage() //
                 .writeToImage(); //
     }
 
 
-    /** Produce a picture of a sphere lighted by a spot light */
+    /** Produce a picture of a sphere lighted by a spotlight */
     @Test
     public void twoSpheres() {
         Camera camera = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -182,7 +396,7 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
-    /** Produce a picture of a sphere lighted by a spot light */
+    /** Produce a picture of a sphere lighted by a spotlight */
     @Test
     public void twoSpheresOnMirrors() {
         Camera camera = new Camera(new Point(0, 0, 10000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
@@ -217,7 +431,7 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
-    /** Produce a picture of a two triangles lighted by a spot light with a
+    /** Produce a picture of two triangles lighted by a spotlight with a
      * partially
      * transparent Sphere producing partial shadow */
     @Test

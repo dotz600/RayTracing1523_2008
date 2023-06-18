@@ -4,7 +4,7 @@ import primitives.*;
 
 public class DirectionalLight extends Light implements LightSource {
 
-    private Vector direction;
+    private final Vector direction;
 
 
     // ***************** Constructor ********************** //
@@ -48,7 +48,7 @@ public class DirectionalLight extends Light implements LightSource {
 
     /**
      * In directional light, distance is not relevant!!
-     * @param point
+     * @param point - the point to get the distance from
      * @return Double.POSITIVE_INFINITY
      */
     @Override

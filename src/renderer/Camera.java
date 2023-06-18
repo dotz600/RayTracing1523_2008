@@ -5,6 +5,7 @@ import primitives.Point;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.MissingResourceException;
 
@@ -16,12 +17,12 @@ import static primitives.Util.isZero;
 public class Camera {
 
     // ***************** Fields of Camera class ********************** //
-    private Point p0;//camera location
+    private final Point p0;//camera location
 
     // 3 vectors that represent the camera orientation
-    private Vector vUp;
-    private Vector vTo;
-    private Vector vRight;
+    private final Vector vUp;
+    private final Vector vTo;
+    private final Vector vRight;
 
     private Double width;//view plane width
     private Double height;//view plane height
@@ -34,6 +35,8 @@ public class Camera {
     private int rays_per_pixel = 1;
 
     private int threads_count = 1;
+
+    private int recLevelASS = 0;
 
     // ***************** Constructors ********************** //
     /**
@@ -49,9 +52,6 @@ public class Camera {
         if (vTo.dotProduct(vUp) != 0)
             throw new IllegalArgumentException("vUp and vTo must be vertical");
         this.vRight = vTo.crossProduct(vUp).normalize();
-        //this.width = 0.0;
-        //this.height = 0.0;
-        //this.distance = 0.0;
     }
 
 
@@ -114,6 +114,11 @@ public class Camera {
         return this;
     }
 
+    public Camera setRecLevelASS(int recLevelASS) {
+        this.recLevelASS = recLevelASS;
+        return this;
+    }
+
     // ***************** Operations/Methods ********************** //
     /** construct ray through pixel
     * @param nX -- rows width
@@ -141,8 +146,7 @@ public class Camera {
      */
     public LinkedList<Ray> constructRays(int nX, int nY, int j, int i) {
 
-        Point p_IJ = getPixelCenter(nX,nY,j,i);
-        Point pixelCenter = p_IJ; //save the center point
+        Point pixelCenter = getPixelCenter(nX,nY,j,i);
 
         //calculate the step of the grid for each pixel
         double xStep = (width / nX)/*rX*/ / rays_per_pixel;
@@ -211,51 +215,131 @@ public class Camera {
         final int rows = image.getNx();
         final int columns = image.getNy();
 
-        if (rays_per_pixel ==1)
-            renderImage(rows, columns);
-        else
-            renderImageAntiAliasing(rows, columns);
+        Pixel.initialize(rows,columns, 1);
+
+        while (threads_count-- > 0) {
+            new Thread(() -> {
+                for(Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()) {
+                    if(recLevelASS > 0)
+                        castRecRays(rows, columns, pixel.row, pixel.col);
+                    else if (rays_per_pixel > 1)
+                        castRays(rows, columns, pixel.row, pixel.col);
+                    else
+                        castRay(rows, columns, pixel.row, pixel.col);
+
+                    Pixel.printPixel();
+                }
+            }).start();
+        }
+        Pixel.waitToFinish();
+
 
         return this;
     }
 
 
     /**
-     * construct rays according to the super sampling and write the color of the pixel to the image
-     * using multi threads programming
-     * @param rows -- rows width
-     * @param columns -- columns height
+     * Adaptive Super Sampling
+     * calculate the color of the pixel recursively, by checking the edges color of the pixel
+     * @param nX -- rows width
+     * @param nY -- columns height
+     * @param i -- pixel row
+     * @param j -- pixel column
      */
-    private void renderImageAntiAliasing(int rows, int columns) {
+    private void castRecRays(int nX, int nY, int i, int j) {
 
-        Pixel.initialize(rows,columns, 1);
-        while (threads_count-- > 0) {
-            new Thread(() -> {
-                for(Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()){
-                    castRays(rows, columns, pixel.row, pixel.col);
-                }
-            }).start();
-        }
-        Pixel.waitToFinish();
+        double rX = width / nX;
+        double rY = height / nY;
+        Point center = getPixelCenter(nX,nY,i,j);
+        //calculate the 4 points of the pixel
+        Point upLeft = center.add(vRight.scale(-rX/2)).add(vUp.scale(rY/2));
+        Point upRight = center.add(vRight.scale(rX/2)).add(vUp.scale(rY/2));
+        Point downLeft = center.add(vRight.scale(-rX/2)).add(vUp.scale(-rY/2));
+        Point downRight = center.add(vRight.scale(rX/2)).add(vUp.scale(-rY/2));
+
+        //build ray for each point and calculate the color
+        Color upLeftColor = rayTracer.traceRay(new Ray(p0,upLeft.subtract(p0)));
+        Color upRightColor = rayTracer.traceRay(new Ray(p0,upRight.subtract(p0)));
+        Color downLeftColor = rayTracer.traceRay(new Ray(p0,downLeft.subtract(p0)));
+        Color downRightColor = rayTracer.traceRay(new Ray(p0,downRight.subtract(p0)));
+
+        HashMap<Point, Color> map = new HashMap<>();
+        Color pixelFinalColor = traceRecColor(rX,rY, center, 1, upLeftColor, upRightColor, downLeftColor, downRightColor, map);
+        image.writePixel(i,j,pixelFinalColor);
+
     }
 
 
     /**
-     * construct ray and write the color of the pixel to the image
-     * @param rows -- rows width
-     * @param columns -- columns height
+     * cast rays through pixel for adaptive super sampling
+     * check each if the pixel edges are the same color
+     * if so return the color, else divide the pixel to 4 and calculate the color for each part recursively
+     * @param rX -- pixel width
+     * @param rY -- pixel height
+     * @param pCenter -- pixel center
+     * @param recLevel -- recursion level
+     * @param upLeftColor -- up left color
+     * @param upRightColor -- up right color
+     * @param downLeftColor -- down left color
+     * @param downRightColor -- down right color
+     * @param map -- map of points and colors- to save the points we already calculated
+     * @return the color of the pixel
      */
-    private void renderImage(int rows, int columns) {
+    private Color traceRecColor(double rX, double rY, Point pCenter, int recLevel,
+                                Color upLeftColor, Color upRightColor, Color downLeftColor, Color downRightColor, HashMap<Point, Color> map) {
 
-        Pixel.initialize(rows,columns, 1);
-        while (threads_count-- > 0) {
-            new Thread(() -> {
-                for(Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()){
-                    castRay(rows, columns, pixel.row, pixel.col);
-                }
-            }).start();
-        }
-        Pixel.waitToFinish();
+        if (recLevel >= this.recLevelASS)
+            return upRightColor.add(downLeftColor,downRightColor,upLeftColor).reduce(4);
+
+        if(upLeftColor.equals(upRightColor) && upLeftColor.equals(downLeftColor) && upLeftColor.equals(downRightColor))
+            //really not all the color the same, calculate the average to achieve smoother image
+            return upRightColor.add(downLeftColor,downRightColor,upLeftColor).reduce(4);
+
+        //divide the pixel to 4 and calculate the color for each part recursively
+        Point upLeft, upRight, downLeft, downRight, newCenter;
+        newCenter = pCenter.add(vRight.scale((-rX/2)/2)).add(vUp.scale((rY/2)/2));
+        upRight = pCenter.add(vUp.scale(rY/2));
+        downLeft = pCenter.add(vRight.scale(-rX/2));
+        upLeftColor = traceRecColor(rX/2,rY/2, newCenter, recLevel+1,
+                upLeftColor, getColorFromMap(upRight, map), getColorFromMap(downLeft, map),
+                getColorFromMap(pCenter, map), map);
+
+        newCenter = pCenter.add(vRight.scale((rX/4)).add(vUp.scale(rY/4)));
+        upLeft = pCenter.add(vUp.scale(rY/2));
+        downRight = pCenter.add(vRight.scale(rX/2));
+        upRightColor = traceRecColor(rX/2,rY/2, newCenter, recLevel+1,
+                getColorFromMap(upLeft, map), upRightColor, getColorFromMap(pCenter, map),
+                getColorFromMap(downRight, map), map);
+
+        newCenter = pCenter.add(vRight.scale((-rX/4)).add(vUp.scale((-rY/4))));
+        upLeft = pCenter.add(vRight.scale(-rX/2));
+        downRight = pCenter.add(vUp.scale(-rY/2));
+        downLeftColor = traceRecColor(rX/2,rY/2, newCenter, recLevel+1,
+                getColorFromMap(upLeft, map), getColorFromMap(pCenter, map), downLeftColor,
+                getColorFromMap(downRight, map), map);
+
+        newCenter = pCenter.add(vRight.scale((rX/4)).add(vUp.scale((-rY/4))));
+        upRight = pCenter.add(vRight.scale(rX/2));
+        downLeft = pCenter.add(vUp.scale(-rY/2));
+        downRightColor = traceRecColor(rX/2,rY/2, newCenter, recLevel+1,
+                getColorFromMap(pCenter, map), getColorFromMap(upRight, map), getColorFromMap(downLeft, map),
+                downRightColor, map);
+
+        return upRightColor.add(downLeftColor,downRightColor,upLeftColor).reduce(4);
+    }
+
+
+    /**
+     * private method that get a point and return the color of the point from the map
+     * if the point is not in the map, calculate the color and add it to the map
+     * @param p -- point
+     * @param map -- map of points and colors
+     * @return the color of the point
+     */
+    private Color getColorFromMap(Point p, HashMap<Point, Color> map) {
+        if(!map.containsKey(p))
+            map.put(p,rayTracer.traceRay(new Ray(p0,p.subtract(p0))));
+        return map.get(p);
     }
 
 

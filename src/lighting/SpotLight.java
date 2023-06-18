@@ -7,7 +7,7 @@ import static primitives.Util.isZero;
 
 public class SpotLight extends PointLight{
 
-    private Vector direction;
+    private final Vector direction;
 
 
     // ***************** Constructor ********************** //

@@ -17,7 +17,6 @@ public class Polygon extends Geometry {
    protected final List<Point> vertices;
    /** Associated plane in which the polygon lays */
    protected final Plane       plane;
-   private final int           size;
 
    /** Polygon constructor based on vertices list. The list must be ordered by edge
     * path. The polygon must be convex.
@@ -44,7 +43,7 @@ public class Polygon extends Geometry {
       if (vertices.length < 3)
          throw new IllegalArgumentException("A polygon can't have less than 3 vertices");
       this.vertices = List.of(vertices);
-      size          = vertices.length;
+      int size = vertices.length;
 
       // Generate the plane according to the first three vertices and associate the
       // polygon with this plane.

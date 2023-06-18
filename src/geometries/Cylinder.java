@@ -64,17 +64,6 @@ public class Cylinder extends Tube{
     }
 
     /**
-     * Gets a ray and returns intersection points between the ray and the geometry.
-     *
-     * @param ray (not NULL)
-     * @return List of points if any. else NULL
-     */
-    @Override
-    public List<Point> findIntersections(Ray ray) {
-        return null;
-    }
-
-    /**
      * Gets a ray and returns intersection GeoPoints between the ray and the geometry.
      *
      * @param ray (not NULL)

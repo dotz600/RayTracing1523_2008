@@ -36,9 +36,9 @@ public class Ray {
 
     /**
      * constructor with 3 parameters Point, Vector and normal
-     * @param p0
-     * @param dir
-     * @param normal
+     * @param p0 starting point
+     * @param dir direction
+     * @param normal normal
      */
     public Ray(Point p0, Vector dir, Vector normal) {
 
@@ -95,16 +95,15 @@ public class Ray {
 
     /**
      * find and return the closet point to head of the ray
-     * @param intersections
-     * @return
+     * @param intersections list of GeoPoint
+     * @return the closet point to the head of the ray
      */
     public GeoPoint findClosestGeoPoint(List<GeoPoint> intersections) {
 
         //The function RayTracerBasic#traceRay check if intersections is null
-        return intersections
-                .stream()
-                .min(Comparator.comparing(p -> p0.distanceSquared(p.point)))
-                .get();
+        return intersections.stream()
+                .min(Comparator.comparing(p -> p0.distanceSquared(p.point))).
+                get();
     }
 
     @Override

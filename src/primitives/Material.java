@@ -17,7 +17,7 @@ public class Material {
     /**
      * set reflection coefficient
      *
-     * @param kR
+     * @param kR Double3 reflection coefficient
      * @return itself (Material)
      */
     public Material setKr(Double3 kR) {
@@ -28,7 +28,7 @@ public class Material {
     /**
      * set reflection coefficient
      *
-     * @param kR
+     * @param kR Double3 reflection coefficient
      * @return itself (Material)
      */
     public Material setKr(double kR) {
@@ -38,7 +38,7 @@ public class Material {
     /**
      * set refraction coefficient
      *
-     * @param kT
+     * @param kT Double3 refraction (transparency) coefficient
      * @return itself (Material)
      */
     public Material setKt(Double3 kT) {
@@ -49,7 +49,7 @@ public class Material {
     /**
      * set refraction coefficient
      *
-     * @param kT
+     * @param kT double refraction (transparency) coefficient
      * @return itself (Material)
      */
     public Material setKt(double kT) {

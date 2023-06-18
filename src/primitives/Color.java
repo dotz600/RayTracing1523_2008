@@ -1,6 +1,8 @@
 package primitives;
 
 
+import java.util.Objects;
+
 /** Wrapper class for java.jwt.Color The constructors operate with any
  * non-negative RGB values. The colors are maintained without upper limit of
  * 255. Some additional operations are added that are useful for manipulating
@@ -52,7 +54,7 @@ public class Color {
         int ir = (int) rgb.d1;
         int ig = (int) rgb.d2;
         int ib = (int) rgb.d3;
-        return new java.awt.Color(ir > 255 ? 255 : ir, ig > 255 ? 255 : ig, ib > 255 ? 255 : ib);
+        return new java.awt.Color(Math.min(ir, 255), Math.min(ig, 255), Math.min(ib, 255));
     }
 
 
@@ -101,8 +103,21 @@ public class Color {
      * @return   new Color object which is the result of the operation */
     public Color reduce(Double3 k) {
         if (k.d1 < 1.0 || k.d2 < 1.0 || k.d3 < 1.0)
-            throw new IllegalArgumentException("Can't scale a color by a by a number lower than 1");
+            throw new IllegalArgumentException("Can't scale a color by a number lower than 1");
         return new Color(rgb.d1 / k.d1, rgb.d2 / k.d2, rgb.d3 / k.d3);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Color color))
+            return false;
+        return color.rgb.d1 - rgb.d1 < 0.1 && color.rgb.d2 - rgb.d2 < 0.1 && color.rgb.d3 - rgb.d3 < 0.1;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(rgb);
     }
 
     @Override
