@@ -7,6 +7,7 @@ import primitives.Vector;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.MissingResourceException;
 
 import static primitives.Util.isZero;
@@ -221,7 +222,7 @@ public class Camera {
             new Thread(() -> {
                 for(Pixel pixel = new Pixel(); pixel.nextPixel(); Pixel.pixelDone()) {
                     if(recLevelASS > 0)
-                        castRecRays(rows, columns, pixel.row, pixel.col);
+                        castAdaptiveRays(rows, columns, pixel.row, pixel.col);
                     else if (rays_per_pixel > 1)
                         castRays(rows, columns, pixel.row, pixel.col);
                     else
@@ -246,7 +247,7 @@ public class Camera {
      * @param i -- pixel row
      * @param j -- pixel column
      */
-    private void castRecRays(int nX, int nY, int i, int j) {
+    private void castAdaptiveRays(int nX, int nY, int i, int j) {
 
         double rX = width / nX;
         double rY = height / nY;

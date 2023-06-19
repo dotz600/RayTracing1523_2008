@@ -7,28 +7,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="PRO7 finished">
+    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="backgammon image start">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/base render test.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/base render test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/color render test.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/color render test.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightPolygons.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightPolygons.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightSphereDirectional.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightSphereDirectional.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightSphereMyTest.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightSphereMyTest.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightSpherePoint.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightSpherePoint.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightSphereSpot.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightSphereSpot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightSphereSpotSharp.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightSphereSpotSharp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightTrianglesDirectional.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightTrianglesDirectional.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightTrianglesMyTest.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightTrianglesMyTest.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightTrianglesPoint.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightTrianglesPoint.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightTrianglesSpot.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightTrianglesSpot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/lightTrianglesSpotSharp.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/lightTrianglesSpotSharp.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/reflectionTwoSpheresMirrored.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/reflectionTwoSpheresMirrored.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/shadowSphereTriangleInitial.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/shadowSphereTriangleInitial.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/shadowSphereTriangleMove1.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/shadowSphereTriangleMove1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/shadowSphereTriangleMove2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/shadowSphereTriangleMove2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/shadowSphereTriangleSpot1.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/shadowSphereTriangleSpot1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/shadowSphereTriangleSpot2.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/shadowSphereTriangleSpot2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/shadowTrianglesSphere.png" beforeDir="false" afterPath="$PROJECT_DIR$/images/shadowTrianglesSphere.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/primitives/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/primitives/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/Pixel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Pixel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +56,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="2MKHxZnCC4nCRMgOpph7KkTpegJ" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -82,29 +66,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers&quot;: &quot;true&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;19&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;fileTemplates&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Downloaded.Files.Path.Enabled": "true",
+    "Repository.Attach.Annotations": "true",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TODO_SCOPE": "All Places",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "19",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -118,7 +102,7 @@
       <recent name="primitives" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.finalPictureTest">
+  <component name="RunManager" selected="JUnit.ReflectionRefractionTests.itur">
     <configuration name="Vector" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="test.Main" />
       <module name="RayTracing1523_2008" />
@@ -128,14 +112,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in RayTracing1523_2008" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="RayTracing1523_2008" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -166,6 +142,22 @@
       <option name="PACKAGE_NAME" value="renderer" />
       <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
       <option name="METHOD_NAME" value="finalPictureTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReflectionRefractionTests.itur" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="RayTracing1523_2008" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="renderer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="renderer" />
+      <option name="MAIN_CLASS_NAME" value="renderer.ReflectionRefractionTests" />
+      <option name="METHOD_NAME" value="itur" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -205,11 +197,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ReflectionRefractionTests.itur" />
+        <item itemvalue="JUnit.ReflectionRefractionTests.polygonTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests.finalPictureTest" />
         <item itemvalue="JUnit.ReflectionRefractionTests" />
         <item itemvalue="JUnit.ReflectionRefractionTests.t" />
-        <item itemvalue="JUnit.ReflectionRefractionTests.polygonTest" />
-        <item itemvalue="JUnit.All in RayTracing1523_2008" />
       </list>
     </recent_temporary>
   </component>
@@ -411,7 +403,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1685906628208</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL‎-00028" summary="final image with mirror">
+      <created>1686839986503</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL‎-00028" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1686839986503</updated>
+    </task>
+    <task id="LOCAL‎-00029" summary="backgammon image start">
+      <created>1687089208324</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL‎-00029" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687089208324</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -427,8 +433,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Tests: sphere" />
-    <MESSAGE value="Implementations of getNormal() in:&#10;sphere&#10;tube&#10;plane" />
     <MESSAGE value="cylinder get normal pass test, adding documentation to vector + point" />
     <MESSAGE value="adding plane test" />
     <MESSAGE value="end stage 2" />
@@ -452,7 +456,9 @@
     <MESSAGE value="PRO7.1" />
     <MESSAGE value="PRO7 until 7.8" />
     <MESSAGE value="PRO7 finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="PRO7 finished" />
+    <MESSAGE value="final image with mirror" />
+    <MESSAGE value="backgammon image start" />
+    <option name="LAST_COMMIT_MESSAGE" value="backgammon image start" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

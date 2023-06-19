@@ -17,7 +17,7 @@ import static primitives.Util.isZero;
 public class RayTracerBasic extends RayTracerBase {
 
     private static final Double3 INITIAL_K = new Double3(1.0);//initial value of k
-    private static final int MAX_CALC_COLOR_LEVEL = 10;//maximum level of recursion
+    private static final int MAX_CALC_COLOR_LEVEL = 3;//maximum level of recursion
     private static final double MIN_CALC_COLOR_K = 0.001;//minimum value of k
     private static final double DELTA = 0.1;
 

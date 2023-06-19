@@ -23,12 +23,318 @@ import scene.Scene;
  * (with transparency)
  * @author dzilb */
 public class ReflectionRefractionTests {
+
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
+    final Color BROWN = new Color(102, 51, 0);
+    static final Color GOLD = new Color(255, 215, 0);
+    static final Color WHITE = new Color(255, 255, 255);
+    static final Color BLACK = new Color(0,0,0);
+
+    @Test
+    public void itur() {
+        Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();
+        Material material = new Material()
+                .setKs(0.2)
+                .setKd(0.8)
+                .setShininess(300);
+
+        Material material1 = new Material()
+                .setKs(0.8)
+                .setKd(0.1)
+                .setKr(1)
+                .setShininess(300);
+
+        double startX = -85;
+        double endX = -10;
+        double startY = -100;
+        double endY = -110;
+        double startZ = 0;
+        double endZ = 10;
+        int up = 1;
+        int down = -1;
+        BuildTriangles(scene1, material);
+        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//left down
+        addItur(scene1, material1, new Point(-32.5-17,-105,0), down);
+        BuildCube(scene1, BROWN, material, startX, endX, -startY, -endY, startZ, endZ);//left up
+        addItur(scene1, material1, new Point(-32.5-17,105,0), up);
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//right down
+        addItur(scene1, material1, new Point(17.5+17,-105,0), down);
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, -startY, -endY, startZ, endZ );//right up
+        addItur(scene1, material1, new Point(17.5+17,105,0), up);
+        addGlassAndCubes(scene1);
+
+        startX = -85;
+        endX = -80;
+        startY = -110;
+        endY = 110;
+        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//left side
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//right side
+        startX = -13;
+        endX = -8;
+        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//middle left
+        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//middle right
+        startX = -11;
+        endX = -8;
+        startY = -55;
+        endY = -49;
+        startZ = 10;
+        endZ = 10.2;
+        BuildCube(scene1, GOLD, material1, startX, endX, startY, endY, startZ, endZ);//middle left down closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-9,-53,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-9,-51,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+        BuildCube(scene1, GOLD, material1, -startX -15, -endX-15, startY, endY, startZ, endZ );//middle right down closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-6,-53,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-6,-51,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+        BuildCube(scene1, GOLD, material1, startX, endX, startY+110, endY+110, startZ, endZ );//middle left up closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-9,57,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-9,59,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+        BuildCube(scene1, GOLD, material1, -startX -15, -endX-15, startY+110, endY+110, startZ, endZ);//middle right up closer
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-6,57,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
+                new Cylinder(new Ray(new Point(-6,59,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
+        );
+
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-7.5,-110,10),new Vector(0,1,0)),1,220).setMaterial(material).setEmission(new Color(228,218,199).reduce(2))//center cylinder
+        );
+        scene1.getGeometries().add(
+                new Polygon(
+                        new Point(-85,-110,0),
+                        new Point(-85,110,0),
+                        new Point(70,110,0),
+                        new Point(70,-110,0)
+                ).setMaterial(material.setKr(0.01))
+                        .setEmission(new Color(90,40,0))//brown floor
+
+        );
+
+
+
+
+
+
+        scene1.getLights().add(
+                new SpotLight(new Color(900,500,500),
+                        new Point(-92.5,195,-35), new Vector(1, -1, 1)).setKl(0.001).setKq(0.0001));
+
+
+        scene1.getLights().add(
+                new PointLight(new Color(WHITE.getColor()),
+                        new Point(150,150,60))
+                        .setKl(0.001)
+                        .setKq(0.0002));
+        scene1.getLights().add(
+                new PointLight(new Color(WHITE.getColor()),
+                        new Point(-150,150,60))
+                        .setKl(0.001)
+                        .setKq(0.0002));
+        scene1.getLights().add(
+                new PointLight(new Color(WHITE.getColor()),
+                        new Point(150,-150,60))
+                        .setKl(0.001)
+                        .setKq(0.0002));
+
+        scene1.getLights().add(
+                new PointLight(new Color(WHITE.getColor()),
+                        new Point(-150,-150,60))
+                        .setKl(0.001)
+                        .setKq(0.0002));
+
+        scene1.getLights().add(
+                new PointLight(new Color(WHITE.getColor()),
+                        new Point(-7,0,150))
+                        .setKl(0.001)
+                        .setKq(0.0002));
+        scene1.getLights().add(
+                new PointLight(new Color(WHITE.getColor()),
+                        new Point(-7,150,100))
+                        .setKl(0.001)
+                        .setKq(0.0002));
+
+
+
+        Camera camera1 = new Camera(
+                new Point(145,-545,310),
+                new Vector(-0.3,1,-0.55),
+                new Vector(0,0.55,1))
+                .setVPSize(150, 150)
+                .setVPDistance(450);
+
+        ImageWriter imageWriter = new ImageWriter("itur-lights", 2000, 2000);
+        camera1.setImageWriter(imageWriter) //
+                .setRayTracer(new RayTracerBasic(scene1)) //
+                .setRecLevelASS(2)
+                .setThreadsCount(8)
+                //.setRayPerPixel(1)
+                .renderImage() //
+                .writeToImage(); //
+    }
+
+    private static void addGlassAndCubes(Scene scene1) {
+        Material glassMaterial = new Material()
+                .setKd(0.1)
+                .setKs(0.7)
+                .setShininess(300)
+                .setKt(1)
+                .setKr(0.2);
+        Material cubeMaterial = new Material()
+                .setKd(0.5)
+                .setKs(0.2)
+                .setShininess(300)
+                .setKr(0.2)
+                ;
+        BuildCube(scene1,BLACK,glassMaterial,-17.5,2.5,100,120,40, 60);
+        BuildCube(scene1,WHITE,cubeMaterial,-13.5,-9.5,104,108,40.01, 44.01);
+        BuildCube(scene1,WHITE,cubeMaterial,-5.5,-1.5,112,116,40.01, 44.01);
+        //BuildCube(scene1,BROWN,material,-11.5,-3.5,106,114,60,400);
+        scene1.getGeometries().add(
+                new Cylinder(new Ray(new Point(-7.5,110,60),new Vector(0,0,1)),4,400)
+                        .setMaterial(new Material()
+                                .setKd(0.2)
+                                .setKs(0.8)
+                                .setKr(1)
+                                .setShininess(300))
+                        .setEmission(new Color(GRAY)));
+    }
+
+    private static void BuildCube(Scene scene1,Color color, Material material, double startX, double endX, double startY, double endY, double startZ, double endZ) {
+        scene1.getGeometries().add(
+                new Polygon(
+                        new Point(endX, startY, endZ),
+                        new Point(endX, startY, startZ),
+                        new Point(endX, endY, startZ),
+                        new Point(endX, endY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(startX, startY, endZ),
+                        new Point(startX, startY, startZ),
+                        new Point(startX, endY, startZ),
+                        new Point(startX, endY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, startY, endZ),
+                        new Point(endX, startY, startZ),
+                        new Point(startX, startY, startZ),
+                        new Point(startX, startY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, endY, endZ),
+                        new Point(endX, endY, startZ),
+                        new Point(startX, endY, startZ),
+                        new Point(startX, endY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, startY, endZ),
+                        new Point(endX, endY, endZ),
+                        new Point(startX, endY, endZ),
+                        new Point(startX, startY, endZ)
+                ).setMaterial(material).setEmission(color),
+                new Polygon(
+                        new Point(endX, startY, startZ),
+                        new Point(endX, endY, startZ),
+                        new Point(startX, endY, startZ),
+                        new Point(startX, startY, startZ)
+                ).setMaterial(material));
+    }
+
+    private static void BuildTriangles(Scene scene1, Material material) {
+        Material triangleMaterial = new Material().setKd(1).setShininess(300);
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(-75+i*10, -100, 0),
+                                    new Point(-65+i*10, -100, 0),
+                                    new Point(-70+i*10, -20, 0))
+
+                                    .setMaterial(triangleMaterial)
+                                    .setEmission(i%2!=0?new Color(WHITE.getColor()):Color.BLACK));
+
+        }
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(-75+i*10, 100, 0),
+                                    new Point(-65+i*10, 100, 0),
+                                    new Point(-70+i*10, 20, 0))
+
+                                    .setMaterial(triangleMaterial)
+                                    .setEmission(i%2!=0?new Color(WHITE.getColor()):Color.BLACK));
+
+        }
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(10+i*10, -100, 0),
+                                    new Point(20+i*10, -100, 0),
+                                    new Point(15+i*10, -20, 0))
+
+                                    .setMaterial(triangleMaterial)
+                                    .setEmission(i%2!=0?new Color(WHITE.getColor()):Color.BLACK));
+
+        }
+
+        for (int i = 0; i < 5; i++) {
+            scene1.getGeometries()
+                    .add(
+                            new Triangle(new Point(10+i*10, 100, 0),
+                                    new Point(20+i*10, 100, 0),
+                                    new Point(15+i*10, 20, 0))
+
+                                    .setMaterial(triangleMaterial)
+                                    .setEmission(i%2!=0?new Color(WHITE.getColor()):Color.BLACK));
+
+        }
+    }
+
+    /**
+     * add itur -- this method add the itur to the scene in the right place
+     * @param scene1
+     * @param material1
+     */
+    private static void addItur(Scene scene1, Material material1, Point place, int upOrDown) {
+        for(double i = -2*Math.PI; i <=0; i+=0.05) {
+            scene1.getGeometries().add(new Cylinder(new Ray(place.add(new Vector(i-0.5,-Math.sin(i),10)) , new Vector(0,0,1)), 0.4, 0.5)
+                    .setEmission(new Color(GOLD.getColor()))
+                    .setMaterial(material1));
+
+        }
+        for(double i = 0.01; i <= 2*Math.PI; i+=0.05) {
+            scene1.getGeometries().add(new Cylinder(new Ray(place.add(new Vector(i+0.5,Math.sin(i),10)), new Vector(0,0,1)), 0.4, 0.5)
+                    .setEmission(new Color(GOLD.getColor()))
+                    .setMaterial(material1));
+        }
+        for(double i = -2*Math.PI; i <=0; i+=1) {
+            scene1.getLights().add(new SpotLight(
+                    new Color(WHITE.getColor()),
+                    place.add(new Vector(i-0.5,-Math.sin(i)+0.01,10.6)),
+                    new Vector(0,upOrDown,1))
+                    .setKl(0.0001)
+                    .setKq(0.00002));
+
+        }
+        for(double i = 0.01; i <= 2*Math.PI; i+=1) {
+            scene1.getLights().add(new SpotLight(
+                    new Color(WHITE.getColor()),
+                    place.add(new Vector(i+0.5,Math.sin(i)+0.01,10.6)),
+                    new Vector(0,upOrDown,1))
+                    .setKl(0.0001)
+                    .setKq(0.00002));
+        }
+
+    }
+    //private Scene scene = new Scene.SceneBuilder("Test scene").build();
     Material material =new Material().
             setKd(0.2).
             setKs(0.8).
             setKr(0.2).
             setShininess(300);
+
 
     @Test
     public void finalPictureTest(){
@@ -119,211 +425,6 @@ public class ReflectionRefractionTests {
     }
 
 
-    @Test
-    public void itur() {
-        Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();
-        Material       material                = new Material()
-                .setKd(new Double3(0.2, 0.6, 0.4)
-                ).setKs(new Double3(0.2, 0.4, 0.3))
-                .setShininess(301);
-        Material       material1               = new Material()
-                .setKd(0.2)
-                .setKs(1)
-                .setShininess(300);
-
-
-        BuildTriangles(scene1, material);
-        double startX = -85;
-        double endX = -10;
-        double startY = -100;
-        double endY = -110;
-        double startZ = 0;
-        double endZ = 10;
-        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//left down
-        addItur(scene1, material1, new Point(-32.5-17,-105,0));
-        BuildCube(scene1, BROWN, material, startX, endX, -startY, -endY, startZ, endZ);//left up
-        addItur(scene1, material1, new Point(-32.5-17,105,0));
-        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//right down
-        addItur(scene1, material1, new Point(17.5+17,-105,0));
-        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, -startY, -endY, startZ, endZ );//right up
-        addItur(scene1, material1, new Point(17.5+17,105,0));
-        startX = -85;
-        endX = -80;
-        startY = -110;
-        endY = 110;
-        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//left side
-        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//right side
-        startX = -13;
-        endX = -8;
-        BuildCube(scene1, BROWN, material, startX, endX, startY, endY, startZ, endZ);//middle left
-        BuildCube(scene1, BROWN, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//middle right
-        startX = -11;
-        endX = -8;
-        startY = -55;
-        endY = -49;
-        startZ = 10;
-        endZ = 10.2;
-        BuildCube(scene1, GOLD, material, startX, endX, startY, endY, startZ, endZ);//middle left down closer
-        scene1.getGeometries().add(
-                new Cylinder(new Ray(new Point(-9,-53,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
-                new Cylinder(new Ray(new Point(-9,-51,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
-        );
-        BuildCube(scene1, GOLD, material, -startX -15, -endX-15, startY, endY, startZ, endZ );//middle right down closer
-        scene1.getGeometries().add(
-                new Cylinder(new Ray(new Point(-6,-53,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
-                new Cylinder(new Ray(new Point(-6,-51,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
-        );
-        BuildCube(scene1, GOLD, material, startX, endX, startY+110, endY+110, startZ, endZ );//middle left up closer
-        scene1.getGeometries().add(
-                new Cylinder(new Ray(new Point(-9,57,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
-                new Cylinder(new Ray(new Point(-9,59,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
-        );
-        BuildCube(scene1, GOLD, material, -startX -15, -endX-15, startY+110, endY+110, startZ, endZ);//middle right up closer
-        scene1.getGeometries().add(
-                new Cylinder(new Ray(new Point(-6,57,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material),
-                new Cylinder(new Ray(new Point(-6,59,10.2),new Vector(0,0,1)),0.5,0.5).setMaterial(material)
-        );
-
-        scene1.getGeometries().add(
-                new Cylinder(new Ray(new Point(-7.5,-110,10),new Vector(0,1,0)),1,220).setMaterial(material).setEmission(new Color(228,218,199))
-        );
-        scene1.getGeometries().add(
-                new Polygon(
-                        new Point(-85,-110,0),
-                        new Point(-85,110,0),
-                        new Point(70,110,0),
-                        new Point(70,-110,0)
-                ).setMaterial(material).setEmission(new Color(102,51,0))//brown floor
-
-        );
-
-
-
-
-
-
-
-
-        scene1.getLights().add(new PointLight(new Color(WHITE), new Point(-80,80,60)).setKl(0.001).setKq(0.0002));
-        scene1.getLights().add(new PointLight(new Color(WHITE), new Point(80,-80,60)).setKl(0.001).setKq(0.0002));
-
-
-        Camera         camera1                 = new Camera(new Point(1,0,1000),
-                new Vector(0, 0, -1), new Vector(0, 1, 0))
-                .setVPSize(150, 150).setVPDistance(530);
-        ImageWriter imageWriter = new ImageWriter("itur", 3000, 3000);
-        camera1.setImageWriter(imageWriter) //
-                .setRayTracer(new RayTracerBasic(scene1)) //
-                //.setRayPerPixel(9)
-                .setThreadsCount(8)
-                .setRecLevelASS(3)
-                .renderImage() //
-                .writeToImage(); //
-    }
-
-    private static void BuildCube(Scene scene1,Color color, Material material, double startX, double endX, double startY, double endY, double startZ, double endZ) {
-        scene1.getGeometries().add(
-                new Polygon(
-                        new Point(endX, startY, endZ),
-                        new Point(endX, startY, startZ),
-                        new Point(endX, endY, startZ),
-                        new Point(endX, endY, endZ)
-                ).setMaterial(material).setEmission(color),
-                new Polygon(
-                        new Point(startX, startY, endZ),
-                        new Point(startX, startY, startZ),
-                        new Point(startX, endY, startZ),
-                        new Point(startX, endY, endZ)
-                ).setMaterial(material).setEmission(color),
-                new Polygon(
-                        new Point(endX, startY, endZ),
-                        new Point(endX, startY, startZ),
-                        new Point(startX, startY, startZ),
-                        new Point(startX, startY, endZ)
-                ).setMaterial(material).setEmission(color),
-                new Polygon(
-                        new Point(endX, endY, endZ),
-                        new Point(endX, endY, startZ),
-                        new Point(startX, endY, startZ),
-                        new Point(startX, endY, endZ)
-                ).setMaterial(material).setEmission(color),
-                new Polygon(
-                        new Point(endX, startY, endZ),
-                        new Point(endX, endY, endZ),
-                        new Point(startX, endY, endZ),
-                        new Point(startX, startY, endZ)
-                ).setMaterial(material).setEmission(color),
-                new Polygon(
-                        new Point(endX, startY, startZ),
-                        new Point(endX, endY, startZ),
-                        new Point(startX, endY, startZ),
-                        new Point(startX, startY, startZ)
-                ).setMaterial(material));
-    }
-
-    private static void BuildTriangles(Scene scene1, Material material) {
-        for (int i = 0; i < 5; i++) {
-            scene1.getGeometries()
-                    .add(
-                            new Triangle(new Point(-75+i*10, -100, 0),
-                                    new Point(-65+i*10, -100, 0),
-                                    new Point(-70+i*10, -20, 0))
-
-                                    .setMaterial(material));
-
-        }
-        for (int i = 0; i < 5; i++) {
-            scene1.getGeometries()
-                    .add(
-                            new Triangle(new Point(-75+i*10, 100, 0),
-                                    new Point(-65+i*10, 100, 0),
-                                    new Point(-70+i*10, 20, 0))
-
-                                    .setMaterial(material));
-
-        }
-        for (int i = 0; i < 5; i++) {
-            scene1.getGeometries()
-                    .add(
-                            new Triangle(new Point(10+i*10, -100, 0),
-                                    new Point(20+i*10, -100, 0),
-                                    new Point(15+i*10, -20, 0))
-
-                                    .setMaterial(material));
-
-        }
-
-        for (int i = 0; i < 5; i++) {
-            scene1.getGeometries()
-                    .add(
-                            new Triangle(new Point(10+i*10, 100, 0),
-                                    new Point(20+i*10, 100, 0),
-                                    new Point(15+i*10, 20, 0))
-
-                                    .setMaterial(material));
-
-        }
-    }
-
-    final Color BROWN = new Color(102, 51, 0);
-    static final Color GOLD = new Color(255, 215, 0);
-    /**
-     * add itur -- this method add the itur to the scene in the right place
-     * @param scene1
-     * @param material1
-     */
-    private static void addItur(Scene scene1, Material material1, Point place) {
-        for(double i = -2*Math.PI; i <=0; i+=0.05) {
-            scene1.getGeometries().add(new Cylinder(new Ray(place.add(new Vector(i-0.5,-Math.sin(i),10)) , new Vector(0,0,1)), 0.4, 2)
-                    .setEmission(new Color(GOLD.getColor()))
-                    .setMaterial(material1));
-        }
-        for(double i = 0.01; i <= 2*Math.PI; i+=0.05) {
-            scene1.getGeometries().add(new Cylinder(new Ray(place.add(new Vector(i+0.5,Math.sin(i),10)), new Vector(0,0,1)), 0.4, 2)
-                    .setEmission(new Color(GOLD.getColor()))
-                    .setMaterial(material1));
-        }
-    }
     @Test
     public void polygonTest() {
         Scene          scene1                  = new Scene.SceneBuilder("Test scene1").build();

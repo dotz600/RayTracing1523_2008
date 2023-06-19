@@ -116,7 +116,8 @@ class Pixel {
             if (lastPrinted != percentage) {
                 last = current;
                 lastPrinted = percentage;
-                System.out.printf(PRINT_FORMAT, percentage / 10d);
+                System.out.println( String.format(PRINT_FORMAT,percentage / 10d));
+//                System.out.println(PRINT_FORMAT, percentage / 10d);
             }
         }
     }
