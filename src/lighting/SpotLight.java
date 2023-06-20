@@ -5,6 +5,9 @@ import primitives.*;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
+/**
+ * represent a light with direction
+ */
 public class SpotLight extends PointLight{
 
     private final Vector direction;

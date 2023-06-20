@@ -7,8 +7,10 @@ import primitives.*;
  */
 public abstract class Geometry extends Intersectable{
 
+    /*the emission of the geometry*/
     protected Color emission = Color.BLACK;
 
+    /* the material of the geometry*/
     private Material material = new Material();
 
     /**

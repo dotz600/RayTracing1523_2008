@@ -79,12 +79,12 @@ public class ShadowTests {
                 new Point(-77,-77,70));
     }
 
-    @Test
     /**
      * Produce a picture of two triangles
      * lighted by a spotlight with a Sphere
      * producing a shading
      */
+    @Test
     public void trianglesSphere() {
         Scene scene1 = new Scene.SceneBuilder("Test scene")
                 .setAmbientLight(new AmbientLight(new Color(WHITE), new Double3(0.15)))

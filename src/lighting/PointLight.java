@@ -1,5 +1,10 @@
 package lighting;
 import primitives.*;
+
+/**
+ * represent a light with position
+ * spread the same intensity in all directions
+ */
 public class PointLight extends Light implements LightSource{
 
     private final Point position; //the position of the light

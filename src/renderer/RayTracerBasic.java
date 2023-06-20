@@ -14,6 +14,9 @@ import static java.lang.System.out;
 import static primitives.Util.alignZero;
 import static primitives.Util.isZero;
 
+/**
+ * basic ray tracer class
+ */
 public class RayTracerBasic extends RayTracerBase {
 
     private static final Double3 INITIAL_K = new Double3(1.0);//initial value of k

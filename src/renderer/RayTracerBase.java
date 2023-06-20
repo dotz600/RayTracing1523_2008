@@ -12,6 +12,9 @@ import java.util.LinkedList;
  */
 public abstract class RayTracerBase {
 
+    /**
+     * the scene of the ray tracer
+     */
     protected Scene scene;
 
     /**
@@ -31,5 +34,11 @@ public abstract class RayTracerBase {
      */
     public abstract Color traceRays(LinkedList<Ray> rays);
 
+    /**
+     * abstract method for ray tracing
+     * return the color of the pixel where the ray intersect with the scene
+     * @param ray ray that intersect with the scene in the same pixel
+     * @return Color of the pixel
+     */
     public abstract Color traceRay(Ray ray) ;
 }

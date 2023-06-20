@@ -18,6 +18,11 @@ abstract class Light {
     }
 
     //------Getters-----------
+
+    /**
+     * getter for the light intensity
+     * @return the light intensity
+     */
     public Color getIntensity() {
         return intensity;
     }

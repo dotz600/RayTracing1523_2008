@@ -13,7 +13,7 @@ import static primitives.Util.isZero;
 
 /**
  * This class represent ray in space
- * Contains a starting Point & Vector that represent the direction of the ray
+ * Contains a starting Point and Vector that represent the direction of the ray
  */
 public class Ray {
 
@@ -24,7 +24,7 @@ public class Ray {
     final Vector dir;
 
     /**
-     * Constructor with  Point  & Vector
+     * Constructor with  Point and Vector
      * @param p Point
      * @param v Vector
      */
@@ -56,10 +56,18 @@ public class Ray {
         }
     }
 
+    /**
+     * getter - starting point
+     * @return starting point
+     */
     public Point getP0() {
         return p0;
     }
 
+    /**
+     * getter - direction
+     * @return direction
+     */
     public Vector getDir() {
         return dir;
     }

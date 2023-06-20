@@ -28,6 +28,10 @@ public class Sphere extends RadialGeometry {
         center = p;
     }
 
+    /**
+     * get the center point
+     * @return center point
+     */
     public Point getCenter() {
 
         return center;
@@ -107,9 +111,10 @@ public class Sphere extends RadialGeometry {
         return null;
     }
 
-    /** <li>For now assume that
+    /**
+     * For now assume that
      *  the point is on sphere,
-     *  without making sure<li/>
+     *  without making sure
      *  "n = (p - O).normalize()"
      */
     @Override

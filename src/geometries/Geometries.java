@@ -48,7 +48,7 @@ public class Geometries{
      * This method finds all the intersections of the ray with the geometries in the list
      *
      * @param ray to check if intersect with the geometries and where
-     * @return List<Point> - list of all the intersections points
+     * @return List of Point - list of all the intersections points
      */
     public List<Point> findIntersections(Ray ray) {
 
@@ -71,7 +71,7 @@ public class Geometries{
      * This method finds all the intersections of the ray with the geometries in the list
      *
      * @param ray to check if intersect with the geometries and where
-     * @return List<GeoPoint> - list of all the intersections points
+     * @return List of GeoPoint - list of all the intersections points
      */
     public List<GeoPoint> findGeoIntersectionsHelper(Ray ray) {
         List<GeoPoint> intersections = null;

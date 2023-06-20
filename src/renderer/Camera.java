@@ -57,14 +57,27 @@ public class Camera {
 
 
     // ***************** Getters/Setters ********************** //
+
+    /**
+     * getter - width of view plane
+     * @return width (double)
+     */
     public Double getWidth() {
         return width;
     }
 
+    /**
+     * getter - height of view plane
+     * @return height (double)
+     */
     public Double getHeight() {
         return height;
     }
 
+    /**
+     * getter - distance between camera and view plane
+     * @return distance (double)
+     */
     public Double getDistance() {
         return distance;
     }
@@ -95,26 +108,56 @@ public class Camera {
         return this;
     }
 
+    /**
+     * Builder --
+     * set image writer
+     * @param image (ImageWriter)
+     * @return this (camera)
+     */
     public Camera setImageWriter(ImageWriter image) {
         this.image = image;
         return this;
     }
 
+    /**
+     * Builder -- chaining method
+     * set ray tracer
+     * @param rayTracer (RayTracerBase)
+     * @return this (camera)
+     */
     public Camera setRayTracer(RayTracerBase rayTracer) {
         this.rayTracer = rayTracer;
         return this;
     }
 
+    /**
+     * Builder -- chaining method
+     * set how much rays to shoot per pixel, for super sampling
+     * @param rayPerPixel (int)
+     * @return this (camera)
+     */
     public Camera setRayPerPixel(int rayPerPixel) {
         rays_per_pixel = rayPerPixel;
         return this;
     }
 
+    /**
+     * Builder -- chaining method
+     * set how much threads to use for rendering
+     * @param threadsCount (int)
+     * @return this (camera)
+     */
     public Camera setThreadsCount(int threadsCount) {
         threads_count = threadsCount;
         return this;
     }
 
+    /**
+     * Builder -- chaining method
+     * set how much reflection rays to shoot per pixel, for adaptive super sampling
+     * @param recLevelASS (int)
+     * @return this (camera)
+     */
     public Camera setRecLevelASS(int recLevelASS) {
         this.recLevelASS = recLevelASS;
         return this;
@@ -216,7 +259,7 @@ public class Camera {
         final int rows = image.getNx();
         final int columns = image.getNy();
 
-        Pixel.initialize(rows,columns, 1);
+        Pixel.initialize(rows,columns, 60);
 
         while (threads_count-- > 0) {
             new Thread(() -> {

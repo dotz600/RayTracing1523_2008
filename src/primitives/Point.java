@@ -12,7 +12,10 @@ import static primitives.Util.isZero;
  * using Double3 class
  */
 public class Point {
+
+    /** Point with coordinates (0,0,0) */
     public static final Point ZERO = new Point(0,0,0);
+
     final Double3 xyz;
 
 
@@ -123,6 +126,10 @@ public class Point {
         return "xyz=" + xyz.toString();
     }
 
+    /**
+     * getter - x value
+     * @return x value
+     */
     public double getX() {
         return xyz.d1;
     }

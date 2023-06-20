@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * this class represent cylinder in space
- * contain radius, ray & height
+ * contain radius, ray and height
  */
 public class Cylinder extends Tube{
 
@@ -29,14 +29,18 @@ public class Cylinder extends Tube{
         height = h;
     }
 
+    /**
+     * getter for height
+     * @return height
+     */
     public double getHeight() {
         return height;
     }
 
     /**
      * assume that the point p is on the origin
-     * if the point is on base ((p - p0).length <= radius) return the direction * -1.
-     * if the point is on the top ((p - topCenterPoint).length <= radius) return the direction.
+     * if the point is on base ((p - p0).length less or equal to radius) return the direction * -1.
+     * if the point is on the top ((p - topCenterPoint).length less or equal to radius) return the direction.
      * else its on the round surface, normal = p0 + dir * (p - p0) * dir.
      * @param p get normal at point p
      * @return normal vector at point p

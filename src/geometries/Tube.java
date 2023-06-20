@@ -12,7 +12,7 @@ import static primitives.Util.isZero;
 
 /**
  * represent tube in space
- * contain radius & ray
+ * contain radius and ray
  */
 public class Tube extends RadialGeometry {
 
@@ -140,7 +140,10 @@ public class Tube extends RadialGeometry {
         return null;
     }
 
-
+    /**
+     * get the ray
+     * @return ray
+     */
     public Ray getAxisRay() {
 
         return axisRay;

@@ -100,7 +100,7 @@ public class Scene {
         /**
          * chaining method
          * set light source in scene
-         * @param lights (List<LightSource>)
+         * @param lights (List of LightSource)
          * @return this (Scene)
          */
         public SceneBuilder setLights(List<LightSource> lights) {
@@ -121,21 +121,43 @@ public class Scene {
     }
 
     // ***************** Getters ********************** //
+
+    /**
+     * getter - name of the scene
+     * @return name (String)
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * getter - background color of the scene
+     * @return background (Color)
+     */
     public Color getBackground() {
         return background;
     }
 
+    /**
+     * getter - geometries in the scene
+     * @return geometries (Geometries)
+     */
     public Geometries getGeometries() {
         return geometries;
     }
 
+    /**
+     * getter - ambientLight in the scene
+     * @return ambientLight (AmbientLight)
+     */
     public AmbientLight getAmbientLight() {
         return ambientLight;
     }
 
+
+    /**
+     * getter - lights in the scene
+     * @return lights (List of LightSource)
+     */
     public List<LightSource> getLights() { return lights; }
 }

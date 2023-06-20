@@ -19,15 +19,30 @@ public abstract class Intersectable {
         var geoList = findGeoIntersections(ray);
         return geoList == null ? null : geoList.stream().map(x -> x.point).toList();
     };
+
+    /**
+     * Gets a ray and returns intersection points between the ray and the geometry.
+     * @param ray (not NULL)
+     * @return List of points if any. else NULL
+     */
     public final List<GeoPoint> findGeoIntersections(Ray ray) {return findGeoIntersectionsHelper(ray);};
 
+    /**
+     * implement NVI (Non-Virtual Interface) pattern
+     * @param ray to find intersections with
+     * @return List of points if any. else NULL
+     */
     protected abstract List<GeoPoint> findGeoIntersectionsHelper(Ray ray);
 
     /**
      * Class for intersection points between the ray and the geometry.
      */
     public static class GeoPoint {
+
+        /* the geometry  which the point is on*/
         public Geometry geometry;
+
+        /* the point */
         public Point point;
 
         /**

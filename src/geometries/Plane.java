@@ -25,10 +25,10 @@ public class Plane extends Geometry {
     private final Vector normal;
 
     /**
-     * <li>constructor with 3 point</li>
-     * <li>q0 can be any point from the three</li>
-     * <li>creates a normal vector by the formula: </li>
-     * <li>n = (p1 - p2 X p1 - p3).normalize()</li>
+     * constructor with 3 point
+     * q0 can be any point from the three
+     * creates a normal vector by the formula:
+     * n = (p1 - p2 X p1 - p3).normalize()
      *
      * @param p1 point
      * @param p2 point
@@ -46,7 +46,7 @@ public class Plane extends Geometry {
     }
 
     /**
-     * constructor with normal & point
+     * constructor with normal and point
      *
      * @param p point in th plane
      * @param v vector normal - normalize it
@@ -57,17 +57,29 @@ public class Plane extends Geometry {
         normal = v.normalize();
     }
 
+    /**
+     * getter - normal vector
+     * @return normal vector
+     */
     public Vector getNormal() {
 
         return normal;
     }
 
+    /**
+     * @param p point
+     * @return normal vector to the plane
+     */
     @Override
     public Vector getNormal(Point p) {
 
         return normal;
     }
 
+    /**
+     * getter - point in plane
+     * @return point in plane
+     */
     public Point getQ0() {
         return q0;
     }

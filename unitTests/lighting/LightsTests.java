@@ -67,6 +67,9 @@ public class LightsTests {
     private final Geometry       triangle2               = new Triangle(vertices[0], vertices[1], vertices[3])
             .setMaterial(material);
 
+    /**
+     * Produce a picture of a Polygon lighted by a directional and point light
+     */
     @Test
     public void polygonTest() {
 
@@ -118,6 +121,9 @@ public class LightsTests {
     }
 
 
+    /**
+     * Produce a picture of a triangle lighted by a spotlight
+     */
     @Test
     public void trianglesMyTest() {
 

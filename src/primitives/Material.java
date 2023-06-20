@@ -5,12 +5,21 @@ package primitives;
  */
 public class Material {
 
-    // ***************** Properties ********************** //
-        public Double3 kD = Double3.ZERO; //diffuse (Phong Reflectance Model) coefficient
-        public Double3 kS = Double3.ZERO; //specular (Phong Reflectance Model) coefficient
-        public Double3 kT = Double3.ZERO;//refraction coefficient
-        public Double3 kR = Double3.ZERO;//reflection coefficient
-        public int nShininess = 0; //the object’s shininess (Phong Reflectance Model)
+    public Double3 kD = Double3.ZERO; /*diffuse (Phong Reflectance Model) coefficient*/
+
+
+    public Double3 kS = Double3.ZERO; /*specular (Phong Reflectance Model) coefficient*/
+
+
+    public Double3 kT = Double3.ZERO; /*refraction coefficient*/
+
+    public Double3 kR = Double3.ZERO; /*reflection coefficient*/
+
+
+
+    public int nShininess = 0; /*the object’s shininess (Phong Reflectance Model)*/
+
+
 
     // ***************** Setters ********************** //
 
@@ -100,6 +109,11 @@ public class Material {
         return this;
     }
 
+    /**
+     * chaining method - set shininess (Phong Reflectance Model)
+     * @param nShininess int shininess
+     * @return itself (Material)
+     */
     public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
         return this;
