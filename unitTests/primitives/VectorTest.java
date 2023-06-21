@@ -10,6 +10,9 @@ import static primitives.Util.isZero;
  */
 class VectorTest {
 
+    /**
+     * Test method for {@link Vector#add(Vector)}.
+     */
     @Test
     void testAdd() {
 
@@ -26,6 +29,9 @@ class VectorTest {
                 "ERROR: Vector + -itself does not throw an exception");
     }
 
+    /**
+     * Test method for {@link Vector#subtract(Point)}.
+     */
     @Test
     public void testSubtract() {
 
@@ -42,6 +48,9 @@ class VectorTest {
                 "ERROR: Vector - Vector does not throw an exception");
     }
 
+    /**
+     * Test method for {@link Vector#scale(double)}.
+     */
     @Test
     void testScale() {
 
@@ -56,6 +65,9 @@ class VectorTest {
                 () -> new Vector(1, 2, 3).scale(0d), "Scale by 0 must throw exception\n");
     }
 
+    /**
+     * Test method for {@link Vector#dotProduct(Vector)}.
+     */
     @Test
     void testDotProduct() {
 
@@ -74,6 +86,9 @@ class VectorTest {
                 "dotProduct() for orthogonal vectors is not zero");
     }
 
+    /**
+     * Test method for {@link Vector#crossProduct(Vector)}.
+     */
     @Test
     void testCrossProduct() {
 
@@ -100,6 +115,9 @@ class VectorTest {
                 "crossProduct() for parallel vectors does not throw an exception");
     }
 
+    /**
+     * Test method for {@link Vector#lengthSquared()}.
+     */
     @Test
     void testLengthSquared() {
 
@@ -116,6 +134,9 @@ class VectorTest {
                 "lengthSquared() of zero vector does not throw an exception");
     }
 
+    /**
+     * Test method for {@link Vector#length()}.
+     */
     @Test
     void testLength() {
 
@@ -132,6 +153,9 @@ class VectorTest {
                 "length() of zero vector does not throw an exception");
     }
 
+    /**
+     * Test method for {@link Vector#normalize()}.
+     */
     @Test
     void testNormalize() {
 
@@ -153,6 +177,9 @@ class VectorTest {
                 "normalized vector is not in the same direction");
     }
 
+    /**
+     * Test method for {@link Vector#normalize()}.
+     */
     @Test
     public void testPointSubtract() {
         // ============ Equivalence Partitions Tests ==============
@@ -169,6 +196,9 @@ class VectorTest {
 
     }
 
+    /**
+     * Test method for {@link Vector#equals(Object)}.
+     */
     @Test
     void testTestEquals() {
 

@@ -9,10 +9,10 @@ import primitives.Ray;
 
 import java.util.List;
 
-/*
+
+/**
  * Unit tests for Sphere class
  */
-
 class SphereTest {
 
     /**

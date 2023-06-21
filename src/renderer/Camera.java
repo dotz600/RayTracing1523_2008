@@ -37,7 +37,7 @@ public class Camera {
 
     private int threads_count = 1;
 
-    private int recLevelASS = 0;
+    private int recLevelASS = 0;//recursion level for adaptive super sampling
 
     // ***************** Constructors ********************** //
     /**

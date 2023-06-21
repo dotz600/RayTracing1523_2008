@@ -26,6 +26,7 @@ public class ReflectionRefractionTests {
 
     private Scene scene = new Scene.SceneBuilder("Test scene").build();
 
+    //*************************TEST_01*************************//
     /** Produce a picture of a sphere lighted by a spotlight */
     @Test
     public void twoSpheres() {
@@ -47,6 +48,7 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
+    //*************************TEST_02*************************//
     /** Produce a picture of a sphere lighted by a spotlight */
     @Test
     public void twoSpheresOnMirrors() {
@@ -82,6 +84,7 @@ public class ReflectionRefractionTests {
                 .writeToImage();
     }
 
+    //*************************TEST_03*************************//
     /** Produce a picture of two triangles lighted by a spotlight with a
      * partially
      * transparent Sphere producing partial shadow */

@@ -13,6 +13,7 @@ import scene.Scene;
 /** Testing basic shadows
  * @author Dan */
 public class ShadowTests {
+    //*********************INITIALIZE DATA FOR TESTS**********************//
     private final Intersectable sphere     = new Sphere(new Point(0, 0, -200), 60d)                                         //
             .setEmission(new Color(BLUE))                                                                                  //
             .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30));
@@ -22,6 +23,8 @@ public class ShadowTests {
     private final Camera        camera     = new Camera(new Point(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0))   //
             .setVPSize(200, 200).setVPDistance(1000)                                                                       //
             .setRayTracer(new RayTracerBasic(scene));
+
+    //*********************Method for initializing data for tests**********************//
 
     /** Helper function for the tests in this module */
     void sphereTriangleHelper(String pictName, Triangle triangle, Point spotLocation) {
@@ -34,6 +37,7 @@ public class ShadowTests {
                 .writeToImage();
     }
 
+    //*********************TEST_01**********************//
     /** Produce a picture of a sphere and triangle with point light and shade */
     @Test
     public void sphereTriangleInitial() {
@@ -42,6 +46,7 @@ public class ShadowTests {
                 new Point(-100, -100, 200));
     }
 
+    //*********************TEST_02**********************//
     /**
      * Sphere-Triangle shading - move triangle up-right
      */
@@ -53,6 +58,7 @@ public class ShadowTests {
                 new Point(-100, -100, 200));
     }
 
+    //*********************TEST_03**********************//
     /**
      * Sphere-Triangle shading - move triangle upper-righter
      */
@@ -63,6 +69,7 @@ public class ShadowTests {
                 new Point(-100, -100, 200));
     }
 
+    //*********************TEST_04**********************//
     /** Sphere-Triangle shading - move spot closer */
     @Test
     public void sphereTriangleSpot1() {
@@ -71,6 +78,7 @@ public class ShadowTests {
                 new Point(-90, -90, 120));
     }
 
+    //*********************TEST_05**********************//
     /** Sphere-Triangle shading - move spot even more close */
     @Test
     public void sphereTriangleSpot2() {
@@ -79,6 +87,7 @@ public class ShadowTests {
                 new Point(-77,-77,70));
     }
 
+    //*********************TEST_06**********************//
     /**
      * Produce a picture of two triangles
      * lighted by a spotlight with a Sphere

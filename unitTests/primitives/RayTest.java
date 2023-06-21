@@ -8,8 +8,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ *
+ */
 class RayTest {
 
+    /**
+     * Test method for {@link Ray#findClosestPoint(List)}.
+     */
     @Test
     void testFindClosestPoint() {
         // ============ Equivalence Partitions Tests ==============

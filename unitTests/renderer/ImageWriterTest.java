@@ -8,7 +8,15 @@ import javax.swing.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class for ImageWriter class
+ */
 class ImageWriterTest {
+
+    //****************TEST_01**********************//
+    /**
+     * Test method for ImageWriter class
+     */
     @Test
     void writeToImageTests() {
 

@@ -11,6 +11,9 @@ unit testing for Tube class
 */
 class TubeTest {
 
+    /**
+     * Test method for {@link Tube#getNormal(Point)}.
+     */
     @Test
     void testGetNormal() {
 

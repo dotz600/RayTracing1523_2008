@@ -9,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.*;
 */
 class PointTest {
 
+    /**
+     * Test method for {@link Point#subtract(Point)}.
+     */
     @Test
     void testSubtract() {
 
@@ -27,6 +30,9 @@ class PointTest {
 
     }
 
+    /**
+     * Test method for {@link Point#add(Vector)}.
+     */
     @Test
     void testAdd() {
 
@@ -39,6 +45,9 @@ class PointTest {
         //no BVA because point can be zero
     }
 
+    /**
+     * Test method for {@link Point#distanceSquared(Point)}.
+     */
     @Test
     void testDistanceSquared() {
 
@@ -53,6 +62,9 @@ class PointTest {
                 "Wrong squared distance between the point and itself");
     }
 
+    /**
+     * Test method for {@link Point#distance(Point)}.
+     */
     @Test
     void testDistance() {
 
@@ -67,6 +79,9 @@ class PointTest {
                 "Wrong distance between the point and itself");
     }
 
+    /**
+     * Test method for {@link Point#equals(Object)}.
+     */
     @Test
     void testTestEquals() {
 

@@ -13,6 +13,7 @@ import scene.Scene;
 /** Test rendering a basic image
  * @author Dan */
 public class LightsTests {
+    //****************************Initialize Variables**************************//
     private final Material material1 = new Material()
             .setKd(0.2)
             .setKs(1)
