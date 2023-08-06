@@ -7,24 +7,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="backgammon image end">
-      <change afterPath="$PROJECT_DIR$/images/finalImage.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/images/itur-lights.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="173ccf9a-b2cd-4517-9890-f4db4df6adf2" name="Changes" comment="documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/renderer/Camera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/Camera.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/SphereTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/geometries/TubeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/geometries/TubeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/lighting/LightsTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/lighting/LightsTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/primitives/PointTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/primitives/PointTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/primitives/RayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/primitives/RayTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/primitives/VectorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/primitives/VectorTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/CameraTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/CameraTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/FinalImageTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/FinalImageTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/ImageWriterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ImageWriterTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ReflectionRefractionTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/RenderTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unitTests/renderer/ShadowTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/unitTests/renderer/ShadowTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/renderer/RayTracerBasic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/scene/Scene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/scene/Scene.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -438,7 +425,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1687184981499</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL‎-00031" summary="documentation">
+      <created>1687386466789</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL‎-00031" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1687386466789</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -454,7 +448,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="adding plane test" />
     <MESSAGE value="end stage 2" />
     <MESSAGE value="fix bugs stage 2" />
     <MESSAGE value="fix another bugs stage 2" />
@@ -479,7 +472,8 @@
     <MESSAGE value="final image with mirror" />
     <MESSAGE value="backgammon image start" />
     <MESSAGE value="backgammon image end" />
-    <option name="LAST_COMMIT_MESSAGE" value="backgammon image end" />
+    <MESSAGE value="documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="documentation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

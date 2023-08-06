@@ -50,6 +50,7 @@ public class Scene {
         private AmbientLight ambientLight = AmbientLight.NONE;
 
         private Geometries geometries = new Geometries();
+
         private List<LightSource> lights = new LinkedList<>();
 
         // ***************** setters ********************** //

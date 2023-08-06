@@ -13,11 +13,12 @@ import java.util.MissingResourceException;
 import static primitives.Util.isZero;
 
 /**
- *  this class represent camera in space
+ *  This class represent camera in space
  */
 public class Camera {
 
     // ***************** Fields of Camera class ********************** //
+
     private final Point p0;//camera location
 
     // 3 vectors that represent the camera orientation
@@ -39,7 +40,9 @@ public class Camera {
 
     private int recLevelASS = 0;//recursion level for adaptive super sampling
 
+
     // ***************** Constructors ********************** //
+
     /**
      * constructor get one point and 2 vertical vectors
      * @param p0 point
