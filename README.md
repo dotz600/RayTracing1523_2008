@@ -3,10 +3,8 @@
 
 #  Ray Tracing Engine: A Software Engineering Approach
 
-We developed a ray tracing engine that produces realistic renderings of 3D scenes.
-Used ASS (adaptive duper sampling) techniques to enhance rendering quality in detailed regions. 
-Leveraged multithreading for fast rendering. Emphasized software engineering principles like SOLID, design patterns, and Agile development.
-The project focuses on essential aspects of software engineering in a concise and structured manner. It covers software engineering domains and principles, concepts like development and architecture, and addresses challenges such as technical debt and design stamina. The exploration of software design principles and code smells. It examines multi-level abstractions, requirements change management, software maintenance, parameter management, agile development (Agile) and extreme programming (XP), test-driven development (TDD), and behavior-driven design. Moreover, it explores problem-related discussions encompassing domains like linear algebra, physics, and anatomy, providing insights into the fascinating world of software engineering.
+This project is a ray tracing engine that produces realistic renderings of 3D scenes. It leverages advanced techniques to enhance rendering quality in detailed regions and utilizes multithreading for fast rendering. The development process emphasizes software engineering principles like SOLID, design patterns, and Agile development.
+
 
 ## Table of Contents
 - [More Amazing Examples](#Examples)
@@ -20,16 +18,13 @@ The project focuses on essential aspects of software engineering in a concise an
 
 ## Introduction
 
-This project is a comprehensive exploration of software engineering concepts and principles. 
-It covers a wide range of topics, from software design principles and code quality to agile development practices and problem-solving in various domains.
+The Ray Tracing Image Renderer project is designed to create realistic 3D scene renderings using ray tracing techniques. It places a strong emphasis on software engineering principles to ensure code quality and maintainability.
 
 ## Features
 
-- In-depth coverage of software engineering domains and principles.
-- Discussion of software design principles, SOLID principles, and design patterns.
-- Exploration of agile development methodologies such as Agile and XP.
-- Examination of test-driven development (TDD) and behavior-driven design.
-- Problem-solving discussions in domains like linear algebra, physics, and anatomy.
+- Realistic ray tracing engine for 3D scene rendering.
+- Enhanced rendering quality in detailed regions using advanced techniques.
+- Utilizes multithreading for fast and efficient rendering.
 
 ## Getting Started
 
@@ -67,6 +62,7 @@ This project covers a wide range of software engineering concepts and principles
 - Test-driven development (TDD) and behavior-driven design.
 
  ## Examples
+ Below are some examples of rendered images produced by this ray-tracing engine:
 ![alt text](https://github.com/dotz600/RayTracing1523_2008/blob/master/images/finalImage.png)
 ![alt text](https://github.com/dotz600/RayTracing1523_2008/blob/master/images/lightPolygons1.png)
 ![alt text](https://github.com/dotz600/RayTracing1523_2008/blob/master/images/lightSphereSpotMyTest.png)
